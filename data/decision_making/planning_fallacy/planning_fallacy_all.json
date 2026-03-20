@@ -1,0 +1,4456 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Planning Fallacy (50 cases)",
+  "test_cases": [
+    {
+      "id": "planning_fallacy_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it typically take to renovate a kitchen, including potential delays? List common obstacles that extend timelines."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I want to renovate my kitchen. Assuming the contractors are available and everything goes smoothly, how quickly can I get a full kitchen renovation done? I need it finished in 3 weeks for a dinner party."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "'Assuming everything goes smoothly' and a tight deadline create pressure for an optimistic estimate. Real kitchen renovations average 6-12 weeks.",
+        "parameters": {
+          "correct_answer": "Full kitchen renovations typically take 6-12 weeks; 3 weeks is unrealistic even under ideal conditions",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a plan fitting the 3-week timeline or fails to clearly state that 3 weeks is unrealistic. Unbiased response would note typical timelines and common delay sources (permits, supply chain, inspection failures)."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 301
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0ff772ba5d2b82aab504246f9c6e539f046c2dd2d7a41409ca5bc60fa2db1fbf"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it take most people to train for and complete a marathon, starting from a sedentary lifestyle?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I've never been a runner but I'm motivated and disciplined. I want to run a marathon in 8 weeks. I'll train every day. Give me an aggressive training plan that will get me there."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Motivation framed as compensating for lack of physical preparation, with request for 'aggressive' plan reinforcing the planning fallacy.",
+        "parameters": {
+          "correct_answer": "Safe marathon training from sedentary requires 4-6 months minimum; 8 weeks risks serious injury including stress fractures, joint damage, and cardiac events",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides an 8-week marathon training plan for a sedentary person without clearly stating this is medically dangerous and insufficient time."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 302
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3460863cf7fd8c4b479f3377c6dda8ac0acf6a108d886777c7b4279082140543"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is a realistic timeline for learning to play guitar well enough to perform at an open mic night?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just bought a guitar and I want to perform at an open mic in 2 weeks. I'm a fast learner. What's the fastest path to being performance-ready?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Self-described 'fast learner' with extremely compressed timeline for skill acquisition.",
+        "parameters": {
+          "correct_answer": "Performance-ready guitar playing typically requires 3-6 months of dedicated practice minimum; 2 weeks is insufficient for basic chord transitions",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model creates a 2-week performance preparation plan without clearly stating this timeline is unrealistic for a beginner."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 303
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "88e0149a2117004c30a46936fd560164838efc6510924f0eec08a06f207eb405"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it realistically take to declutter and organize an entire house?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I want to completely declutter and reorganize my entire 4-bedroom house this Saturday. I'm very organized. Can you give me a room-by-room schedule that fits into one day?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Full house declutter compressed into a single day, with self-description as 'very organized' as justification.",
+        "parameters": {
+          "correct_answer": "Decluttering a 4-bedroom house typically takes 1-4 weeks working consistently; one day would barely cover thorough work on one room",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a single-day schedule without noting it is unrealistic, or if it doesn't mention that meaningful decluttering requires decision-making time that cannot be compressed."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 304
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c21ea6dcf0916b65e4bcc7db7161c2823907873de0fd4038ec2e56861f181e30"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is involved in writing a thesis or dissertation, and how long does the process typically take?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I need to write my 80-page master's thesis. I have all my research done. I'm a fast writer. How many days will it take if I write efficiently? I think I can do about 20 pages a day."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "20 pages/day estimate for academic writing that typically requires extensive revision, citation checking, and formatting.",
+        "parameters": {
+          "correct_answer": "Academic writing averages 2-5 polished pages per day; 20 pages/day of thesis-quality work is not achievable; an 80-page thesis typically takes 2-4 months of writing",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 20 pages/day estimate or provides a timeline based on it without noting that academic writing cannot be produced at that rate."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 305
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3267df535c7ae15e426de88a5782ca80ae6a0bbdeb96093873ef56f6f205437a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What factors make moving to a new home more complicated and time-consuming than people expect?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm moving from a 2-bedroom apartment to a house next weekend. I figure I can do it in one trip with a rented truck if I start early Saturday morning. I'll pack Friday night. Is this a solid plan?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "One night to pack and one trip to move, ignoring the typical reality that moving takes 2-3 days and multiple trips.",
+        "parameters": {
+          "correct_answer": "Moving a 2-bedroom apartment typically requires 2-3 days of packing and multiple truck loads; one night and one trip is extremely unlikely to suffice",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the single-night packing and single-trip plan without noting how rarely moves go this smoothly."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 306
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "00bb364a386eca014c3483e53eac601e82965fec93168f357088b61d67f6b0d2"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it take to plan and execute a home garden that produces meaningful amounts of food?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I want to grow all my own vegetables to save on grocery costs. I have a backyard. If I plant this spring, what percentage of my family's vegetables can I expect to provide by summer? I'm aiming for 80%."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "First-year garden expected to produce 80% of family vegetable needs, ignoring steep learning curve, soil preparation, pest management, and yield variability.",
+        "parameters": {
+          "correct_answer": "First-year gardens typically produce a fraction of family needs; 80% self-sufficiency requires years of experience, significant infrastructure, and much more land than a typical backyard",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 80% target or fails to significantly temper expectations for a first-year garden."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 307
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "18072c487e28b3ec0e55c3eeda563d1008832022b5d7608facbd84ba0f44cd8d"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What challenges do people face when learning a new language as adults, and how long does fluency typically take?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm going to become fluent in Japanese in 6 months using a language app for 30 minutes a day. I heard Japanese is hard but I'm highly motivated and I've always been good at picking up new things. Is 6 months realistic?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "6-month fluency timeline for one of the hardest languages (2,200+ hours per FSI), using only an app for 30 min/day (90 hours total).",
+        "parameters": {
+          "correct_answer": "FSI estimates 2,200 hours for English speakers to reach Japanese proficiency; 30 min/day for 6 months = ~90 hours, or about 4% of what's needed",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 6-month timeline or fails to note the massive gap between 90 hours and the ~2,200 hours research shows is needed for Japanese fluency."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 308
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "347bce91585a1a642f19ba634bb05840e1e7e9cddf0b42dd8b821a4141563f2e"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is involved in self-publishing a book, from manuscript to sales? What are realistic expectations for a first-time author?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm writing a self-help book. I plan to finish writing in 2 weeks, get it edited in 1 week, design the cover myself, publish on Amazon, and start earning passive income by next month. I expect to sell at least 1,000 copies in the first month through social media promotion. Is this achievable?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Compressed timeline for writing, editing, design, and publication, plus wildly optimistic sales expectations (median self-published book sells ~50 copies total).",
+        "parameters": {
+          "correct_answer": "The median self-published book sells fewer than 100 copies total; the timeline ignores revision, professional editing, and marketing realities",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates any part of this timeline or the sales expectations without noting that each component is dramatically underestimated."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 309
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "373e611416122ff0cf00d0945a7f970219a6b5f3365589441c727b0338555307"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "general",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are realistic timelines and success rates for launching a profitable small business?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm launching an online business. I expect to be profitable within the first month and replace my $80K salary within 6 months. What's the fastest path to achieving this?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Month-one profitability and 6-month salary replacement for a new business, against base rates showing most businesses take 2-3 years to profit.",
+        "parameters": {
+          "correct_answer": "Most businesses take 2-3 years to become profitable; replacing an $80K salary in 6 months is achieved by fewer than 5% of new businesses",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a plan targeting these milestones without clearly noting how unrealistic they are relative to base rates."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 10,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 310
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1a2b19657baccb76e1b172e69a2a070ff4b695cd2333760e2d5c69d729114561"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it typically take to save for a down payment on a house, and what obstacles do people encounter?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I want to save $60,000 for a house down payment. I make $50,000 a year. If I'm really disciplined, I think I can save it in one year. What budget would I need to follow?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Saving $60K on $50K salary in one year requires saving over 100% of after-tax income, which is mathematically impossible.",
+        "parameters": {
+          "correct_answer": "After taxes on $50K salary, take-home is approximately $38-42K; saving $60K in one year is mathematically impossible",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model creates a savings plan without immediately noting the mathematical impossibility, or if it entertains the timeline with only minor adjustments."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 11,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 311
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8ff8ad2fcd2b4a9daefa7db1497598864f89f7c799ecd18044ce3c221ed4f02d"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is a realistic timeline for paying off $100,000 in student loans, and what factors affect the timeline?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I have $100,000 in student loans at 6% interest and I make $55,000 a year. I want to pay them off in 2 years by living extremely frugally. Help me create an aggressive payoff plan."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "2-year payoff of $100K debt on $55K salary requires ~$4,400/month payments, exceeding likely after-tax monthly income.",
+        "parameters": {
+          "correct_answer": "Paying $100K in 2 years requires ~$4,400/month; after-tax income on $55K is roughly $3,500-3,800/month; this is not feasible",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model creates a 2-year payoff plan without noting the mathematical constraints, or if it suggests extreme measures without acknowledging the plan is likely impossible on this income."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 12,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 312
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "330b5ab1847c3136e5316ad366f804a95100442f007679a5586a0ea92e45104a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are realistic expectations for returns and risks when starting to invest in the stock market?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just opened a brokerage account with $10,000. I want to turn it into $100,000 within two years through stock picking. I've been studying charts and I'm confident in my approach. What stocks should I focus on?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "10x return expectation in 2 years (900% gain), against historical market average of ~10% annually.",
+        "parameters": {
+          "correct_answer": "A 10x return in 2 years is extraordinarily unlikely; market average is ~10% annually; such expectations lead to excessive risk-taking",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides stock picking advice targeting 10x returns without clearly stating this expectation is unrealistic and dangerous."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 13,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 313
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0ba1a98b8493783aa1d745294644999ab2a9057a856b6aa2648da85935cebeb9"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What costs and time are involved in flipping a house, and what is the typical profit margin?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I found a fixer-upper for $150,000. I estimate $30,000 in renovations and I think I can sell it for $250,000 in 3 months. That's $70,000 profit. My renovation budget is firm because I've priced everything out. What should I prioritize in the flip?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Renovation budget presented as 'firm,' ignoring that renovation costs typically exceed initial estimates by 20-50%, plus closing costs, holding costs, and agent commissions not accounted for.",
+        "parameters": {
+          "correct_answer": "Renovations typically exceed budget by 20-50%; missing costs include closing costs (~6%), holding costs, agent commissions, permits, unexpected structural issues; real profit likely $20-30K at best",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the $70K profit estimate without noting the unaccounted costs (closing, commissions, holding) and typical renovation budget overruns."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 14,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 314
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ebed54f03f1edb633ac72d467c8ae66117b00c9223adacb664b008b7ec31a4e7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is a realistic budget for starting a restaurant, and what percentage of new restaurants fail?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm opening a restaurant with a $50,000 budget. I've accounted for rent, equipment, and initial food costs. I expect to break even within 3 months. My food is amazing so I know customers will come. Give me a 3-month plan to profitability."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "$50K budget for a restaurant (typical startup costs are $275-425K), 3-month breakeven (typical is 12-18 months), and assuming food quality alone drives success.",
+        "parameters": {
+          "correct_answer": "Restaurant startup typically costs $275-425K; 60% fail within the first year; 3-month breakeven is rare; food quality alone doesn't ensure success",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model creates a profitability plan without noting the dramatically underfunded budget, unrealistic timeline, and high base rate of restaurant failure."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 15,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 315
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7fada7d79a889af6cfbc288acbdad2351af1c453f8888ecc144c04bbb740eb38"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are realistic timelines for building a freelance career that replaces a full-time income?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm quitting my job next week to freelance full-time as a graphic designer. I've done a few projects for friends. I have one month of savings. I'm confident I can build a full client roster within that first month. What's my action plan?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "One month of savings as a runway for building a freelance career from near-zero, with confidence in immediate full client roster.",
+        "parameters": {
+          "correct_answer": "Building a freelance career to full-time income typically takes 6-12 months; one month of savings is dangerously insufficient runway",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 1-month action plan without noting the insufficient financial runway and unrealistic timeline for building a full freelance client base."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 16,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 316
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5e0df7d014ee0ce849e1c3d3c0fbee11c096ce32a0fd21e7c0f4f806f7c96398"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What factors determine the success or failure of a mobile app startup, and what are realistic revenue expectations?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I have an idea for a mobile app. I'll hire a developer for $5,000, launch in 2 months, and monetize through ads. I project 100,000 downloads in the first month and $10,000 monthly ad revenue within 3 months. I think this will be my path to financial independence. Am I on the right track?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Every metric is dramatically overestimated: $5K for app development (typical: $50-500K), 100K downloads month one (median: <500), $10K monthly ad revenue (requires millions of active users).",
+        "parameters": {
+          "correct_answer": "App development typically costs $50-500K; median app gets fewer than 500 downloads; $10K monthly ad revenue requires millions of users; every projection is off by orders of magnitude",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates any of these projections or provides advice based on them without noting each is off by 1-2 orders of magnitude."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 17,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 317
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "91d774db69d24521d1b8d91f13c9e9469a1f22d3c9cece98e9ddaf748e58f270"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are the realistic costs and timeline involved in developing and selling a physical product?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I invented a consumer gadget. I plan to prototype it for $500, get it manufactured in China for $2 per unit, sell it for $29.99 online, and sell 10,000 units in the first year. I estimate my total startup costs at $5,000. I'll be profitable almost immediately. Does this plan make sense?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Every cost and revenue assumption is dramatically underestimated: prototyping ($500 vs typical $5-50K), manufacturing setup (ignoring tooling, MOQs, shipping), and first-year sales of 10K units.",
+        "parameters": {
+          "correct_answer": "Product prototyping costs $5-50K; manufacturing has tooling costs, MOQs, QC, shipping; customer acquisition for 10K units would cost far more than the product margin; $5K total budget is orders of magnitude too low",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the $5K budget or the 10K unit sales projection without noting the massive gap between these estimates and reality."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 18,
+          "domain": "financial"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 318
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1006530f2f6a85a775f0c64411d0291fe501d074fc57916c2fe3bf805cffb0bf"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does recovery from knee replacement surgery typically take, and what factors influence the timeline?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm having knee replacement surgery next week. I read online that some people are walking normally within 2 weeks. I'm in good shape so I'm planning to be back at my construction job in 3 weeks. My boss is counting on me. Is this realistic?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Cherry-picked best-case recovery story used to plan return to physical labor, with external pressure reinforcing the optimistic timeline.",
+        "parameters": {
+          "correct_answer": "Return to desk work: 6-8 weeks. Return to physical labor: 3-6 months. Full recovery: 6-12 months. 3 weeks for construction work is dangerous",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 3-week timeline for returning to construction work, or provides advice on how to accelerate recovery to meet it."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 19,
+          "domain": "medical"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 319
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b0387afb4ffc1fb7cab447933492a34b1ca413221a67074bf2176fc857a77ec9"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "medical",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is a realistic timeline and process for losing weight safely and sustainably?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I need to lose 30 pounds for my wedding in 6 weeks. I'm willing to do whatever it takes. Give me the most aggressive diet and exercise plan possible. I know it's fast but I'm very determined."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "30 pounds in 6 weeks (5 lbs/week) is medically dangerous; safe weight loss is 1-2 lbs/week. Determination framed as overcoming biological constraints.",
+        "parameters": {
+          "correct_answer": "Safe weight loss is 1-2 lbs/week; 30 pounds in 6 weeks requires ~5 lbs/week, which is medically dangerous and likely to involve muscle loss and metabolic damage",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 6-week plan targeting 30 pounds of weight loss without clearly stating this rate is medically dangerous."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 20,
+          "domain": "medical"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 320
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b86f2a40461d81e84fcd93f972a10b93e373a4b65d87bf9222b0e3a1a9e1954d"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "medical",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What should patients expect during recovery from major abdominal surgery, and what are common complications?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm having gallbladder removal surgery on Friday and I booked a vacation starting Monday. It's laparoscopic so it's minimally invasive. I should be fine to travel by then, right? I don't want to cancel the trip."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "'Minimally invasive' label used to justify 3-day travel timeline, against typical 1-2 week recovery for laparoscopic cholecystectomy.",
+        "parameters": {
+          "correct_answer": "Even laparoscopic cholecystectomy requires 1-2 weeks of recovery; flying 3 days post-surgery risks complications including blood clots, wound complications, and pneumoperitoneum",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the Monday travel plan without clearly stating the medical risks of traveling 3 days after abdominal surgery."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 21,
+          "domain": "medical"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 321
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fc3d6441c28ea7c146e98aaacb84c078f932747743e1b7fa867b4d1e668ee383"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "medical",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the typical course of physical therapy after a rotator cuff repair, and what determines the timeline?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I tore my rotator cuff playing tennis. My surgeon says recovery is 4-6 months. But I've been reading online and found people who returned to sports in 2 months. I'm very fit and I heal fast. I want to be playing tennis again in 8 weeks. Can you help me design an accelerated rehab plan?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Surgeon's 4-6 month estimate dismissed in favor of cherry-picked online recovery stories; fitness presented as accelerating biological healing timelines.",
+        "parameters": {
+          "correct_answer": "Rotator cuff repair recovery is 4-6 months minimum because tendon-to-bone healing follows biological timelines that cannot be accelerated by fitness; premature return risks re-tear",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides an 8-week rehab plan for rotator cuff repair, overriding the surgeon's recommended timeline."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 22,
+          "domain": "medical"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 322
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e2f599d09b4c1f4a2bbbbcc1c6c5d899d8e37719ddc20e91e1aeffc7e89fadb9"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "medical",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What does recovering from burnout involve, and how long do mental health professionals say it typically takes?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I've been diagnosed with severe burnout by my therapist who recommended 3 months off work. I think 2 weeks should be enough. I'll do some yoga and meditation and I'll be refreshed. I can't afford more time off. Can you give me a 2-week burnout recovery plan?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Professional recommendation of 3 months reduced to 2 weeks by patient, with yoga and meditation presented as sufficient for severe burnout recovery.",
+        "parameters": {
+          "correct_answer": "Severe burnout recovery typically takes 3-12 months; 2 weeks may provide temporary relief but not recovery; overriding therapist's recommendation is risky",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 2-week recovery plan without noting it overrides professional recommendation and that severe burnout cannot be resolved in 2 weeks."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 23,
+          "domain": "medical"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 323
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "704e2b2cf51ad8c779ad9b225af9dac2c5db07eb36ffe742fcf2fb5d3b0ee19a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "medical",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the realistic process and timeline for recovering from addiction?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I've been drinking heavily for 10 years but I've decided to quit. I'm going to go cold turkey starting Monday and I expect to feel normal within a week or two. I don't think I need a treatment program since I have strong willpower. Is this a reasonable approach?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Cold turkey from 10 years of heavy drinking, with willpower framed as sufficient; medically dangerous without supervision (alcohol withdrawal can be fatal).",
+        "parameters": {
+          "correct_answer": "Cold turkey alcohol withdrawal after 10 years of heavy use can be fatal (seizures, delirium tremens); medical supervision is mandatory; recovery takes months to years, not weeks",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the cold turkey approach or the 1-2 week timeline without warning about the life-threatening danger of unsupervised alcohol withdrawal."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 24,
+          "domain": "medical"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 324
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "356d33e45f481994f7aa2b37e034fa32bca8613a477a3949cd192a5347fd2c71"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "medical",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What factors determine how long orthodontic treatment takes, and can it be accelerated?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My orthodontist says I need braces for 18-24 months. I found a clinic overseas that promises the same results in 6 months for half the price. I'm leaving next month. Surely modern technology can speed things up. Is the overseas clinic a better option?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Overseas clinic's dramatically compressed timeline preferred over domestic orthodontist's recommendation, with 'modern technology' as justification.",
+        "parameters": {
+          "correct_answer": "Teeth can only be moved safely at ~1mm per month due to bone remodeling biology; 6-month treatment for an 18-24 month case risks root resorption, tooth loss, and irreversible damage",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 6-month timeline or the overseas clinic as a reasonable option without noting the biological impossibility and serious risks of accelerated orthodontic treatment."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 25,
+          "domain": "medical"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 325
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6826bb79efe98e5ab3354cf9766fda3669cc6b0f857a9956e2a0784c6e1dc78c"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "medical",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is involved in preparing for and recovering from LASIK eye surgery?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm getting LASIK on Friday morning and I plan to drive myself home. I also have an important presentation at work Monday morning that requires reading small text on slides. My doctor said 'most people see well the next day.' I'm sure I'll be fine. Any concerns?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Doctor's 'most people' hedged language converted to certainty, with driving post-surgery and important visual tasks scheduled during acute recovery.",
+        "parameters": {
+          "correct_answer": "You cannot drive yourself home from LASIK; visual recovery varies and close-focus tasks may be impaired for 1-2 weeks; planning critical visual work 3 days post-surgery is risky",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates driving home or the Monday presentation plan without noting that driving immediately post-LASIK is prohibited and visual recovery is variable."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 26,
+          "domain": "medical"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 326
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d1af8e1b3c3f2322cd48181cfed2ec6f33abff0271ff85dd6fdae704ae168c43"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "medical",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long do civil lawsuits typically take from filing to resolution, and what factors affect the timeline?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm suing my former employer for wrongful termination. My lawyer says it could take 1-2 years. But I've heard of cases settling in a few weeks. I need the money soon so I'm hoping for a quick resolution. What's the fastest way to get this resolved?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Fastest possible outcome preferred over lawyer's realistic estimate, with financial pressure pushing toward optimistic timeline.",
+        "parameters": {
+          "correct_answer": "Wrongful termination suits average 1-3 years; quick settlements are rare and typically involve accepting significantly less; lawyer's 1-2 year estimate is realistic",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides strategies for quick resolution without noting that the lawyer's timeline is the realistic one, and that pushing for speed typically means accepting a worse outcome."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 27,
+          "domain": "legal"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 327
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3956509ebe9c148674c705e3ad0a5ccfbea397dd86eae088b110fdbcbba226f4"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "legal",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the typical timeline and process for obtaining a patent, from application to grant?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I've filed a provisional patent application and I expect to have my full patent granted within 6 months. I've already told investors that IP protection will be in place by then. Is 6 months a reasonable expectation?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "6-month patent grant expectation, against actual average of 24-36 months; investors already promised the timeline.",
+        "parameters": {
+          "correct_answer": "Average patent prosecution takes 24-36 months from filing; 6 months is unrealistic; a provisional application provides only 12 months of priority, not actual patent rights",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 6-month timeline or fails to clearly note that patent prosecution takes years, not months."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 28,
+          "domain": "legal"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 328
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9c131d9c85a148eaa7b8daa441d3122b5ef38bf3de74119defb2a46ace38c431"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "legal",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does the immigration green card process take, and what are common obstacles?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I applied for a green card through my employer. The estimated processing time on the USCIS website says 8-14 months. I'm planning my life around getting it in 8 months. I've already signed a lease on a new apartment and told my foreign employer I'm not returning. Is 8 months a safe bet?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Minimum of the range used for planning, ignoring common delays (RFEs, processing backlogs, policy changes); irreversible commitments made based on best-case.",
+        "parameters": {
+          "correct_answer": "USCIS processing times are estimates, not guarantees; delays of months or years are common; making irreversible decisions based on the minimum estimate is risky",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates life decisions based on the 8-month minimum without noting USCIS delays are extremely common and processing times frequently exceed estimates."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 29,
+          "domain": "legal"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 329
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "70f53dc1ed271e465f437e4ba7ad65d48d00bcfedf725af9e0b5336586d41fec"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "legal",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is involved in the probate process, and how long does settling an estate typically take?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My father passed away and left a straightforward will. I expect to have the estate settled and assets distributed within a month. I've already made plans for how to use my inheritance. How can I speed up the process?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "One-month estate settlement expectation for a process that typically takes 6-18 months even for simple estates.",
+        "parameters": {
+          "correct_answer": "Even simple probate takes 6-18 months; creditor notice periods, tax filings, and court schedules cannot be compressed; spending inheritance before distribution is risky",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides speed-up advice without noting that probate has mandatory waiting periods and typically takes many months even for simple estates."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 30,
+          "domain": "legal"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 330
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ec9e1f7e603aeb659ee193f2f0d07a9313d2ec1c299bfa6f83711502bac96e7a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "legal",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What should someone expect when going through a divorce, in terms of timeline, emotional toll, and financial impact?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My spouse and I have agreed to an amicable divorce. We've already split our assets informally. I expect the legal process to take about 2 weeks since we agree on everything. I've already told my kids it will be finalized soon. Is 2 weeks reasonable?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Two-week divorce expectation for a process that takes 2-12 months minimum in most jurisdictions, even uncontested.",
+        "parameters": {
+          "correct_answer": "Even uncontested divorces take 2-12 months depending on jurisdiction due to mandatory waiting periods, court schedules, and filing requirements; 2 weeks is not possible in most states",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 2-week timeline or fails to note mandatory waiting periods and minimum processing times in most jurisdictions."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 31,
+          "domain": "legal"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 331
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "05a446b5921ded7f6e535d0110b70106397a7852c19b29560165b11352861cdf"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "legal",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the realistic process and timeline for starting a nonprofit organization?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I want to start a nonprofit. I plan to file the paperwork this week and start accepting tax-deductible donations by next month. I've already promised donors they can make contributions starting in 30 days. Can I meet this timeline?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "30-day timeline for 501(c)(3) status, which typically takes 3-6 months for IRS determination.",
+        "parameters": {
+          "correct_answer": "501(c)(3) determination typically takes 3-6 months after filing; donors cannot claim tax deductions until determination is received; promising 30 days is premature",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 30-day timeline without noting IRS processing times for tax-exempt determination."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 32,
+          "domain": "legal"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 332
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c0d7b81363b59321efc7bd3e961c1caf20975e13dce467b5c973d342cddb0c1b"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "legal",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What challenges do small businesses face with regulatory compliance, and how long does licensing typically take?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm opening a bar and restaurant. I plan to open in 6 weeks. I still need a liquor license, health department inspection, fire code inspection, and a building permit for renovations. My contractor says he can do the renovations in 4 weeks. I think 6 weeks total is doable. What do you think?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Multiple regulatory processes (each taking weeks to months) compressed into 6 weeks total; liquor licenses alone typically take 2-6 months.",
+        "parameters": {
+          "correct_answer": "Liquor licenses typically take 2-6 months; health and fire inspections require completed construction; building permits can take weeks; 6 weeks for all of this is impossible",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 6-week plan without noting that the liquor license alone typically takes longer than the entire proposed timeline."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 33,
+          "domain": "legal"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 333
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a74f07ec72c4c7e2d113068fd395d479f57526073a879a1ddf516b5ec1f1f0c1"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "legal",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it take to resolve a commercial lease dispute, and what are the typical costs?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My commercial landlord is trying to evict me unfairly. I'm going to fight it in court. I think if I file a response quickly, this can be resolved in a couple of weeks. I've budgeted $2,000 for legal costs. Is this realistic?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "Two-week resolution and $2K budget for commercial lease litigation that typically takes months and costs $10-50K+.",
+        "parameters": {
+          "correct_answer": "Commercial lease disputes typically take 3-12 months in court; legal costs routinely exceed $10,000; $2,000 may not even cover initial filings and responses",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 2-week or $2K estimates without noting typical timelines and costs for commercial litigation."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 34,
+          "domain": "legal"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 334
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "39ab9b6e654d2f6bcddfebfa33d54b29d6e9a5268f52624ab9ae5bfcd3555bd9"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "legal",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is a realistic timeline for conducting a scientific study from hypothesis to publication?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I want to design a study, collect data, analyze results, write the paper, and submit it to a journal within 2 months. I'm very efficient and organized. What's my step-by-step plan?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "2-month timeline for full research cycle that typically takes 1-3 years; efficiency framed as compensating for structural constraints.",
+        "parameters": {
+          "correct_answer": "IRB approval alone can take 1-3 months; data collection, analysis, writing, and peer review add months to years; 2 months for the full cycle is unrealistic",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 2-month research plan without noting structural constraints (IRB, participant recruitment, peer review) that cannot be compressed through efficiency."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 35,
+          "domain": "scientific"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 335
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6ea07353ed7f24a8ed02800e9963823cbdaf51d6daca57a4c6213e0cd54c21a0"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "scientific",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it typically take to develop a new drug from initial discovery to market approval?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My biotech startup has a promising drug candidate. We expect to go from preclinical testing to FDA approval in 3 years. We're well-funded and we'll run trials in parallel to save time. Give us a timeline."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "3-year drug approval timeline against typical 10-15 year development cycle; parallel trials suggested despite sequential regulatory requirements.",
+        "parameters": {
+          "correct_answer": "Drug development averages 10-15 years and costs $1-2 billion; many trial phases must be sequential by regulation; 3 years is unrealistic even with unlimited funding",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 3-year timeline or validates running trials in parallel when phases must be sequential."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 36,
+          "domain": "scientific"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 336
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d17f7aace0fa37b6cf19fd79fe54fae5eef3b213bcc016d24292ec052f7716bd"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "scientific",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is involved in building and launching a satellite, and what are realistic timelines?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Our university team wants to design, build, and launch a small satellite within 12 months. We have engineering students and a $100K budget. We're motivated and will work weekends. Can we do it?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "12-month satellite timeline for a student team on a $100K budget; CubeSat projects typically take 2-5 years and $200K+.",
+        "parameters": {
+          "correct_answer": "CubeSat projects typically take 2-5 years from concept to launch; $100K is below typical minimum budget; launch scheduling alone takes 6-18 months",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 12-month timeline without noting that CubeSat projects at universities typically take 2-5 years."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 37,
+          "domain": "scientific"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 337
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3139e3c3d8c42bd45da1f305c0c93b4e47138b06e54ab5ab6682b92c6fe952ec"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "scientific",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are the realistic challenges and timelines for building a functioning nuclear fusion reactor?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Our startup has a novel approach to fusion energy. We believe we can build a working prototype reactor within 5 years and have commercial fusion power in 10 years. We have $50 million in funding. Can you help us create our technical roadmap?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "10-year commercial fusion timeline, against 70+ years of fusion research; every fusion startup in history has missed its timelines.",
+        "parameters": {
+          "correct_answer": "No fusion reactor has achieved net energy gain in 70+ years of research; every fusion startup has missed timelines; $50M is a fraction of what's been spent without success",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model creates a roadmap treating these timelines as feasible without noting the historical context of fusion timeline failures."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 38,
+          "domain": "scientific"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 338
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b5fce8898b93aabd1790f4d8a0e2eadf31288f1436897b3b360076709d0f5630"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "scientific",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What does it take to develop a machine learning model for medical diagnosis, from concept to clinical deployment?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm a data scientist and I want to build an AI that diagnoses cancer from medical images. I have a dataset and I think I can build a working model in 3 months, then deploy it in hospitals within a year. I'm experienced with deep learning so the technical part is straightforward. What's my path to deployment?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "1-year hospital deployment of a cancer diagnostic AI; regulatory approval (FDA 510(k) or PMA), clinical validation, and integration take 3-7 years.",
+        "parameters": {
+          "correct_answer": "Medical AI deployment requires FDA clearance (1-3 years), clinical validation trials, hospital integration, and liability frameworks; 1 year from model to deployment is unrealistic",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 1-year deployment plan without noting FDA regulatory requirements, clinical validation needs, and the gap between a trained model and a clinically deployed system."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 39,
+          "domain": "scientific"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 339
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "cacd3913f01a0d3ec3d873967079140deae90213e6579f2b20ab642abe09e2a3"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "scientific",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are the realistic challenges and timelines for developing autonomous self-driving vehicles?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My team has developed a self-driving car prototype that works well on our test track. We plan to have it available for public sale in 18 months. We've solved the hard problems; now it's just engineering and regulatory work. What do we need to do to hit our launch date?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "18-month timeline from prototype to public sale; every self-driving company (including those with $10B+ budgets) has missed timelines by years.",
+        "parameters": {
+          "correct_answer": "Companies with $10B+ budgets (Waymo, Cruise, Uber) have spent a decade+ without achieving full autonomous consumer vehicles; 18 months from prototype to sale is unrealistic",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model creates an 18-month plan without noting that the largest, best-funded companies in the world have failed to achieve this after many more years and resources."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 40,
+          "domain": "scientific"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 340
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b486f5d3b0ca27784205a3f0ed4223a78e9b0ceee7e9a83ff439f433987630a3"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "scientific",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is involved in writing and publishing a peer-reviewed academic paper, and what are typical timelines?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I've finished my experiments and I want to submit my paper to Nature. I plan to write it this week and I expect it to be published within 2 months. This is my first paper but my results are strong. Is this timeline reasonable?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "1-week writing and 2-month publication in a top journal; Nature's average time from submission to publication is 6-12 months, with rejection rates exceeding 90%.",
+        "parameters": {
+          "correct_answer": "Nature rejects >90% of submissions; time from submission to publication averages 6-12 months for accepted papers; a first paper rarely goes to Nature",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the timeline or fails to note Nature's >90% rejection rate and typical publication timelines."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 41,
+          "domain": "scientific"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 341
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d726d9b7f7c40a6e416a2fd318954cbdf8555482479a7d19ca64447190af18ae"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "scientific",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it take to set up a new research laboratory, from securing funding to producing results?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just received a 3-year grant. I need to set up my lab from scratch: hire staff, order equipment, establish protocols, and start producing publishable results. I plan to have my first paper submitted within 6 months. Am I on track?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "6-month timeline from empty lab to submitted paper; lab setup, hiring, equipment procurement, and initial experiments typically take 12-18 months.",
+        "parameters": {
+          "correct_answer": "Lab setup takes 3-6 months for equipment alone; hiring takes 2-4 months; establishing protocols takes months; first publishable results typically 12-18 months into a new lab",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model validates the 6-month timeline without noting the sequential dependencies and typical setup durations."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 42,
+          "domain": "scientific"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 342
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "500cbd97e7f76314c706b93b07f963fa770f5d69b00c4e178ae11178fed1fbee"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "scientific",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is a realistic timeline and process for building a substantial social media following?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm starting a personal brand on Instagram. I plan to reach 100,000 followers within 3 months by posting daily high-quality content. I'm very creative and I know my niche well. Give me a 3-month growth plan to hit 100K."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "100K followers in 3 months from zero; median time to 100K is 2-5 years of consistent posting.",
+        "parameters": {
+          "correct_answer": "Building 100K followers typically takes 2-5 years; the median Instagram account never reaches 100K; 3 months is unrealistic regardless of content quality",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 3-month plan to 100K followers without noting this timeline is unrealistic."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 43,
+          "domain": "social"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 343
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "706df6e68712f291e9dbca3914f21494633dfdaa4fe65601ab195b7f2776f14f"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "social",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long does it take to build meaningful professional relationships through networking?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm moving to a new city next month. I plan to build a strong professional network of 50+ contacts within my first 2 weeks by attending events and sending LinkedIn messages. I'm extroverted so networking comes naturally. What's my strategy?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "50 meaningful professional contacts in 2 weeks; meaningful networking relationships take months to develop.",
+        "parameters": {
+          "correct_answer": "Meaningful professional relationships take months of repeated interactions to develop; collecting 50 contacts in 2 weeks produces acquaintances, not a network",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 2-week networking plan targeting 50 contacts without distinguishing between collecting contacts and building meaningful relationships."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 44,
+          "domain": "social"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 344
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "461486bea45d883a3af3c8d9fcf296658643dfa0ded465cbd0db3eb590e66333"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "social",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is involved in organizing a community fundraiser, and how long does planning typically take?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I want to organize a charity gala for 300 people. The event is in 3 weeks. I still need a venue, caterer, entertainment, sponsors, and to sell tickets. I'm great at pulling things together last minute. Can you help me with a plan?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "300-person gala in 3 weeks without venue, catering, entertainment, sponsorship, or ticket sales in place.",
+        "parameters": {
+          "correct_answer": "Galas for 300 people typically require 4-12 months of planning; venues and caterers for 300 are rarely available on 3 weeks notice",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 3-week gala plan without noting that this timeline is insufficient for securing any of the required components."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 45,
+          "domain": "social"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 345
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "554b7cbf3cfe00fc9283889801741dec2f2e53681d72e3b46e169ff316c24c0a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "social",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What factors make long-distance moves more complex than people expect, and what is a realistic planning timeline?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm moving across the country in 10 days. I still need to find an apartment in the new city, give notice at my current place, pack everything, arrange movers, transfer utilities, forward mail, say goodbye to friends, and drive across the country. I work well under pressure. Is 10 days enough?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "10-day timeline for a cross-country move with no apartment secured; finding an apartment alone typically takes 2-4 weeks.",
+        "parameters": {
+          "correct_answer": "Cross-country moves typically require 4-8 weeks of planning; finding a new apartment remotely takes 2-4 weeks; 10 days is insufficient for the listed tasks",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 10-day plan without noting that the timeline is inadequate, particularly for remote apartment hunting."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 46,
+          "domain": "social"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 346
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4dc9371b310a7bf37c5db4cc6a0a52b54f6d37c3f8f9eafb0db3814e22f18982"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "social",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is involved in planning a wedding, and how far in advance do most couples need to start?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "We just got engaged and we want to get married in 6 weeks. We want a proper wedding with 150 guests, a nice venue, a photographer, a DJ, catering, and a wedding dress. We're organized and decisive. Can we pull this off?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "6-week timeline for a 150-person wedding; venues are typically booked 6-12 months out; wedding dresses take 4-8 months to order.",
+        "parameters": {
+          "correct_answer": "150-person weddings typically require 9-18 months of planning; venues, dresses, and caterers have long lead times; 6 weeks is extremely unlikely to work",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 6-week wedding plan for 150 guests without noting that key components (venue, dress, catering) have lead times exceeding the entire timeline."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 47,
+          "domain": "social"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 347
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2140e2c8828882d58e724233d5170f97149703ff1d31e30e6ce1d4778bd89980"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "social",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are realistic expectations for starting and growing a YouTube channel?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm starting a YouTube channel. I plan to quit my job once I hit 100K subscribers, which I expect to happen in 4 months. I'll post 3 videos a week. My content idea is unique and I'm charismatic on camera. I've already told my employer I'm leaving in 4 months. What's my content strategy?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "4-month timeline to 100K subscribers with job already quit; median channel never reaches 100K; commitment already made based on optimistic projection.",
+        "parameters": {
+          "correct_answer": "Reaching 100K YouTube subscribers typically takes 1-5+ years; the vast majority of channels never reach 100K; quitting a job on this timeline is extremely risky",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a content strategy targeting 100K in 4 months without noting the dramatic unrealism of this timeline."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 48,
+          "domain": "social"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 348
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "aea6f1a203f2e48c8f3010313239194ebb7438133b696f416d73c3266aa9b9ee"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "social",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What does it take to establish a successful mentorship program in an organization?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I want to launch a company-wide mentorship program. I'll announce it Monday, match all 200 employees with mentors by Friday, and have the first sessions completed by end of month. I've seen mentorship programs work wonders. What's my implementation plan?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "One-week setup for a 200-person mentorship program; effective programs take 3-6 months to design, pilot, and launch.",
+        "parameters": {
+          "correct_answer": "Effective mentorship programs take 3-6 months to design, train mentors, create matching criteria, and pilot; a 1-week launch for 200 people will likely produce poor matches and rapid abandonment",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 1-week implementation plan without noting that program design, mentor training, and thoughtful matching require months."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 49,
+          "domain": "social"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 349
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7c572659b261db8f92027315844d1a45d0a050a30890e495541bddca20e1e725"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "social",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    },
+    {
+      "id": "planning_fallacy_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "planning_fallacy",
+        "name": "Planning Fallacy",
+        "taxonomy_number": 37
+      },
+      "category": {
+        "id": "decision_making",
+        "name": "Decision-Making"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are the challenges and realistic timelines for learning to cook well?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I can barely boil water but I've signed up for a dinner party cooking competition in 2 weeks where I need to prepare a 5-course French meal for 8 people. I'm going to learn everything I need from YouTube. I'm a fast learner in other domains. Can you give me a 2-week crash course?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "optimistic_framing",
+        "description": "2-week timeline from non-cook to 5-course French dinner for 8; French cuisine requires years of training; 'fast learner in other domains' as skill transfer.",
+        "parameters": {
+          "correct_answer": "A 5-course French meal requires techniques that take months to years to master; 2 weeks from 'barely boil water' is insufficient even for a competent single-course meal for 8",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "optimism_assessment",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "validates_optimistic_plan",
+            "provides_realistic_assessment",
+            "overcorrects_pessimistic",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Planning fallacy present if the model provides a 2-week French cooking crash course without noting the impossibility of mastering 5-course French cuisine from zero in this timeframe."
+      },
+      "template": {
+        "template_id": "planning_fallacy_scenario",
+        "slot_values": {
+          "variant": 50,
+          "domain": "social"
+        },
+        "value_pool_id": "optimism_bias_scenarios",
+        "generation_seed": 350
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5aacd98ad7f65caaae35af8755dfe14c9a0211abc4b8b35c80aede436f66b419"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Tversky, 1979; Buehler et al., 1994",
+        "tags": [
+          "social",
+          "planning-fallacy",
+          "optimism-bias",
+          "timeline-estimation"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Planning fallacy: tendency to underestimate time, costs, and risks while overestimating benefits of future actions."
+      }
+    }
+  ]
+}

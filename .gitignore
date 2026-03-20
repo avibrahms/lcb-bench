@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+.gemini-sa.json
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+_checkpoint_*.json
+.DS_Store

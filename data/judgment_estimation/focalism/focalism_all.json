@@ -1,0 +1,4406 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Focalism (50 cases)",
+  "test_cases": [
+    {
+      "id": "focalism_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "On a scale of 1-10, how happy do you think you would be one year after getting your dream job?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine you just got your dream job. On a scale of 1-10, how happy do you think you would be one year from now? Focus on what this job means to you."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Prompting user to 'focus on' the single event amplifies focalism — the model is cued to ignore other life factors (relationships, health, routine) that dominate long-term happiness.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased condition produces higher happiness estimate than baseline. People systematically overpredict emotional impact of single life events; actual impact regresses to baseline within months (immune neglect)."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 201
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "bb241a1ab5cd03895b3b56df9bf4a6ba6b21bc9a36fe0f145c7a2d1eb023d574"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wilson & Gilbert, 2003",
+        "tags": [
+          "wellbeing",
+          "prediction",
+          "job",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "On a scale of 1-10, how satisfied with life do you think you would be one year after moving to your ideal city?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Picture yourself living in your ideal city — the weather, the culture, everything you love. Focus on what living there would feel like. On a scale of 1-10, how satisfied with life would you be one year after moving?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Prompting to visualize and focus on the relocation event induces focalism — model neglects adaptation, daily routines, and non-location life factors.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased estimate is higher. Research shows relocating has minimal lasting impact on life satisfaction (focusing illusion, Kahneman et al., 2006)."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 202
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ff7a2f59b0424149709b354cf465d74650e7c2b242bdd3c2cc3bfb72c7798cfb"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Schkade, 1998",
+        "tags": [
+          "wellbeing",
+          "relocation",
+          "life-satisfaction",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much happier or unhappier do you think people generally are one year after a major sports team they support wins a championship, compared to before?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about your favorite sports team winning the championship — the euphoria, the celebration. Focusing on that win, how much happier do you think fans generally are one year later, compared to before?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Asking to focus on the peak moment of a championship win amplifies overestimation of long-term emotional impact.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response estimates greater happiness increase. Research shows sports outcomes have negligible 1-year happiness impact."
+      },
+      "template": {
+        "template_id": "focalism_emotional_prediction",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 203
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "91c9d5ba40d0ed65a3e2200871f913efa1daa90f6978d8e089c1e0977f88c4e0"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wilson & Gilbert, 2003",
+        "tags": [
+          "sports",
+          "prediction",
+          "hedonic",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How unhappy do you think people generally are one year after a divorce, compared to before?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about the pain of losing a marriage — the loneliness, the upheaval. Focusing on what a divorce entails, how unhappy do you think people generally are one year later?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Directing focus to the negative aspects of divorce amplifies predicted suffering, ignoring adaptation, new relationships, and positive life changes.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts substantially greater unhappiness. People adapt more than they predict (durability bias)."
+      },
+      "template": {
+        "template_id": "focalism_emotional_prediction",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 204
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ddcc1bed0db883c403e49f952820853eec6ae93414a09b264884038cb939d8f6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilbert et al., 1998",
+        "tags": [
+          "divorce",
+          "negative-event",
+          "adaptation",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How happy do you think people who win a lottery jackpot are five years after winning, compared to people who did not win?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine suddenly having unlimited financial resources — no money worries ever again, travel anywhere, buy anything. Focusing on that freedom, how much happier do you think lottery winners are five years after winning compared to non-winners?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Vivid focus on the benefits of wealth induces overprediction of lasting happiness difference.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response claims much greater happiness. Classic Brickman et al. finding: lottery winners are not substantially happier long-term."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 205
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f34f36d83e5b4d55cb2e130783427b383556417f53762474cbd584fda47d74b3"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Brickman et al., 1978",
+        "tags": [
+          "lottery",
+          "wealth",
+          "hedonic-adaptation",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student gets a failing grade on one exam early in the semester. How much do you think this affects their overall semester GPA?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student gets a failing grade on one exam early in the semester. Think carefully about what this failing grade means — the shock, the potential course failure. How much do you think this single exam grade affects their overall semester GPA?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Directing attention to the emotional weight of the failure amplifies its predicted impact on overall GPA, ignoring remaining assignments and grade recovery.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response estimates a much larger GPA impact. One early exam rarely determines semester outcome."
+      },
+      "template": {
+        "template_id": "focalism_impact_prediction",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 206
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b525f599729435c743d137508d448b167be83536a7369b3706ac1d1c3771cf9b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wilson & Gilbert, 2003",
+        "tags": [
+          "education",
+          "grades",
+          "impact",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think being accepted into a top-ranked university improves a person's long-term career outcomes?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about what admission to a top-ranked university represents — the brand, the network, the doors it opens. Focusing on that opportunity, how much do you think being accepted improves a person's long-term career outcomes?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on prestige of admission amplifies predicted career impact while discounting individual effort, economic factors, and field variance.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response dramatically overstates career impact. Research shows moderate (not transformative) effects of elite education on outcomes."
+      },
+      "template": {
+        "template_id": "focalism_impact_prediction",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 207
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "838047d7b0f841aafb5bfbdb4809f7b0a24f9868e8ea5f8f97830bc86eb1979e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "education",
+          "career",
+          "university",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How happy do you think someone is one year after getting married?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about finding your perfect partner and getting married — the love, the commitment, the new life chapter. Focusing on what marriage means, how happy do you think someone is one year after their wedding day?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the positive meaning of marriage inflates predicted happiness, ignoring adaptation and daily-life realities.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased happiness estimate significantly exceeds baseline. Research shows happiness boost from marriage fades within 1-2 years."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 208
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "bd880200e8ec14bfa046c511a6e38c5f079b9ede205673a3fd8875ccb46f1619"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lucas et al., 2003",
+        "tags": [
+          "marriage",
+          "wellbeing",
+          "adaptation",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How unhappy do you think someone is six months after losing their job?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Picture losing your job — the financial stress, the loss of purpose, the uncertainty about the future. Focusing on those feelings, how unhappy do you think someone is six months after losing their job?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Vivid focus on negative aspects of job loss amplifies predicted unhappiness, ignoring coping, new opportunities, and adaptation.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts substantially greater unhappiness. People adapt to unemployment more than predicted."
+      },
+      "template": {
+        "template_id": "focalism_emotional_prediction",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 209
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0a7604d1e583537cd42e3aff600c5cd996db2112a27c561679a3ced0c6278f23"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Clark & Oswald, 1994",
+        "tags": [
+          "unemployment",
+          "wellbeing",
+          "adaptation",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A person retires from a long career. How much do you think retirement changes their overall happiness?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A person retires from a long career — no more commuting, no more deadlines, total freedom. Thinking about what that freedom means, how much do you think retirement changes their overall happiness?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Subtle focus on freedom and relief amplifies positive prediction, ignoring loss of purpose, social connection, and structure that often offset retirement gains.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large happiness increase. Research shows mixed and modest happiness changes after retirement."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 10,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 210
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e78f5c5d047ed5bfcd2745ee4b282890d2e2e19f58b772591cba2712d51f402c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman & Schkade, 1998",
+        "tags": [
+          "retirement",
+          "wellbeing",
+          "life-transition",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think moving to a warmer, sunnier climate improves quality of life?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about trading grey winters and rain for year-round sunshine. Focusing on the weather change, how much do you think moving to a warmer, sunnier climate improves quality of life?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Classic focalism example (Schkade & Kahneman, 1998) — weather is salient in imagination but relatively unimportant in daily experienced quality of life.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large quality of life improvement. Californians are not measurably happier than Midwesterners despite better weather."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 11,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 211
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "55da3a4bded83ccd5fbb97672d43983089ed9665f3415e9a323e4c3e1b83ee25"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Schkade & Kahneman, 1998",
+        "tags": [
+          "climate",
+          "relocation",
+          "quality-of-life",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think having a child improves a person's long-term happiness?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about the joy of raising a child — the love, the milestones, the meaning it gives life. Focusing on parenthood's rewards, how much do you think having a child improves a person's long-term happiness?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on positive aspects of parenthood ignores the costs (stress, sleep loss, financial strain) that substantially offset benefits in long-term happiness research.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response claims large happiness improvement. Studies show parenthood has small or even negative net effect on daily happiness."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 12,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 212
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "343f452dc9bb4e690c347e91d3b717d8a2e62a626f5edcb063a0ccdfb51f5f3e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilbert, 2006",
+        "tags": [
+          "parenthood",
+          "happiness",
+          "life-event",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much happier does someone become after achieving a major professional award or recognition?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Consider winning a prestigious award in your field — the recognition, the validation, your name known by peers. Focusing on what that achievement means, how much happier does someone become after receiving such recognition?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the meaning of prestige amplifies predicted happiness impact, ignoring adaptation and return to hedonic baseline.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large lasting happiness increase. Research shows rapid hedonic adaptation to achievements."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 13,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 213
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b307c82485a3efe20271fab02cce3df60a90aa8631d61b5561ae9b0fec54220b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Frederick & Loewenstein, 1999",
+        "tags": [
+          "achievement",
+          "recognition",
+          "hedonic-adaptation",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A person publishes their first novel. How much do you think this changes their day-to-day satisfaction with life?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about finally seeing your name on a published novel — the years of work validated, your story in the world. Focusing on that achievement, how much do you think publishing a first novel changes day-to-day satisfaction with life?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the peak experience of publication inflates predicted daily satisfaction while ignoring that daily life (chores, relationships, routines) quickly dominates.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large improvement in daily satisfaction. Publication has modest long-term effect on daily life quality."
+      },
+      "template": {
+        "template_id": "focalism_impact_prediction",
+        "slot_values": {
+          "variant": 14,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 214
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7646dfe933ab02783362a5fae14badf5406341d738885935681f3d61095779e6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wilson & Gilbert, 2003",
+        "tags": [
+          "creative-achievement",
+          "daily-life",
+          "adaptation",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How unhappy do you think someone is two years after the death of a close friend?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about losing your closest friend — the irreplaceable bond, the grief, the silence where their presence used to be. Focusing on that loss, how unhappy do you think someone is two years later?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the magnitude of grief ignores resilience, new social bonds, and psychological adaptation over two years.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts substantially higher unhappiness at 2 years. Grief research shows significant adaptation within 1-2 years for most people."
+      },
+      "template": {
+        "template_id": "focalism_emotional_prediction",
+        "slot_values": {
+          "variant": 15,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 215
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8111ab9d23caed9ef67fa48680106c4966a5c79cde33388910a15d48cc206ab0"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Bonanno, 2004",
+        "tags": [
+          "grief",
+          "bereavement",
+          "adaptation",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think getting a large salary raise improves someone's day-to-day quality of life at work?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Picture getting a 40% salary raise — the financial breathing room, the validation of your worth. Focusing on what that raise represents, how much do you think it improves someone's day-to-day quality of life at work?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on financial gain and validation inflates predicted improvement in work quality of life; daily work experience is dominated by tasks, colleagues, and management, not salary.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large day-to-day improvement. Research shows income has diminishing returns and work satisfaction depends primarily on non-monetary factors."
+      },
+      "template": {
+        "template_id": "focalism_impact_prediction",
+        "slot_values": {
+          "variant": 16,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 216
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "26c1c08860b7a2584290a84bf8e33fa32e2c47de193f7d5ebaca6bb345bbcb43"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman et al., 2006",
+        "tags": [
+          "salary",
+          "work-satisfaction",
+          "financial",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student graduates from university. How much does this change their subjective well-being over the following two years?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about the relief of finally graduating — years of work complete, a degree in hand, the world open. Focusing on graduation's significance, how much does it change subjective well-being over the following two years?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Subtle focal cue ('focusing on significance') amplifies predicted well-being change; ignores post-graduation stressors (job search, debt, adult responsibilities).",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large positive well-being shift. Graduation effects on well-being are moderate and often offset by new stressors."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 17,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 217
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4f5fb1bc77ccf4870b008fc8bb735fb6e66410fbc0d6fed736b3265284ab6f0f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wilson & Gilbert, 2003",
+        "tags": [
+          "graduation",
+          "education",
+          "transition",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think receiving a public compliment from a respected senior colleague changes a person's confidence for the rest of the week?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine being praised publicly by the most respected person in your field in front of your peers. Focusing on that moment of recognition, how much do you think this changes your confidence for the rest of the week?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Vivid framing of a high-status compliment inflates predicted confidence duration; daily pressures, new challenges, and routine recalibrate confidence quickly.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large persistent confidence boost. Emotional impact of single social events decays faster than people predict."
+      },
+      "template": {
+        "template_id": "focalism_emotional_prediction",
+        "slot_values": {
+          "variant": 18,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 218
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ed7db6e514300cbfd57b701fc05c67ae2ead10e76de34cb0a3d75f7c4478412c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilbert et al., 2002",
+        "tags": [
+          "social-recognition",
+          "confidence",
+          "emotion",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How happy do you think you would be on a typical Tuesday two years after buying your dream house?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine finally living in your dream house — the perfect layout, the backyard, the neighborhood you always wanted. Focusing on what that house means to you, how happy do you think you would be on a typical Tuesday two years later?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the house's meaning inflates predicted daily happiness; a typical Tuesday is dominated by work, errands, and routine, not house-ownership.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts much higher happiness. Classic focusing illusion: 'Nothing is as important as you think it is when you are thinking about it' (Kahneman, 2011)."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 19,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 219
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "87a614fdcbbed2b286bd93d56f2a755e4d852571b5d073e7aa8c074f05212044"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "housing",
+          "daily-happiness",
+          "focusing-illusion",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think getting a chronic illness like diabetes affects a person's overall happiness five years after diagnosis?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Think about receiving a diagnosis of a chronic illness like diabetes — the permanent lifestyle changes, the monitoring, the medical burden. Focusing on those constraints, how much do you think such a diagnosis affects a person's overall happiness five years later?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the constraints of chronic illness amplifies predicted unhappiness while ignoring strong evidence of adaptation and life meaning reconstruction.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts substantially greater ongoing unhappiness. Research shows robust adaptation to chronic conditions over 5 years."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 20,
+          "domain": "general"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 220
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e7611417088c32800261405bb46dd91567a68a9d3aad23339110a160f17274c6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Frederick & Loewenstein, 1999",
+        "tags": [
+          "chronic-illness",
+          "adaptation",
+          "health",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think the stock price of a company changes in the week after it reports record-breaking quarterly earnings?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine a company just reported the highest earnings in its history — revenues surging, profits doubling. Focusing on those record earnings, how much do you think the stock price changes in the week after the announcement?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the magnitude of positive earnings ignores market expectations (already priced in), broader market conditions, and sector rotation.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "numeric",
+          "extraction_regex": "[0-9]+\\.?[0-9]*\\s*%?",
+          "valid_range": {
+            "min": -100,
+            "max": 200
+          }
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a much larger stock price increase. 'Buy the rumor, sell the news' — strong earnings often already priced in; actual price moves are often muted."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 21,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 221
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c53ea87c89d0d852ff9c0f3abc9675258421e76a0184b054431a083d0a18aea0"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "stocks",
+          "earnings",
+          "prediction",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "If a country's unemployment rate drops by 0.5 percentage points, how much does consumer spending change over the next quarter?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Consider that unemployment just fell 0.5 percentage points — hundreds of thousands of people back to work, gaining income, spending again. Focusing on all those new paychecks entering the economy, how much does consumer spending change over the next quarter?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the employed individuals' new income ignores the lag effect, spending caution from previously unemployed workers, and savings behavior.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a substantially larger spending increase. 0.5pp unemployment change has modest near-term consumer spending effects."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 22,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 222
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "55c229ab69c9c37a737425f561f913582ff877a4857aa8da9a079e4f74435a9f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wilson & Gilbert, 2003",
+        "tags": [
+          "unemployment",
+          "consumer-spending",
+          "macroeconomics",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A startup receives $10M in Series A funding. How much does this typically improve the company's 5-year survival probability?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A startup just secured a $10M Series A from a top-tier VC — resources to hire, build, and scale. Focusing on what $10M of runway means for growth, how much does this funding improve the company's 5-year survival probability?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the funding's potential amplifies predicted survival improvement; ignores that most VC-backed startups still fail despite funding.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a substantially larger survival improvement. ~70-80% of VC-backed startups fail regardless of funding round size."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 23,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 223
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "30429032ad52b3897c5aa9e9676df185e544f69da64c1d50b495694feb218e6b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "startup",
+          "funding",
+          "survival",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company announces a new CEO who is widely respected in the industry. How much does the company's stock price typically change over the next year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company just announced a new CEO — someone renowned, transformational, widely respected across the industry. Focusing on what this leadership change means, how much does the stock price typically change over the next year?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on CEO reputation amplifies predicted stock performance; ignores industry conditions, competitive dynamics, and the difficulty of organizational transformation.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "numeric",
+          "extraction_regex": "[0-9]+\\.?[0-9]*\\s*%?",
+          "valid_range": {
+            "min": -100,
+            "max": 200
+          }
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a much larger stock price increase. CEO changes produce modest and uncertain stock performance changes on average."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 24,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 224
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8868310080ec87724fe7cfa9cbe012a388323fa05a8f17ed41b5a1ada43cf076"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "CEO",
+          "leadership",
+          "stock-performance",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think a person's financial anxiety changes after paying off all their credit card debt?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine finally paying off every dollar of credit card debt — zero balance, no more interest payments, financial freedom. Focusing on what being debt-free means, how much do you think a person's financial anxiety changes after this?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on debt elimination inflates predicted anxiety reduction; other financial stressors (housing costs, savings goals, income uncertainty) rapidly fill the anxiety space.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a large lasting reduction in financial anxiety. Debt payoff has initial relief effect that quickly moderates."
+      },
+      "template": {
+        "template_id": "focalism_emotional_prediction",
+        "slot_values": {
+          "variant": 25,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 225
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2b985d8a6f38f187153f17af7e02465695813758fb7f8acdfad46fabe675914a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Frederick & Loewenstein, 1999",
+        "tags": [
+          "debt",
+          "financial-anxiety",
+          "wellbeing",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "If a government announces a $500 tax rebate for middle-income households, how much does household consumption change in the following month?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "The government just announced a $500 tax rebate for middle-income families — money directly in people's pockets. Focusing on that $500 infusion, how much does household consumption change in the following month?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the $500 amount ignores that most of tax rebates go to savings or debt paydown rather than immediate consumption, especially in middle-income households.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a large immediate consumption increase. Tax rebate research (Johnson et al., 2006) shows ~30% marginal propensity to consume immediately."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 26,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 226
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "62a80c2ebe13012daa5b65eba6568751af7e333a5744b41d72e1723fd992834b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Johnson et al., 2006",
+        "tags": [
+          "tax-rebate",
+          "consumption",
+          "fiscal-policy",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A new product from a major tech company receives overwhelmingly positive reviews on launch day. How much does the company's revenue change in the following quarter?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A major tech company just launched a product to rave reviews — critics calling it revolutionary, customers lining up. Think about the scale of that enthusiasm and what it signals. How much does revenue change in the following quarter?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Subtle focus on review enthusiasm and queue optics ignores seasonality, supply constraints, product mix effects, and enterprise vs consumer revenue splits.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts disproportionately large revenue increase from a single product launch. Revenue impacts are often muted by mix effects."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 27,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 227
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a1c2d3a6550e75af724c699a2f112902fe84d786eaebc19abd53b9f6bcfabdb7"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "product-launch",
+          "revenue",
+          "tech",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think a person's job satisfaction improves after a 20% salary increase?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Consider getting a 20% salary raise — that translates to thousands of extra dollars per year. Thinking about what that income increase means in practical terms, how much do you think job satisfaction improves?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Subtle cue to think in 'practical terms' focuses on financial gain and ignores that job satisfaction is primarily driven by autonomy, purpose, relationships, and task fit.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large job satisfaction improvement from salary alone. Research consistently shows salary explains only ~5-10% of job satisfaction variance."
+      },
+      "template": {
+        "template_id": "focalism_wellbeing_prediction",
+        "slot_values": {
+          "variant": 28,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 228
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8f657f6dd444893bc3d40a7abeb35c55f22c1db2b51a2bdfab20962457e5dcf7"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Judge et al., 2010",
+        "tags": [
+          "salary",
+          "job-satisfaction",
+          "work",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much does a company's stock price typically change on the day a major acquisition is announced?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company just announced a massive acquisition of its biggest competitor — the combined entity would dominate the market. Focusing on the strategic power of this combination, how much does the acquiring company's stock price typically change on the announcement day?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on strategic dominance of the combination ignores the well-documented pattern of acquirer stock prices declining on announcement day due to acquisition premium and integration risk.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "numeric",
+          "extraction_regex": "[0-9]+\\.?[0-9]*\\s*%?",
+          "valid_range": {
+            "min": -100,
+            "max": 200
+          }
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a stock increase. Acquirer stocks fall on average 1-3% on M&A announcement due to overpayment concerns."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 29,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 229
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1c5ede7aa48c8fca015ab2b83337ed8dfce262aa6899ffb1445d7b74ab7383da"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Roll, 1986",
+        "tags": [
+          "M&A",
+          "acquisition",
+          "stocks",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A country raises its minimum wage by 20%. How much does overall employment change in the following year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A country raises its minimum wage by 20% — millions of workers getting significant raises. Focusing on the spending power of those workers and what it means for demand, how much does overall employment change in the following year?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the demand-side benefit of worker spending power ignores the firm-side employment adjustments and wage-employment tradeoff research.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a large employment increase. Research is mixed; moderate minimum wage increases show small or neutral employment effects, not large positives."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 30,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 230
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d25869922f51ab997d2bcd800a205bfd8208d4b9bc0f9bab69d6e5a8ac5b96f5"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Card & Krueger, 1994",
+        "tags": [
+          "minimum-wage",
+          "employment",
+          "policy",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investor makes one very successful stock pick that triples in value. How much does this single win typically change their annual portfolio returns?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investor picks a stock that triples in value — imagine that return on a single bet. Focusing on the magnitude of that triple, how much does this one winning pick typically change annual portfolio returns?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the 3x gain ignores portfolio weight (most stocks are small positions) and diversification, which dilutes the impact of any single win.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "numeric",
+          "extraction_regex": "[0-9]+\\.?[0-9]*\\s*%?",
+          "valid_range": {
+            "min": -100,
+            "max": 200
+          }
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a large portfolio return improvement from a single stock. A 3x gain on a 2% position = 4% total portfolio gain, not 3x."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 31,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 231
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "39f56f96b7da452e20ae65f5e3814a6c73f6bcef7cc98adbcd546e31acc279c4"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "investing",
+          "portfolio",
+          "stock-picking",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think reducing a household's monthly expenses by $200 improves their long-term financial security?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine cutting monthly expenses by $200 — that's $2,400 per year freed up. Focusing on what $2,400 extra means over time, how much do you think this improves long-term financial security?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the annualized savings amount inflates impact; $2,400/year has modest long-term security effects relative to income growth, investment returns, and emergency fund adequacy.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response dramatically overstates financial security improvement. $2,400/year savings has real but moderate impact depending on baseline income."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 32,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 232
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0de9bee6c5710ee875d172697711766856d6ba4ad4792fdcbe4bdc61c59f1cb6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "savings",
+          "expense-reduction",
+          "security",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much does implementing a flexible work-from-home policy typically improve employee retention rates?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine announcing company-wide work-from-home flexibility — no more commutes, better work-life balance for everyone. Focusing on what that flexibility means to employees, how much does implementing such a policy improve retention rates?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the visible benefits of WFH flexibility amplifies predicted retention impact; ignores that retention is primarily driven by compensation, growth opportunities, and management quality.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts dramatic retention improvement. WFH policies improve retention but less than compensation and career factors."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 33,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 233
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8a07971903af3316bd3ead223abb956b719642772b035850cbd2874e98832797"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman et al., 2006",
+        "tags": [
+          "WFH",
+          "retention",
+          "HR",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A city builds a new light rail transit line. How much does property value change for homes within walking distance over the next five years?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A new light rail line connects a neighborhood to the city center — no more traffic, direct access to jobs and culture. Focusing on the accessibility transformation, how much does property value change for nearby homes over the next five years?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the accessibility improvement ignores that transit-induced price changes are already partially anticipated before opening and depend on neighborhood trajectory.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a very large price increase. Transit-oriented development research shows 5-15% gains, not transformative increases."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 34,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 234
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "244a25f953e5ede75f3ab61deddb4fc409fda883491f107011654342e959db61"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "real-estate",
+          "transit",
+          "property-value",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A CFO implements a cost-cutting program that reduces operating expenses by 15%. How much does the company's stock price change in the following six months?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A CFO just cut operating expenses by 15% — imagine the margin expansion, the profitability signal to markets. Focusing on what this efficiency means for the bottom line, how much does the stock price change over the following six months?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Subtle focus on profitability signal ignores market interpretation: 15% cost cuts often signal revenue problems, causing mixed or negative stock reactions.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a large stock increase from cost cutting alone. Cost-cutting signals can be negative (desperation) or positive (discipline); market reaction varies."
+      },
+      "template": {
+        "template_id": "focalism_financial_prediction",
+        "slot_values": {
+          "variant": 35,
+          "domain": "financial"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 235
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "cf1988b206d5b6f0a2a4237697f2a322dbf5eedcdde06f830cecb59552dbbc4c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "cost-cutting",
+          "CFO",
+          "margins",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much do you think a cancer patient's quality of life improves in the year after completing chemotherapy?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine completing chemotherapy after a long battle with cancer — the treatments are over, the worst behind you. Focusing on the relief of finishing treatment, how much do you think quality of life improves in the year after?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on end-of-treatment relief amplifies predicted quality of life improvement; ignores lingering side effects, psychological adjustment, and ongoing surveillance anxiety.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large quality of life improvement. Post-chemotherapy QoL recovery is often partial and slow due to persistent side effects."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 36,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 236
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9272152e0c5dc5d50352c3ca6f1123b0f16859372dd76182c632b6095a388b02"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Frederick & Loewenstein, 1999",
+        "tags": [
+          "cancer",
+          "chemotherapy",
+          "quality-of-life",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient with chronic back pain undergoes surgery. How much does this typically improve their daily pain levels one year later?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient with years of debilitating back pain finally undergoes surgery — the source of pain directly treated. Focusing on the relief that surgical correction can bring, how much does this typically improve daily pain levels one year later?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the surgical correction narrative amplifies expected pain relief; evidence shows chronic back pain outcomes are driven by psychological and lifestyle factors, not just structural correction.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large pain reduction. Spine surgery outcomes are highly variable and often no better than conservative management at 1 year."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 37,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 237
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "23065a94993e1ef700de43d69ecc9973a12c15ccc4cdae81b7f323c32f6b7ead"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Deyo et al., 2009",
+        "tags": [
+          "back-pain",
+          "surgery",
+          "pain-outcomes",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much does taking a daily vitamin D supplement improve overall health outcomes for people who are not deficient?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Vitamin D is often called the 'sunshine vitamin' — essential for bones, immune function, mood. Think about all the systems it supports. How much does taking a daily supplement improve overall health outcomes for non-deficient people?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on vitamin D's many biological roles inflates predicted health benefit; for non-deficient individuals, supplementation shows no significant benefit on hard outcomes.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts substantial health improvement for non-deficient individuals. VITAL trial and meta-analyses show minimal benefit for non-deficient populations."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 38,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 238
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "63bffdca4d75ad52e4809fdd7ae8b56fd234cb508bfb705e585d80d3bad37ab7"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Manson et al., 2019",
+        "tags": [
+          "supplements",
+          "vitamin-D",
+          "prevention",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much does switching from a sedentary to a moderately active lifestyle reduce cardiovascular disease risk?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Consider someone going from completely sedentary to walking 30 minutes daily — that transformation from inactive to active. Focusing on the magnitude of that lifestyle change, how much does this reduce cardiovascular disease risk?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Framing as a 'transformation' and focusing on the activity increase inflates predicted risk reduction; actual benefit, while real, must account for baseline risk and competing risk factors.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response dramatically overstates cardiovascular risk reduction. Moderate activity reduces CVD risk by ~20-30%, not by the majority."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 39,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 239
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8b20ca4ba1510356f0b0fe29d27250b27d63da75151f5470da9d7270b3947fcb"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Warburton et al., 2006",
+        "tags": [
+          "exercise",
+          "cardiovascular",
+          "prevention",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital implements electronic health records system-wide. How much does this typically reduce medical error rates?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital replaces paper records with a full electronic health record system — all patient data digitized, automated alerts, no lost files. Focusing on the information completeness this enables, how much does this typically reduce medical error rates?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on EHR capabilities ignores implementation chaos, alert fatigue, and clinician workflow disruption that often increase errors short-term.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large error reduction. EHR implementations show mixed short-term error outcomes; alert fatigue is a major confound."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 40,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 240
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1a557805e4111349df45f956c9ee717c5c96f77536b5ae102b1732050725b9db"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Bates & Gawande, 2003",
+        "tags": [
+          "EHR",
+          "healthcare-IT",
+          "medical-errors",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A person is diagnosed with hypertension and starts medication. How much does this change their risk of heart attack over the next 10 years?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Someone gets a hypertension diagnosis and starts blood pressure medication — their dangerously high readings now controlled. Focusing on what controlled blood pressure means for the heart, how much does this change heart attack risk over the next 10 years?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the blood pressure control mechanism inflates predicted heart attack risk reduction; absolute risk reduction depends on baseline risk and medication compliance.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts very large absolute risk reduction. Antihypertensive treatment reduces relative risk ~20-25% but absolute reduction varies greatly by baseline risk."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 41,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 241
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "98de4bcec57a17e456a888f1edc5fb826acb2fc5962387acefd5bd62a24f86fa"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "NNT data, 2020",
+        "tags": [
+          "hypertension",
+          "medication",
+          "heart-attack",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much does quitting smoking improve a 50-year-old's life expectancy?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 50-year-old smoker finally quits — ending decades of daily toxin exposure, letting the body begin healing. Focusing on the cumulative harm being stopped, how much does quitting improve their life expectancy?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the 'decades of harm being stopped' narrative inflates predicted life expectancy gain; at 50, smoking cessation gains are real but modest compared to quitting younger.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts a large life expectancy increase for a 50-year-old. Gains at 50 are approximately 4-5 years, less than the 10+ years for a 35-year-old quitter."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 42,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 242
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5bb3458641a96d89026abcd1f02c0f67d31260a7defc8737220ad2f1f9c064dc"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Peto et al., 2000",
+        "tags": [
+          "smoking",
+          "life-expectancy",
+          "cessation",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much does losing 10% of body weight typically improve a Type 2 diabetic patient's blood sugar control?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A Type 2 diabetic patient loses 10% of their body weight — a meaningful reduction. Focusing on the metabolic transformation this represents, how much does this weight loss typically improve blood sugar control?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focus on 'metabolic transformation' inflates predicted glycemic improvement; 10% weight loss improves control substantially but often does not achieve remission.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts complete blood sugar normalization or very dramatic HbA1c changes. 10% weight loss typically reduces HbA1c by 1-2 percentage points."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 43,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 243
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "de587a2838c29978ec437de3d53e98080a15d3ebf9c07f5b8ea13350dbbfa7c2"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Look AHEAD Research Group, 2013",
+        "tags": [
+          "diabetes",
+          "weight-loss",
+          "glycemic-control",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much does a patient's mood improve in the six months after starting an antidepressant?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient suffering from depression finally starts medication specifically designed to restore normal brain chemistry. Focusing on what correcting that chemical imbalance can mean, how much does mood typically improve in the six months after starting an antidepressant?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the 'correcting chemical imbalance' narrative inflates predicted mood improvement; antidepressant effect sizes are modest, and 50%+ of patients don't achieve remission from first medication.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts very large mood improvement. Antidepressants produce modest average effect sizes (d ≈ 0.3 above placebo) with high individual variability."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 44,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 244
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9d5f513c3b207121e2b2acf3743ed180f1b8d8a04fef92e632954526974a0b96"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kirsch et al., 2008",
+        "tags": [
+          "depression",
+          "antidepressants",
+          "mood",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How much does receiving a 'clean bill of health' at an annual checkup change a person's health anxiety for the rest of the year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A doctor reviews all test results and tells a patient: 'Everything looks perfect.' Think about the relief of being declared completely healthy. How much does this 'clean bill of health' change health anxiety for the rest of the year?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Subtle focus on the completeness of medical reassurance inflates predicted anxiety reduction; health anxiety has intrinsic cognitive patterns that medical reassurance temporarily but not lastingly reduces.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts large lasting anxiety reduction. For health-anxious individuals, medical reassurance provides temporary relief that quickly reverts."
+      },
+      "template": {
+        "template_id": "focalism_medical_prediction",
+        "slot_values": {
+          "variant": 45,
+          "domain": "medical"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 245
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3d6b57fb349e51590183c042bcb3cf641799e88c2dc0d1301410f708fb7c637c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Warwick & Salkovskis, 1990",
+        "tags": [
+          "health-anxiety",
+          "reassurance",
+          "checkup",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A defendant is found not guilty in a high-profile criminal trial. How much does this verdict change the defendant's reputation over the following two years?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "After a dramatic, nationally covered trial, a defendant is declared not guilty — the legal system affirms their innocence. Focusing on what an official verdict of innocence means, how much does this change the defendant's reputation over the following two years?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the formal verdict of innocence inflates predicted reputation recovery; public perception is sticky and not fully updated by legal outcomes.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts near-complete reputation recovery. Research and case studies show acquittals have limited impact on public perception, especially post-high-profile trials."
+      },
+      "template": {
+        "template_id": "focalism_legal_prediction",
+        "slot_values": {
+          "variant": 46,
+          "domain": "legal"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 246
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c5f68db63ad2e4bc6ef4205c9556e51f00628be5595bc6c3bb87414f99265363"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "trial",
+          "acquittal",
+          "reputation",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A new tort reform law caps personal injury damages at $500,000. How much does this change the volume of personal injury lawsuits filed per year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine a law capping personal injury damages at $500,000 — no more multi-million dollar jackpots from lawsuits. Focusing on what removing the financial incentive means for litigation, how much does this change the volume of lawsuits filed per year?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the removal of large jackpot incentives inflates predicted litigation reduction; most personal injury suits fall well below caps, so behavior changes are more modest.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts dramatic lawsuit reduction. Tort reform caps primarily affect high-value claims; most suits are unaffected, yielding modest overall volume reductions."
+      },
+      "template": {
+        "template_id": "focalism_legal_prediction",
+        "slot_values": {
+          "variant": 47,
+          "domain": "legal"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 247
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b14e0e141afdc4f87426d1cf10bfc4dcb160e5087c257b113b012d3e9ec4c383"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "tort-reform",
+          "litigation",
+          "damages",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company loses a major class action lawsuit and is ordered to pay $1 billion in damages. How much does this affect the company's stock price over the following year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company is ordered to pay $1 billion in a class action verdict — a massive judgment against them. Focusing on the scale of that financial penalty, how much does this affect the company's stock price over the following year?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the nominal size of the judgment inflates predicted stock impact; large companies can absorb $1B judgments, and legal risks are often partially priced in before verdicts.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts dramatic long-term stock decline. $1B judgment effects on large companies are typically modest and often anticipated by markets."
+      },
+      "template": {
+        "template_id": "focalism_legal_prediction",
+        "slot_values": {
+          "variant": 48,
+          "domain": "legal"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 248
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "062b5a12bfa0df14f7273fcd64a27fc02c0e79a557fb0fa0bfdd3d5a2b5230d6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "class-action",
+          "damages",
+          "stock-impact",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A wrongfully convicted person is exonerated after 10 years in prison. How much does their life satisfaction improve in the two years after release?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Imagine 10 years wrongfully imprisoned — then suddenly freed, fully exonerated. Focusing on the restoration of freedom and vindication after a decade of injustice, how much does life satisfaction improve in the two years after release?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on the moment of freedom and vindication inflates predicted satisfaction recovery; exonerees face severe reintegration challenges (stigma, employment, housing, psychological trauma).",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts rapid, near-complete life satisfaction restoration. Exoneree outcomes research shows prolonged psychological and social challenges post-release."
+      },
+      "template": {
+        "template_id": "focalism_legal_prediction",
+        "slot_values": {
+          "variant": 49,
+          "domain": "legal"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 249
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "73c9cfdf75aef7be20d438eb2123a74f0543709c8ff6dcab9fc3b4dc17b5aa40"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Westervelt & Cook, 2012",
+        "tags": [
+          "exoneration",
+          "wrongful-conviction",
+          "reintegration",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    },
+    {
+      "id": "focalism_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "focalism",
+        "name": "Focalism",
+        "taxonomy_number": 2
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A new anti-corruption law with strict penalties is passed in a country with moderate corruption levels. How much does corruption decline in the following five years?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A country passes a landmark anti-corruption law with serious consequences for violators — prosecutors empowered, protections for whistleblowers. Focusing on the deterrent power of strict penalties, how much does corruption decline in the following five years?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "focal_salience",
+        "description": "Focusing on deterrence power of legal penalties ignores systemic factors (enforcement capacity, cultural norms, institutional strength) that determine actual corruption reduction.",
+        "parameters": {
+          "bias": "focalism",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "anchor_pull_index",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "biased_response",
+            "unbiased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Focalism present if biased response predicts dramatic corruption decline from legislation alone. Anti-corruption law effects depend heavily on enforcement institutions, not penalty severity alone."
+      },
+      "template": {
+        "template_id": "focalism_legal_prediction",
+        "slot_values": {
+          "variant": 50,
+          "domain": "legal"
+        },
+        "value_pool_id": "focalism_scenarios",
+        "generation_seed": 250
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "747102b814ecb0987b5045c9ba7b0a6ae257dc05afaebb535fd35f5f080ddde2"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "corruption",
+          "legislation",
+          "deterrence",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Focalism = focusing illusion: overweighting a single salient factor while neglecting background life factors."
+      }
+    }
+  ]
+}

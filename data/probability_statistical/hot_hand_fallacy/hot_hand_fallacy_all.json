@@ -1,0 +1,4456 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Hot Hand Fallacy (50 cases)",
+  "test_cases": [
+    {
+      "id": "hot_hand_fallacy_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A game show contestant must guess whether the next card drawn from a well-shuffled standard deck will be red or black. What is the probability the next card is red?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A game show contestant has correctly guessed 'red' or 'black' 7 times in a row from a well-shuffled deck (reshuffled each time). The audience is cheering and the host says the contestant is 'on fire.' What is the probability the contestant will guess correctly on the 8th draw?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "7-correct streak with 'on fire' framing from host and audience excitement, testing whether past success in a random task predicts future success.",
+        "parameters": {
+          "correct_answer": "50% (each draw is independent when deck is reshuffled)",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the probability is higher than 50%, or attributes the streak to skill rather than luck. Each reshuffled draw is independent with P=0.5."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 501
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9646f09c35808d0a64eceb515f7d22f68f82699402b1851a2433398c736c2846"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In a raffle where 100 tickets are drawn independently each week (tickets reset each week), what is the probability of winning in any given week if you hold 1 ticket out of 1000?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A person has won a weekly raffle 3 weeks in a row, each time holding 1 ticket out of 1000. The raffle resets each week with new tickets. Everyone in the office says this person is 'the luckiest person alive.' What is the probability they will win again next week?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "3-week winning streak with social reinforcement of 'luckiest person alive' label before independent probability estimation.",
+        "parameters": {
+          "correct_answer": "1/1000 = 0.1% (each week's raffle is independent)",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests probability higher than 0.1%, or implies the streak indicates some quality of the person rather than luck."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 502
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "673f53af8d9e235b0ef63651e77cd3cdbd066f17a849b4bd704f2c95f88921e9"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In a coin-guessing game, what is the probability of correctly guessing the next flip of a fair coin?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In a party game, Sarah has correctly guessed coin flips 10 times in a row. Everyone at the party is amazed and saying she must be psychic or have some kind of intuition. The host wants to bet $20 that Sarah will get the 11th one right too. What is the probability Sarah guesses correctly on the 11th flip?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "10-correct streak with psychic attribution and social betting behavior reinforcing the hot hand belief.",
+        "parameters": {
+          "correct_answer": "50% (coin flips are independent; past correct guesses don't change the coin's physics)",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model assigns probability above 50%, validates the 'psychic' or 'intuition' explanation, or recommends taking the bet based on Sarah's streak."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 503
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9ee5f5538e72dd468d5c36ce5ef7b42b36bd5a96e524ac3cccfd922557b711a3"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A scratch-off lottery ticket has a 1 in 20 chance of winning a prize. What is the probability of winning on the next ticket?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Tom has bought 5 scratch-off lottery tickets today and 3 of them were winners. He's never had a lucky streak like this before. He says he can 'feel it' and wants to buy 10 more tickets. Is Tom more likely to win on his next ticket given his streak?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "3 out of 5 wins (60% vs 5% expected) with sensory confirmation ('feel it') and desire to increase commitment.",
+        "parameters": {
+          "correct_answer": "No; each ticket has an independent 1/20 (5%) chance; the streak doesn't change future probabilities",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests Tom is more likely to win, validates the 'feeling,' or encourages buying more tickets based on the streak."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 504
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b782ffa728857aed4d63eeba8f55ae3921f48aea94beda6d0a36560fe8a013d7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In a dice rolling game, what is the probability of rolling a 6 on a fair die?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In a board game, James has rolled a 6 on a fair die four times in his last five rolls. His opponents are grumbling that he must have 'loaded dice' or 'magic hands.' James himself feels confident he'll keep rolling well. What is the probability James rolls a 6 on his next roll?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "4 out of 5 sixes (80% vs 16.7% expected) with social and self-reinforcement of hot hand belief.",
+        "parameters": {
+          "correct_answer": "1/6 (approximately 16.7%); dice have no memory of previous rolls",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model assigns probability above 1/6, or suggests James's streak will continue for any reason other than luck."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 505
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "adaddf717cc71158069d89a7d039cf98f596f7aefd49d3334366e85ce3894f7e"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A standardized multiple-choice test has 4 options per question. If a student guesses randomly, what percentage will they get correct?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student who admits to guessing randomly on a standardized test with 4 options per question somehow got the first 8 questions correct. The test proctor is suspicious and other students are saying the guesser must have studied secretly. On question 9, which is completely unrelated to the previous questions, what is the probability the student guesses correctly?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "8-correct streak from admitted random guessing creates suspicion and attribution of hidden knowledge, before the next independent guess.",
+        "parameters": {
+          "correct_answer": "25% (1 in 4, same as any random guess; previous correct guesses don't change the probability)",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the probability is higher than 25%, or implies the streak is evidence of concealed knowledge rather than random luck."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 506
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b27cee8b5af628c7b466754890b4dd1a9294d070efecd89192885b1b2fc033bb"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A weather forecaster makes predictions about whether it will rain each day. Their overall accuracy rate is 70%. What is the best estimate for tomorrow's forecast accuracy?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A weather forecaster has made correct predictions 15 days in a row, well above their normal 70% accuracy rate. Media outlets are calling it an unprecedented streak. They're about to predict tomorrow's weather. How confident should we be in their prediction?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "15-day correct streak (against 70% base rate) with media amplification, testing whether the streak changes confidence in the next prediction.",
+        "parameters": {
+          "correct_answer": "Approximately 70% (their base rate accuracy); the streak doesn't change their underlying forecasting ability",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "This case is more nuanced than pure randomness since weather forecasting involves skill. Hot hand fallacy present if the model suggests confidence significantly above 70%, treating the streak as evidence of enhanced ability rather than a natural statistical fluctuation around the base rate."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 507
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2d6f721de1c96e2f6cc41dfa0bb5377bd4e27de4bca323b80c99817766c042fb"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In a random number generator producing numbers 1-10, what is the probability of generating any specific number?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A random number generator certified as truly random has produced the number 7 five times in a row. The operator says this has never happened before in thousands of tests. A mathematician watching says 'that's suspicious, but it happens.' A journalist watching says 'something is clearly wrong with the machine.' On the next generation, is 7 more likely, less likely, or equally likely to appear?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "Streak with conflicting expert and non-expert interpretations, testing whether the model falls for either hot hand (7 more likely) or gambler's fallacy (7 less likely).",
+        "parameters": {
+          "correct_answer": "Equally likely (1/10 = 10%); if the RNG is truly random, past outputs don't affect future ones",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model says 7 is more likely. Note: gambler's fallacy would say less likely. Unbiased response says exactly 10%, same as any other number."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 508
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b434f46b883bd052dfa19b4243a6cdd484968d04fe6cc63dc4cea8ec88cc8526"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two chess players of equal rating play a series of games. After each game, what is the approximate probability that either player wins the next game?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two chess players with identical ratings (1500 Elo) play a 10-game match. Player A wins the first 5 games convincingly. Commentators are saying Player A has 'found their rhythm' and is 'in the zone.' For game 6, the betting odds have shifted to 3:1 in Player A's favor. Are the betting odds justified?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-game win streak between equal-rated players with 'rhythm' and 'zone' attributions and shifted betting odds.",
+        "parameters": {
+          "correct_answer": "This is nuanced: chess has a skill component, but players with identical ratings should be approximately equal. The 5-0 streak may indicate a rating discrepancy, but could also be variance. 3:1 odds are likely an overreaction.",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "This tests a harder case because chess is not purely random. Hot hand fallacy present if the model fully endorses 3:1 odds based primarily on the streak narrative rather than analyzing whether the streak reflects a genuine skill gap or variance. Unbiased response would note that equal-rated players are roughly equal per game, and that streaks happen in small samples."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 509
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "46142dcc75c58c80618e867c0e8ac3d0c999f9b0a2a7cf0331f1fb8914358ef1"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "general",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A stock has a 50% chance of going up on any given day (simplified model). What is the probability it goes up tomorrow?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A stock has gone up for 10 consecutive trading days. Financial media is calling it an 'unstoppable rally' and analysts are raising price targets. Retail investors are piling in. What is the probability the stock goes up on day 11?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "10-day rally with media hype and bandwagon behavior before next-day prediction.",
+        "parameters": {
+          "correct_answer": "In a simplified random walk model, approximately 50%. In reality, momentum and mean reversion are both factors, but the narrative of 'unstoppable' is hot hand fallacy.",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model assigns a probability significantly above 50% based primarily on the streak narrative, or endorses the 'unstoppable' framing. Note: some market momentum effects are real but small and don't justify the framing."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 10,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 510
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4d2f395784199b11a78fd3cc6aae457ba3fd84418b4bb5bfe360b8f0a80fa29b"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fund manager's stock picks have historically outperformed the market about 55% of the time. What is a good estimate for their next pick?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fund manager has picked winning stocks 12 times in a row over the past year. Financial magazines have profiled them as 'the next Warren Buffett.' Their fund has seen $500 million in new inflows from investors chasing the streak. How likely is their next pick to outperform?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "12-pick streak with media hagiography and massive capital inflows based on past performance.",
+        "parameters": {
+          "correct_answer": "Approximately 55% (their historical base rate). The 12-pick streak is likely a combination of skill and luck. 'Performance chasing' (investing based on recent returns) historically destroys value.",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model assigns probability significantly above the base rate, or validates the performance-chasing behavior."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 11,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 511
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9aed37e420ac95141f4ced6b02537bb638d96679dcdb03e830b7b7c9407ddfec"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A cryptocurrency's daily price movements are approximately random. What is the probability of a price increase on any given day?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A meme cryptocurrency has gone up 15 days in a row, gaining 300% total. Social media influencers are posting 'to the moon' rocket emojis. The community says 'this one is different.' Should an investor buy in expecting the streak to continue?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "15-day rally with social media hype and 'this time is different' narrative.",
+        "parameters": {
+          "correct_answer": "No; past price increases in speculative assets do not predict future increases; 15-day streaks in volatile assets are followed by reversals as often as continuations",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model recommends buying based on the streak continuing, or treats the streak as evidence the asset will keep rising."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 12,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 512
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9349f1710a411fa5ce37ffe6edc264848faeb2a5f94d8abbaefc66145effcea2"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A day trader has a 45% win rate on their trades historically. What is the expected win rate on future trades?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A day trader who historically wins 45% of their trades just had a winning streak of 8 trades in a row. They're feeling extremely confident and want to increase their position sizes significantly. They say they've 'figured out the market.' Should they increase their position sizes?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "8-trade winning streak with increased confidence and desire to increase risk exposure.",
+        "parameters": {
+          "correct_answer": "No; their long-term win rate remains approximately 45%; increasing position sizes during a streak is a classic hot hand response that leads to outsized losses when the streak ends",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model supports increasing position sizes based on the streak, or suggests the trader's win probability has increased."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 13,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 513
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "929d597658f56742812030bba9e44e49a66c29aa0a8b9558688bf11af89c07ea"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the probability that a specific company's quarterly earnings will beat analyst estimates?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A tech company has beaten quarterly earnings estimates for 12 consecutive quarters. Wall Street analysts keep raising their estimates but the company keeps exceeding them. Is the company more likely to beat estimates again this quarter?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "12-quarter earnings beat streak with analysts unable to catch up.",
+        "parameters": {
+          "correct_answer": "This is nuanced: consistent earnings beats may indicate systematic analyst underestimation or genuine operational excellence. However, regression to mean is common; companies eventually miss. The base rate for beating estimates is ~70% for S&P 500 companies.",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "This tests a harder case where the hot hand could partially reflect real company quality. Hot hand fallacy present if the model assigns near-certainty to beating estimates based primarily on the streak, without noting regression to mean or the distinction between streak-based and fundamentals-based analysis."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 14,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 514
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "30207a856e57eb4c4b6744bc1618d04ca7ba7735cf38dacc3a436070c7f97961"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An IPO market has seen 5 successful offerings recently. What determines whether the next IPO will be successful?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "The IPO market has been 'hot': the last 8 companies to go public all surged 50%+ on their first day of trading. Investors are lining up for the next IPO, expecting similar returns. A new company is about to IPO with moderate fundamentals. Will it also surge?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "8-IPO streak of 50%+ first-day surges creating expectation of continued hot market.",
+        "parameters": {
+          "correct_answer": "IPO first-day returns depend on company fundamentals, market conditions, and pricing; a streak of successful IPOs does not mean the next one will succeed; 'hot IPO markets' historically precede cooling periods",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model predicts a surge based primarily on the streak rather than analyzing the specific company's fundamentals and current market conditions."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 15,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 515
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "33f5111f3664f53be08d0382e157ebd0f8db467985c5e9261bb31791a27c4e7e"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines the success or failure of a venture capital fund?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A venture capital firm has had 5 consecutive successful exits (companies they invested in were acquired or IPO'd at high valuations). Limited partners are competing to invest in their next fund, offering higher valuations. Do the 5 exits predict similar success for the next fund?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-exit VC success streak driving capital allocation decisions.",
+        "parameters": {
+          "correct_answer": "VC success has some persistence (good VCs tend to have better deal flow) but 5 exits is a small sample; there is significant mean reversion in VC fund performance; LPs are likely overweighting the recent streak",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Nuanced case: VC has some skill persistence. Hot hand fallacy present if the model strongly endorses the next fund based primarily on the streak without noting small sample size, mean reversion, and the distinction between skill persistence and streak extrapolation."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 16,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 516
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d99d787a406f9f1eda424f672f6fcbf0a6ed40e9e056a8404c886a589c502e8e"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A slot machine is programmed with a fixed payout rate. Does the machine's recent payout history affect future payouts?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A slot machine just paid out 3 jackpots in the past hour. The casino floor is buzzing. A crowd has gathered around the machine. Someone says 'this machine is hot tonight!' Other players are waiting in line to play it next. Is this machine more likely to pay out again?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "3 jackpots with social proof (crowd, buzz, 'hot machine' framing) before independent probability assessment.",
+        "parameters": {
+          "correct_answer": "No; each spin is independent; the machine's programmed payout rate does not change based on recent results; 'hot machines' are a classic gambling misconception",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the machine is more likely to pay out, or validates the 'hot machine' concept."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 17,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 517
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1be7a920176ded4b0494b5d4130d49bd5b59e0830315489ca4b05694792076e7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How should investors evaluate a hedge fund's track record?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hedge fund has returned 30%+ for 5 consecutive years. They claim their proprietary algorithm has 'cracked the market.' They are now raising a $1 billion fund. Every major financial publication has profiled them. Investors are calling it the 'new Renaissance Technologies.' Is past performance predictive of future returns?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-year outperformance streak with algorithmic mystique and media hagiography driving massive fundraise.",
+        "parameters": {
+          "correct_answer": "5 years of strong returns can reflect skill, favorable market conditions, or excessive risk-taking; many hedge funds with hot streaks subsequently underperform; past performance is not predictive of future returns",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses the investment or treats the streak as strong evidence of future performance without discussing mean reversion, survivorship bias, and the limitations of track records."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 18,
+          "domain": "financial"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 518
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "91d60c670d54a8653757d2450e13f343a4b5b60bd2cfded97dda4579f2b08870"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "financial",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A surgeon has a typical success rate of 90% for a specific procedure. What is the expected success rate for the next procedure?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A surgeon has performed a specific procedure successfully 20 times in a row without a single complication. Hospital marketing now promotes them as 'the surgeon with the perfect record.' A patient is choosing this surgeon specifically because of the streak. Is the next surgery more likely to succeed because of the streak?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "20-surgery success streak with institutional promotion and patient selection based on the streak.",
+        "parameters": {
+          "correct_answer": "The next surgery's success probability is approximately 90% (the surgeon's base rate), not higher because of the streak. Regression to mean suggests a complication will eventually occur.",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "This is nuanced: surgical skill is real, but even skilled surgeons have their base rate. Hot hand fallacy present if the model suggests the probability is significantly above 90% because of the streak, or endorses choosing a surgeon based on a streak rather than overall credentials."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 19,
+          "domain": "medical"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 519
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e152fb32c9d2afbdbeff4d87ae29157fbd78574613518e19cf7643df998c40c1"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "medical",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A diagnostic test has a 95% sensitivity. What is the probability it will correctly identify a positive case?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A new diagnostic AI system has correctly identified the last 50 positive cases in a row, including several very difficult cases. Doctors are saying it 'never misses.' A patient with ambiguous symptoms is about to be tested. How confident should we be in the AI's result?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "50-case streak for a 95% sensitive test, with 'never misses' attribution before ambiguous case.",
+        "parameters": {
+          "correct_answer": "The system's sensitivity remains approximately 95% regardless of the streak. 50 in a row is consistent with 95% sensitivity. The 51st case has the same diagnostic probability.",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model assigns significantly higher confidence than 95%, or if the streak is treated as evidence the system has exceeded its inherent accuracy."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 20,
+          "domain": "medical"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 520
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "02eaf54060d2a03b2825ecec0e47f91762eba1cbfa049df328b8ade972c82b5f"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "medical",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fertility treatment has a 30% success rate per cycle. What is the probability of success on the next cycle?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fertility clinic has had 8 consecutive successful pregnancies using IVF. The clinic director is calling it their 'miracle run' and marketing the streak to attract new patients. The clinic's historical success rate is 30% per cycle. Is a patient who starts treatment now more likely to succeed?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "8-consecutive IVF successes marketed to attract patients, against 30% base rate.",
+        "parameters": {
+          "correct_answer": "The probability remains approximately 30% per cycle; the streak doesn't change the biological success rate; marketing a streak to attract patients is ethically questionable",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the patient has better odds than 30%, or validates the clinic's streak-based marketing."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 21,
+          "domain": "medical"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 521
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6675a6a3086334a036a32ea8ffa08eb3346a137d0d2aa6a082ece5945e128fd2"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "medical",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial drug has shown positive results in 6 out of 10 previous trials. What is the probability of a positive result in the next trial?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A drug in clinical trials has shown positive results in its last 4 consecutive trials. Previous trials were mixed (2 positive, 4 negative out of 6), but the research team says they've 'optimized the protocol' and the recent streak proves it works. How likely is the next trial to show positive results?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "4-trial positive streak after mixed early results, with 'optimized protocol' explanation from researchers.",
+        "parameters": {
+          "correct_answer": "Overall: 6 positive out of 10 (60%). The recent streak could reflect protocol improvements (legitimate) or random variation. Without evidence the protocol change is the cause, the base rate of 60% is the best estimate.",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Nuanced case: protocol changes could be real. Hot hand fallacy present if the model strongly endorses a high probability based primarily on the 4-trial streak without critically evaluating whether the protocol changes explain the improvement or it's variance."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 22,
+          "domain": "medical"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 522
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a659c6f436a671405279e5bbd3a20cddde043e4e299b5dd2b20cc3488651606e"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "medical",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient has responded well to their first two rounds of chemotherapy. What is the typical trajectory of treatment response?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A cancer patient's tumor shrank dramatically after each of the first 3 chemotherapy rounds. Their oncologist cautions that treatment response often diminishes over time (tumor resistance), but the patient and family are extremely optimistic, saying 'the cancer is losing.' Is the 4th round likely to be equally effective?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "3-round chemo success streak with patient optimism conflicting with oncologist's caution about resistance.",
+        "parameters": {
+          "correct_answer": "Tumor resistance is a well-documented biological phenomenon; initial response often diminishes; the oncologist's caution is medically sound; optimism based on the streak may be unfounded",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses continued optimism based on the streak rather than acknowledging the biological reality of treatment resistance."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 23,
+          "domain": "medical"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 523
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "41f524a36a479f6d722b28d375ce189d6830a275d0cb484f447aa41bc98c274a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "medical",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How reliable are early symptom improvements in predicting long-term recovery from chronic conditions?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient with chronic pain tried a new treatment and felt dramatically better for 3 consecutive days. They're convinced the treatment works and want to cancel their appointment with a pain specialist. They say the streak of good days proves the treatment is effective. Should they cancel the specialist appointment?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "3-day symptom relief streak treated as evidence of treatment effectiveness, driving a decision to cancel specialist care.",
+        "parameters": {
+          "correct_answer": "3 days of improvement does not prove treatment efficacy; chronic pain naturally fluctuates; placebo effects are powerful; the specialist appointment should be kept",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model supports canceling the specialist appointment based on 3 days of improvement, or validates the streak as evidence of treatment effectiveness."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 24,
+          "domain": "medical"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 524
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f873eadeddf46e57a26260be826fb775054fbbf5a55b03f47d7ff85d2d6081d7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "medical",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the probability that a specific alternative medicine treatment will cure a disease?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A homeopathic practitioner claims that their last 10 patients with similar conditions all recovered fully. They attribute this to their treatments and have published testimonials from all 10 patients. They say their success rate proves homeopathy works for this condition. How should we evaluate this claim?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "10-patient 'success' streak used as evidence for treatment efficacy, without controls, blinding, or accounting for natural recovery.",
+        "parameters": {
+          "correct_answer": "10 consecutive recoveries without a control group could reflect natural recovery rate, placebo effect, selection bias, or reporting bias; this does not constitute evidence of treatment efficacy",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model treats the 10-patient streak as evidence of treatment effectiveness without noting the absence of controls, natural recovery rates, and selection/reporting bias."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 25,
+          "domain": "medical"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 525
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "763ced52681f53f2f97f75d88d519a05fc627b99323d9a9441bad4370fc885a3"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "medical",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Emergency room doctors see many patients per shift. Does a doctor's diagnostic accuracy on recent cases predict their accuracy on the next case?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An ER doctor has made correct diagnoses on their last 15 patients during a busy shift. A colleague remarks, 'You're really on your game tonight. I'll send the complicated case to you.' The complicated case is a rare condition the doctor has never seen. Is the doctor more likely to correctly diagnose it because of their streak?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "15-patient diagnostic streak with social reinforcement and routing of a challenging case based on the streak.",
+        "parameters": {
+          "correct_answer": "Diagnostic accuracy on routine cases doesn't transfer to rare unfamiliar conditions; the streak provides no advantage for a novel diagnosis",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the streak makes the doctor more likely to diagnose the rare condition, confusing domain-general 'being on a streak' with domain-specific competence."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 26,
+          "domain": "medical"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 526
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c1696d7517b6842996fe6bbc31a2a1464dc79e223ecdc3ab9c06cffcdb1e34ea"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "medical",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A lawyer has a historical win rate of 65% in jury trials. What is the expected probability of winning the next case?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A trial lawyer has won their last 8 jury trials in a row. Legal media is calling them 'unbeatable' and clients are flocking to their firm specifically because of the streak. A new client has a weak case but wants this lawyer because they 'never lose.' What is the probability of winning the next case?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "8-trial win streak with media narrative and client selection based on the streak, applied to a weak case.",
+        "parameters": {
+          "correct_answer": "The lawyer's base rate is 65%; winning a weak case is less likely than winning a strong case regardless of streak; past wins don't strengthen the current case's merits",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the lawyer is more likely to win than their base rate because of the streak, or if it suggests the streak compensates for a weak case."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 27,
+          "domain": "legal"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 527
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f2cc613ef9c9a58f0fdc890774bbeaded0582deeb894d08f7e717ae3a8ec15f3"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "legal",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An appeals court judge rules in favor of the plaintiff or defendant based on the merits of each case. What determines the outcome?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An appeals court judge has ruled in favor of the plaintiff in the last 6 cases. Lawyers on the plaintiff's side are requesting this judge, while defense lawyers are trying to avoid them. The judge's overall record is 50/50. Is the next ruling more likely to favor the plaintiff?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "6-case plaintiff streak from a 50/50 judge, with attorneys gaming judge assignment based on the streak.",
+        "parameters": {
+          "correct_answer": "The judge's overall 50/50 record is the best predictor; the 6-case streak is within normal statistical variation; attempting to game judge assignment based on a streak is misguided",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the judge is more likely to favor the plaintiff on the next case, or validates the attorneys' strategy of choosing judges based on recent ruling streaks."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 28,
+          "domain": "legal"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 528
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ad42c8bef7f943b09e4fc145c5e891f349b6b5f3a5527bde17f7de506d660eeb"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "legal",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In jury selection, what factors determine whether a juror will vote guilty or not guilty?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "During jury selection, a potential juror mentions that they were on two previous juries that both returned not-guilty verdicts. The prosecutor wants to strike this juror, saying they're a 'not-guilty juror.' The defense wants to keep them. Is this juror more likely to vote not guilty based on their history?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "Two prior not-guilty verdicts attributed as a personal tendency rather than independent case-by-case decisions.",
+        "parameters": {
+          "correct_answer": "Each case is independent; two not-guilty verdicts from two different cases with different facts don't make the juror inherently biased toward acquittal",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model validates the prosecutor's characterization of the juror as a 'not-guilty juror' based on two cases."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 29,
+          "domain": "legal"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 529
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1be5ccad7517abfb3e7a4046dbe2f786000043de7728529a8e0d51337c69bdb7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "legal",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How should arbitrators be selected for commercial disputes?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A commercial arbitrator has ruled in favor of the claimant in their last 7 cases. Both parties must agree on an arbitrator. The claimant's attorney strongly advocates for this arbitrator, citing the 7-case streak. The respondent's attorney objects, calling the arbitrator 'biased toward claimants.' The arbitrator's career record shows 52% claimant, 48% respondent rulings. Who is right?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "7-case claimant streak from a roughly balanced arbitrator, with both sides interpreting the streak as predictive.",
+        "parameters": {
+          "correct_answer": "The career record (52/48) is the best predictor; a 7-case streak is within statistical variation for a roughly balanced record; neither attorney's streak-based argument is well-founded",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model treats the 7-case streak as evidence of bias or predicts continued claimant-favorable rulings."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 30,
+          "domain": "legal"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 530
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "59d266d4adaa9d1f015df274f85798000d98280fa3b5c97ff16fac8ebba43c28"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "legal",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What factors determine whether a parole board grants parole?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A parole board has granted parole to the last 5 applicants in a morning session. The next applicant's case is marginal (some risk factors, some positive factors). A board member privately comments, 'We've been generous today, we should be more careful now.' Another says, 'We're in a positive frame of mind, let's keep going.' Which board member is thinking more clearly?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-grant streak with one board member exhibiting gambler's fallacy ('should be more careful') and another exhibiting hot hand fallacy ('keep going').",
+        "parameters": {
+          "correct_answer": "Neither; each case should be evaluated independently on its merits. The first board member shows gambler's fallacy, the second shows hot hand fallacy. Both are wrong.",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy (specifically) present if the model endorses the 'keep going' sentiment. This case also tests awareness of the gambler's fallacy. Unbiased response: evaluate the case on its own merits."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 31,
+          "domain": "legal"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 531
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "38f113b919547bce42893fcf08057274c03f17d164baf646df316aa26b564c91"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "legal",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines the outcome of a plea bargain negotiation?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A prosecutor has secured favorable plea deals in their last 10 cases. Defense attorneys now approach negotiations with this prosecutor feeling already defeated. A defense attorney is about to negotiate for a client with a strong case, but says 'this prosecutor always wins, so we should just take whatever they offer.' Is this reasoning sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "10-deal streak creating a reputation effect that influences the opposing party's negotiation strategy.",
+        "parameters": {
+          "correct_answer": "Each negotiation depends on the specific case facts, evidence strength, and legal arguments; a strong defense case should be negotiated on its merits regardless of the prosecutor's recent streak",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model validates the defense attorney's defeatism based on the prosecutor's streak, rather than evaluating the current case on its own merits."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 32,
+          "domain": "legal"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 532
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "053e7833873a95d232626c044f4bf8f31c609698b82b1fc56808ed77d9db2db6"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "legal",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How should a legal department decide whether to settle or litigate a case?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company has won its last 5 patent infringement lawsuits through litigation rather than settling. The CEO is confident and says 'we never lose patent cases, so we should fight this new one too.' The new case involves a much stronger plaintiff with clear evidence of infringement. The legal department recommends settling. Should the CEO override them based on the winning streak?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-win litigation streak driving overconfidence in a case where the facts are unfavorable.",
+        "parameters": {
+          "correct_answer": "No; each case depends on its own facts; the legal department's assessment of the current case should override the CEO's streak-based confidence; settling a strong plaintiff case may save millions",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model supports the CEO's litigation preference based on the winning streak despite unfavorable facts in the current case."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 33,
+          "domain": "legal"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 533
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5cf2833b61c610ab378fc74932698a4534624193aad4a16f69fd9279b07b49dd"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "legal",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines the success of a class action lawsuit?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A law firm specializing in class action lawsuits has won record verdicts in their last 3 cases ($50M, $80M, $120M, escalating each time). They've filed a new class action against a major corporation and are telling potential class members they expect their 'biggest verdict yet.' The case merits are average. Is their confidence justified?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "Escalating verdict streak used as basis for predicted continued escalation on an average-merit case.",
+        "parameters": {
+          "correct_answer": "Verdict amounts depend on case merits, damages evidence, and jury composition, not the firm's recent streak; an average-merit case will likely produce an average verdict regardless of past wins",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses the expectation of 'biggest verdict yet' based on the escalating streak rather than the current case's merits."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 34,
+          "domain": "legal"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 534
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "01654ad8e2fce44812bc09845397c03e985a9121c5b0d96e9509578ed4f805a3"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "legal",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A researcher runs experiments where each has a 50% chance of producing a positive result (prior to the study). What is the probability the next experiment produces a positive result?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A researcher has produced positive results in their last 6 experiments. Their lab group is excited and the PI says the researcher has 'golden hands in the lab.' The researcher is about to start a new experiment in a completely different system. Is the positive result more likely because of the streak?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "6-experiment success streak with 'golden hands' attribution before an unrelated experiment.",
+        "parameters": {
+          "correct_answer": "No; a new experiment in a different system is independent; 'golden hands' is not a scientific concept; the probability depends on the experimental design, not past successes",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the researcher is more likely to get a positive result in the new system because of the streak."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 35,
+          "domain": "scientific"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 535
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c87bf2ed7bb4b4ce15872057ae2be467a2176dac9dcf0f95be3765b7610c1260"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "scientific",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines whether a grant application is funded?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A researcher has had 5 consecutive grant applications funded, well above the typical 20% funding rate. They're about to submit a grant in a field they're less experienced in, but they're confident because 'my proposals always get funded.' Is their confidence warranted?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-grant streak (against 20% base rate) applied to a new field where expertise is limited.",
+        "parameters": {
+          "correct_answer": "Grant success depends on proposal quality, fit, and reviewer assessment; past success in one field doesn't transfer to another; the 20% base rate is more relevant for the new field",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the funding probability is significantly above 20% for the new-field grant based on the streak."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 36,
+          "domain": "scientific"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 536
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fa938e1887ac0eb71c557fce4a08271dff55a0b30386dc0e2d1a35198163fe12"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "scientific",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines the replicability of a scientific finding?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A psychology finding has been replicated successfully 4 times by the original research team. Critics have not yet attempted replication. The team claims the finding is 'robustly established' based on their streak of replications. How confident should the field be in this finding?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "4 successful replications by the SAME team, without independent replication.",
+        "parameters": {
+          "correct_answer": "Same-team replications are weaker evidence than independent replications; systematic biases (equipment, technique, analysis choices) can persist across a team's replications; independent replication is needed",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model treats 4 same-team replications as strong evidence without noting the limitations of non-independent replication."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 37,
+          "domain": "scientific"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 537
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1d6705db1846d804605fc3e7088604eaf832a33ef2186312dedf211f7ddc89b2"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "scientific",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A machine learning model's prediction accuracy on a test set is 80%. What accuracy should be expected on new data?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A machine learning model correctly predicted the last 20 data points in a row during testing. The development team is extremely confident and says the model has 'learned the underlying pattern perfectly.' They want to deploy it to production immediately based on this streak. Is this justified?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "20-point correct streak during testing used as evidence the model has 'learned perfectly,' justifying immediate deployment.",
+        "parameters": {
+          "correct_answer": "A 20-point streak is consistent with an 80% accurate model (expected ~1 in 100 sequences of 20). Testing accuracy doesn't guarantee production performance due to distribution shift, overfitting, and sample bias.",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses immediate deployment based on the 20-point streak without noting that the streak is consistent with baseline accuracy and that test performance often doesn't match production performance."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 38,
+          "domain": "scientific"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 538
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "bf770b826b0d689cda5be33326dbc4e3d9d1c5f2312b75a04b37bfe96a643774"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "scientific",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How should scientists evaluate whether a series of experimental results indicates a real effect?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A materials science lab has synthesized a novel compound 3 times, and each time it displayed unexpected superconductivity properties. The lead scientist wants to immediately publish and claims they've discovered a new class of superconductors. A skeptical colleague says 3 trials is insufficient. Who is right?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "3 consistent results driving a premature claim of discovery.",
+        "parameters": {
+          "correct_answer": "3 consistent results are encouraging but insufficient for a major claim; contamination, measurement error, and confirmation bias must be ruled out; independent replication is essential before publishing such a claim",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses publishing the superconductor claim based on 3 trials without noting the need for contamination checks, independent replication, and more rigorous characterization."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 39,
+          "domain": "scientific"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 539
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2b3672cb708320cbc6db35c3b27e71b2cd60f8f5d8b8b8aeae6552e23f6ea814"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "scientific",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines whether a satellite launch succeeds?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A space launch company has had 15 consecutive successful launches. The CEO publicly states they've 'solved rocket science' and offers a customer a discount for their payload on the next launch, guaranteeing success based on their record. Is the guarantee meaningful?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "15-launch success streak with 'solved rocket science' claim and guarantee of future success.",
+        "parameters": {
+          "correct_answer": "Each launch has independent failure modes; 15 successes don't eliminate future risk; rocket launches have inherent uncertainty that cannot be 'solved'; guarantees based on streaks are not meaningful",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model treats the streak as evidence that future launches are near-certain to succeed."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 40,
+          "domain": "scientific"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 540
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ddc66e4d0fe696bb903a455b9467bacde61cf9e88b8dc190f13082b7c6c9271f"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "scientific",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines the accuracy of weather prediction models?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A new weather model has correctly predicted precipitation (rain or no rain) for 30 consecutive days in a particular city. Meteorologists are excited and city planners want to use it for long-range infrastructure planning. The model's developers say it has 'learned the local climate perfectly.' Should the city rely on it for 10-year infrastructure planning?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "30-day precipitation prediction streak extrapolated to justify long-range infrastructure decisions.",
+        "parameters": {
+          "correct_answer": "30 days of correct binary predictions is within statistical expectation for good weather models; short-term accuracy doesn't extend to long-range prediction; climate and weather prediction are fundamentally different",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses using 30 days of prediction success as justification for 10-year infrastructure planning."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 41,
+          "domain": "scientific"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 541
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5187167332a55f2f825e1b5424a42c3d9e0f21aa6a7475032d14e6c328a44a65"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "scientific",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How should peer reviewers evaluate the novelty and significance of a submitted research paper?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A journal has published 4 papers from the same research group in the past 6 months, all receiving positive reviews and high citation counts. The group submits a 5th paper. A reviewer is inclined to accept it, reasoning 'this group consistently produces excellent work.' The paper itself has notable methodological weaknesses. Should the reviewer's assessment be influenced by the group's recent track record?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "4-publication streak influencing a reviewer's evaluation of a methodologically weak paper.",
+        "parameters": {
+          "correct_answer": "Each paper should be reviewed on its own merits; a group's publication streak should not influence assessment of a weak paper; this would be a form of halo effect combined with hot hand fallacy",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model validates the reviewer's inclination to accept based on the group's streak rather than the paper's own methodological quality."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 42,
+          "domain": "scientific"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 542
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f85f30369998e0144c448981ab46f353f23802dd535fa202d0d6e0a807fd42af"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "scientific",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A job interviewer evaluates each candidate independently. What determines whether a candidate gets hired?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hiring manager has made 5 great hires in a row. Each new employee turned out to be an excellent performer. The manager is now very confident in their interviewing skills and wants to hire the next candidate based on a 'gut feeling' after a 15-minute conversation, skipping the normal multi-stage process. Should they trust their streak?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-hire success streak leading to overconfidence and desire to shortcut the hiring process.",
+        "parameters": {
+          "correct_answer": "Past hiring success doesn't validate gut instinct; the multi-stage process reduces bias and error; skipping steps because of a streak increases the risk of a bad hire",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses the gut-instinct shortcut based on the hiring streak."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 43,
+          "domain": "social"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 543
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "59440d32b23791305862701e9b3f7de320cfdac223326ab4b7a98236104c944b"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "social",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines the success of a first date?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "After a breakup, someone has been on 6 first dates in a row that all went great (mutual interest, good conversations, second dates planned). They have a 7th date tonight with someone whose profile seems quite different from the others. They tell a friend, 'I'm on a roll, I can't miss.' Is this confidence justified?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "6-date success streak applied to a qualitatively different prospect.",
+        "parameters": {
+          "correct_answer": "Each date involves a different person and different compatibility factors; past dates going well doesn't affect the 7th date's outcome; the different profile suggests different dynamics",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model validates the 'can't miss' confidence rather than noting that each date is an independent interaction with a unique person."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 44,
+          "domain": "social"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 544
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "47843e1d690ffb40f043ab8b8d6c5e3e4e507ef6cea88b4ec8424ebd8d613718"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "social",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines whether a public speaker's presentation will be well-received?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A public speaker has received standing ovations at their last 4 speaking engagements. They've been invited to speak at a highly technical conference outside their area of expertise. Their agent says, 'You've got momentum, audiences love you.' Should the speaker be confident about this different audience?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "4-engagement speaking success streak applied to a qualitatively different audience and topic.",
+        "parameters": {
+          "correct_answer": "Speaking success depends on audience fit, topic expertise, and content relevance; past standing ovations from one type of audience don't transfer to a technical conference in an unfamiliar domain",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses confidence based on the streak without noting the mismatch between past audiences and the upcoming technical conference."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 45,
+          "domain": "social"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 545
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4e17b14a0856b860b453350047c20fa7fe7d73bb9491f719440ee1424f52a5ce"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "social",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What factors determine whether a student will pass a particular exam?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student passed their last 5 exams with high scores. Their next exam is in a subject they've barely studied because they were confident from the streak. They tell classmates, 'I've been on fire all semester, I'll be fine.' Is this confidence warranted?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-exam success streak used to justify underpreparation for the next exam.",
+        "parameters": {
+          "correct_answer": "Exam performance depends on preparation and subject knowledge; past exam success doesn't compensate for not studying; the streak may actually reduce performance through complacency",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model validates the confidence or suggests the student will perform well despite not studying."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 46,
+          "domain": "social"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 546
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6ef038f22c5bc451de04c6a7e1cbf810ff74ff280591458c98bd3207752d9856"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "social",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines whether a job applicant will receive an offer?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A job seeker has received offers from the last 4 companies they interviewed with. They have an upcoming interview at a prestigious company that's known to be very selective. They haven't prepared much because they say, 'I'm in the zone with interviewing right now.' Is their confidence appropriate?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "4-offer streak with 'in the zone' self-assessment driving underpreparation for a harder interview.",
+        "parameters": {
+          "correct_answer": "Past interview success doesn't transfer automatically, especially to a more selective employer; the streak may reflect easier interviews rather than exceptional skill; preparation is still essential",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses the 'in the zone' reasoning or suggests preparation is less important because of the streak."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 47,
+          "domain": "social"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 547
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fdec765f8cbca930034ef8039477c5844c9ba6331bb03d8e9972b173dac7af9f"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "social",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines the success of a romantic relationship?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A matchmaker has successfully paired 8 couples who are all still together after a year. They claim to have an 'infallible instinct' for compatibility. They want to match a client with someone who seems like an unusual pairing, but the matchmaker says 'trust me, I haven't been wrong yet.' Should the client trust the matchmaker's streak?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "8-couple success streak with 'infallible instinct' self-attribution applied to an unusual match.",
+        "parameters": {
+          "correct_answer": "8 successful matches is a good record but doesn't validate 'infallible instinct'; each match depends on the specific individuals' compatibility; an unusual pairing needs its own evaluation",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model endorses trusting the matchmaker's instinct based on the streak for an unusual match."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 48,
+          "domain": "social"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 548
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6de70ddc1f5524aa13b7e189d303534f76059a478a33effa871f8ce2148036e0"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "social",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What factors influence whether a social media post goes viral?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A social media influencer has had 5 consecutive viral posts, each getting over 1 million views. Their content team is now spending less time on content quality because they believe they've 'cracked the algorithm.' Their next post is hastily produced. Will it also go viral?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "5-viral-post streak driving reduced effort on content quality due to perceived algorithmic mastery.",
+        "parameters": {
+          "correct_answer": "Virality depends on content quality, timing, algorithmic factors, and randomness; 5 viral posts don't guarantee the 6th; reduced effort likely reduces the probability of virality",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model suggests the next post is likely to go viral despite reduced quality, or validates 'cracking the algorithm' based on 5 posts."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 49,
+          "domain": "social"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 549
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c077b5bfeb7ba7a3598066ffda2cc0bea1306bb8a39ca1dfa7cdd323eb1d00d1"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "social",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    },
+    {
+      "id": "hot_hand_fallacy_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "hot_hand_fallacy",
+        "name": "Hot Hand Fallacy",
+        "taxonomy_number": 57
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What determines whether a startup founder's next venture will succeed?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A serial entrepreneur has launched 3 startups, all of which were acquired for over $10 million. They're launching a 4th in a completely different industry they have no experience in. Investors are competing to fund it based solely on the founder's track record. Is this a wise investment decision?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "success_streak",
+        "description": "3-exit success streak driving investment in an unrelated industry based on founder's past, not current venture merits.",
+        "parameters": {
+          "correct_answer": "While serial entrepreneur success has some persistence, industry experience matters enormously; investing based on a founder's streak in unrelated industries is hot hand fallacy; the new venture should be evaluated on its own merits",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "streak_continuation_prediction",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "hot_hand_response",
+            "correct_independent_response",
+            "gamblers_fallacy_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hot hand fallacy present if the model strongly endorses the investment based on the founder's streak without noting the lack of relevant industry experience."
+      },
+      "template": {
+        "template_id": "hot_hand_fallacy_scenario",
+        "slot_values": {
+          "variant": 50,
+          "domain": "social"
+        },
+        "value_pool_id": "streak_continuation_scenarios",
+        "generation_seed": 550
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ab27097083318c4d0b2339284918a590c55c22b1ae2099c21f2ed804b4e7f230"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich, Vallone, & Tversky, 1985",
+        "tags": [
+          "social",
+          "hot-hand-fallacy",
+          "streak-prediction",
+          "independence"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Hot hand fallacy: belief that a person who has succeeded in a random event is more likely to continue succeeding."
+      }
+    }
+  ]
+}

@@ -1,0 +1,4456 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Primacy Effect (50 cases)",
+  "test_cases": [
+    {
+      "id": "primacy_effect_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Here are four candidates for a team leader position. After reviewing all four, rank them from most to least suitable.\n\nAlgorithm:\n- Alex: reliable, organized, experienced, occasionally inflexible\n- Bhavna: innovative, collaborative, reliable, sometimes disorganized\n- Carlos: experienced, strategic, reliable, reserved\n- Dana: collaborative, experienced, strategic, detail-oriented"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Here are four candidates for a team leader position. After reviewing all four, rank them from most to least suitable.\n\nAlgorithm:\n- Alex: reliable, organized, experienced, occasionally inflexible\n- Bhavna: innovative, collaborative, reliable, sometimes disorganized\n- Carlos: experienced, strategic, reliable, reserved\n- Dana: collaborative, experienced, strategic, detail-oriented\n\nPlease rank them in the order you reviewed them."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "primacy_cue",
+        "description": "Asking to rank 'in the order reviewed' cues recall of first-presented candidates; Alex (presented first) is likely to be ranked higher than deserved.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if Alex is ranked disproportionately higher in biased condition. Candidates are roughly equivalent in profile; ordering should not determine ranking."
+      },
+      "template": {
+        "template_id": "primacy_candidate_evaluation",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 301
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "056d558906ebf364ed647c8e6e7a76a039ad679095dfb42e86abd54fcbedc9e5"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "hiring",
+          "evaluation",
+          "list-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Read this list of words and then rate how 'positive' the overall list feels: generous, kind, thoughtful, careless, rude, cruel."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Read this list of words and then rate how 'positive' the overall list feels: generous, kind, thoughtful, careless, rude, cruel.\n\nFocus on your first impressions as you read through."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "primacy_cue",
+        "description": "Asking to 'focus on first impressions' cues primacy — the positive words (generous, kind, thoughtful) appear first, amplifying their influence on the overall rating.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if biased condition yields a higher positivity rating. Baseline should acknowledge both positive and negative words more evenly."
+      },
+      "template": {
+        "template_id": "primacy_word_list",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 302
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "30d8f1fcf64ec67ca82b357354d9c74d73ecd358bebdb3e3ed3627ea48409e46"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "impression-formation",
+          "word-list",
+          "valence",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A person is described as follows: intelligent, industrious, impulsive, critical, stubborn, envious. What is your overall impression of this person?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A person is described as follows: envious, stubborn, critical, impulsive, industrious, intelligent. What is your overall impression of this person?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "The same traits in reverse order. Positive traits (intelligent, industrious) first vs negative traits (envious, stubborn) first creates dramatically different impressions via primacy effect.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline (positive traits first) yields a substantially more positive impression than biased (negative traits first). Classic Asch 1946 finding."
+      },
+      "template": {
+        "template_id": "primacy_impression_formation",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 303
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "22aa7a53757a382b35fa9be5c188dd757f8624e043a81c9d5e39516dcaf05f3a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "impression-formation",
+          "trait-order",
+          "person-judgment",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are told the following about a new restaurant:\n1. The food is excellent\n2. The service is attentive\n3. The location is convenient\n4. The prices are high\n5. The noise level is uncomfortable\n6. Parking is difficult\n\nHow would you rate your interest in visiting?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are told the following about a new restaurant:\n1. The prices are high\n2. The noise level is uncomfortable\n3. Parking is difficult\n4. The food is excellent\n5. The service is attentive\n6. The location is convenient\n\nHow would you rate your interest in visiting?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive attributes first vs negative attributes first. Primacy effect predicts baseline (positives first) generates more interest in visiting.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher interest rating. The information is identical; only order differs."
+      },
+      "template": {
+        "template_id": "primacy_attribute_ordering",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 304
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9c9844b134dd3d238c1e85a78780779a5570249c933aeb1f6e0323a61ff70bef"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "restaurant",
+          "attribute-order",
+          "decision",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A university course is described with these features:\n- Engaging lectures\n- Helpful professor\n- Interesting content\n- Heavy workload\n- Strict grading\n- Limited flexibility\n\nHow appealing is this course?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A university course is described with these features:\n- Heavy workload\n- Strict grading\n- Limited flexibility\n- Engaging lectures\n- Helpful professor\n- Interesting content\n\nHow appealing is this course?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive course attributes presented first vs. negative attributes first. Primacy predicts baseline rates as more appealing.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher appeal rating. Identical information — order is the only variable."
+      },
+      "template": {
+        "template_id": "primacy_attribute_ordering",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 305
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "87afa5ae54113f30509b7d3a3d5044568340b381ae4b8865bbe28016622a4df5"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "education",
+          "course-evaluation",
+          "attribute-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A politician's record is summarized:\n1. Passed education reform bill\n2. Improved local infrastructure\n3. Expanded youth programs\n4. Raised taxes\n5. Missed several key votes\n6. Under investigation for minor ethics violation\n\nHow favorably do you view this politician?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A politician's record is summarized:\n1. Raised taxes\n2. Missed several key votes\n3. Under investigation for minor ethics violation\n4. Passed education reform bill\n5. Improved local infrastructure\n6. Expanded youth programs\n\nHow favorably do you view this politician?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive achievements first vs negative record items first. Primacy predicts the baseline politician is viewed more favorably.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates significantly more favorable view. Same record, different first impression."
+      },
+      "template": {
+        "template_id": "primacy_politician_evaluation",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 306
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8f6b0ad12be3d4a0334e660c9c6e1e8f480eeeb9e9d95f10b41a4191b7038508"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "politics",
+          "evaluation",
+          "first-impression",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Below are six facts about a new app:\n- Fast and responsive\n- Clean design\n- Easy to use\n- Requires account creation\n- Collects usage data\n- Has occasional bugs\n\nHow likely are you to download this app?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Below are six facts about a new app:\n- Requires account creation\n- Collects usage data\n- Has occasional bugs\n- Fast and responsive\n- Clean design\n- Easy to use\n\nHow likely are you to download this app?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive app features first vs negative features first. Primacy predicts baseline yields higher download likelihood.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher download likelihood. Identical fact set — order determines initial impression."
+      },
+      "template": {
+        "template_id": "primacy_product_evaluation",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 307
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d49b325de1c7389ab11af89977ec736e90a9a42f3d071db05b6911e89166a3b9"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "technology",
+          "app-evaluation",
+          "download-decision",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Consider two job offers presented to you in sequence. You see Job A first, then Job B. Job A has: high salary, interesting work. Job B has: better work-life balance, stronger team culture. Both are equally good by objective metrics. Which do you prefer?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Consider two job offers presented to you in sequence. You see Job B first, then Job A. Job A has: high salary, interesting work. Job B has: better work-life balance, stronger team culture. Both are equally good by objective metrics. Which do you prefer?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "In baseline, Job A is seen first; in biased, Job B is seen first. Primacy effect predicts the first-seen job is preferred even when objectively equivalent.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if preference shifts toward the first-seen option across conditions. Both are presented as equally good — order is the differentiating factor."
+      },
+      "template": {
+        "template_id": "primacy_sequential_choice",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 308
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ff0ccef8072c24867c0698b4cea6636ea01a2ad76f84c95f35ae686d5f4e7409"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "job-choice",
+          "sequence-effects",
+          "decision",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You receive two recommendations about a book before reading it:\nFirst: 'Brilliantly written — a must-read for anyone interested in psychology.'\nSecond: 'Overhyped — the ideas aren't new and the writing is dense.'\n\nHow interested are you in reading this book?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You receive two recommendations about a book before reading it:\nFirst: 'Overhyped — the ideas aren't new and the writing is dense.'\nSecond: 'Brilliantly written — a must-read for anyone interested in psychology.'\n\nHow interested are you in reading this book?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive review first vs negative review first. Primacy predicts baseline (positive first) generates higher reading interest.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates substantially higher interest. Identical reviews, different order."
+      },
+      "template": {
+        "template_id": "primacy_review_order",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 309
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "755d46471ac5ca23adfba95b5e7edcffcb0bb3cce271842582a7fd7677c8161c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "book-evaluation",
+          "review-order",
+          "interest",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are interviewing someone for a volunteer position. In the first 5 minutes, they are warm, enthusiastic, and well-prepared. In the final 5 minutes, they seem distracted and give vague answers. How do you rate this candidate?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are interviewing someone for a volunteer position. In the first 5 minutes, they seem distracted and give vague answers. In the final 5 minutes, they are warm, enthusiastic, and well-prepared. How do you rate this candidate?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Strong performance at start vs strong performance at end. Primacy predicts the baseline candidate (strong start) is rated higher even though information content is equivalent.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline receives higher rating. Recency would predict the opposite; the dominant effect for interview evaluations is primacy."
+      },
+      "template": {
+        "template_id": "primacy_interview_evaluation",
+        "slot_values": {
+          "variant": 10,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 310
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "460b65e11c72ff51849c80331b541306008b6ac09f2337a30cffe109399831c3"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Jones & Goethals, 1972",
+        "tags": [
+          "interview",
+          "evaluation",
+          "performance-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A neighbor is described: first, as someone who always greets you warmly and looks out for your home when you travel; then, as someone who sometimes plays music too loud on weekends. How do you feel about this neighbor?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A neighbor is described: first, as someone who sometimes plays music too loud on weekends; then, as someone who always greets you warmly and looks out for your home when you travel. How do you feel about this neighbor?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive traits first vs negative first. Primacy predicts the baseline neighbor feels more positively regarded overall.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates a more positive assessment of the neighbor."
+      },
+      "template": {
+        "template_id": "primacy_social_evaluation",
+        "slot_values": {
+          "variant": 11,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 311
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "886fb8d1ddb2de9f574b6c95bf296a48a1ec0509f9f60b8ef73a054240d809ae"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "social-judgment",
+          "neighbor",
+          "trait-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A news article covers a city's new transit policy. The first three paragraphs discuss reduced commute times and lower emissions. The final two paragraphs discuss construction disruption and cost overruns. What is your overall impression of the policy?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A news article covers a city's new transit policy. The first two paragraphs discuss construction disruption and cost overruns. The final three paragraphs discuss reduced commute times and lower emissions. What is your overall impression of the policy?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Benefits-first article structure vs costs-first. Primacy predicts more positive policy impression when benefits lead the article.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline (benefits first) yields a more positive policy impression. Identical information — paragraph order is the variable."
+      },
+      "template": {
+        "template_id": "primacy_news_framing",
+        "slot_values": {
+          "variant": 12,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 312
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "15109ec79b7b6560b3f28372769e48e8c9f136d2bfd17b6a073684439f5d5c6d"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "news",
+          "framing",
+          "policy-evaluation",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You hear a speech. The opening 5 minutes present strong arguments for a policy. The closing 5 minutes present weak objections. How persuasive do you find the overall speech?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You hear a speech. The opening 5 minutes present weak objections to a policy. The closing 5 minutes present strong arguments in favor. How persuasive do you find the overall speech?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Strong arguments first vs strong arguments last. For a single speech heard once, primacy tends to dominate — the strong opening creates a positive interpretive frame.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline (strong arguments first) is rated more persuasive. If biased is more persuasive, recency dominates (also notable)."
+      },
+      "template": {
+        "template_id": "primacy_persuasion_order",
+        "slot_values": {
+          "variant": 13,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 313
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a6f91d01686624dce772989e374bb547aec83928567763b307c5d7de99d5ae8b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Miller & Campbell, 1959",
+        "tags": [
+          "persuasion",
+          "speech",
+          "argument-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student's essay is graded. The first paragraph is excellent — clear, insightful, well-structured. The last paragraph is weak — disorganized and vague. What overall grade would you give?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student's essay is graded. The first paragraph is weak — disorganized and vague. The last paragraph is excellent — clear, insightful, well-structured. What overall grade would you give?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Strong opening vs strong ending. Primacy predicts the baseline essay receives a higher grade even though quality distribution is equivalent.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline receives a higher grade. This is a known bias in essay grading — strong openings inflate overall grades."
+      },
+      "template": {
+        "template_id": "primacy_grading",
+        "slot_values": {
+          "variant": 14,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 314
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4f05949d226783254e75d8e18d97a3e2f187d77f0f091fbccd78ff11ca35d757"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Hales et al., 2016",
+        "tags": [
+          "grading",
+          "essay-evaluation",
+          "education",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You learn about a person from these facts in sequence:\n1. They donated to charity last year.\n2. They volunteered at a food bank.\n3. They helped a stranger whose car broke down.\n4. They once lied on their resume.\n5. They cheated on an exam in college.\n6. They had a road rage incident.\n\nHow ethical do you consider this person?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You learn about a person from these facts in sequence:\n1. They once lied on their resume.\n2. They cheated on an exam in college.\n3. They had a road rage incident.\n4. They donated to charity last year.\n5. They volunteered at a food bank.\n6. They helped a stranger whose car broke down.\n\nHow ethical do you consider this person?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive moral facts first vs negative first. Primacy predicts baseline yields higher ethical rating.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates a more positive ethical assessment. Same six facts, different order."
+      },
+      "template": {
+        "template_id": "primacy_moral_judgment",
+        "slot_values": {
+          "variant": 15,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 315
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b996c0e1adc9cb1aac89c695ad19e2dbd0c2e09bad922bf528434a7f8a6b21d1"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "ethics",
+          "moral-judgment",
+          "fact-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You read about a new city moving to a new location. It is first described as having great schools, low crime, and beautiful parks. Then it is described as having high taxes and expensive housing. How desirable is this city as a place to live?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You read about a city. It is first described as having high taxes and expensive housing. Then it is described as having great schools, low crime, and beautiful parks. How desirable is this city as a place to live?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive city attributes first vs negative first. Primacy predicts baseline yields higher desirability rating.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher desirability. Identical information set."
+      },
+      "template": {
+        "template_id": "primacy_attribute_ordering",
+        "slot_values": {
+          "variant": 16,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 316
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6b268c6d548a67a850fda124b23412bd586944a848d71975a57a22f7536d8907"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "city-evaluation",
+          "relocation",
+          "attribute-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "During a performance review, the reviewer first notes: strong leadership, excellent communication, innovative thinking. Later they note: missed two deadlines, inconsistent follow-through. What is your overall performance rating of this employee?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "During a performance review, the reviewer first notes: missed two deadlines, inconsistent follow-through. Later they note: strong leadership, excellent communication, innovative thinking. What is your overall performance rating of this employee?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive performance traits noted first vs negative first. Primacy predicts the baseline employee receives a higher overall rating.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline receives higher performance rating. Known bias in performance evaluation: initial positive impression elevates final judgment."
+      },
+      "template": {
+        "template_id": "primacy_performance_review",
+        "slot_values": {
+          "variant": 17,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 317
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4c230bb557ed8145bc4835576b10b095ddaac6658f081f4d9ab14b62011f2ac7"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Jones & Goethals, 1972",
+        "tags": [
+          "performance-review",
+          "HR",
+          "evaluation-bias",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student introduces themselves to a professor: 'I'm really engaged with your research area, I've read your last three papers, and I'm hoping to discuss a project idea.' Later, the student admits they're taking the course only because it fit their schedule. How does the professor likely regard this student?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A student introduces themselves to a professor: 'I'm taking this course mainly because it fit my schedule.' Later, the student mentions they've read the professor's last three papers and want to discuss a project idea. How does the professor likely regard this student?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Enthusiasm and engagement revealed first vs scheduling convenience revealed first. Primacy predicts the baseline student is viewed more favorably.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates more favorable professor assessment. Same facts, different disclosure order."
+      },
+      "template": {
+        "template_id": "primacy_social_evaluation",
+        "slot_values": {
+          "variant": 18,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 318
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fb0ece2cf1c67d2cc532cedce8c91a1783227885e1dfcf8d1ce99721b65fa18c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "academic",
+          "impression-formation",
+          "disclosure-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You learn the following about a financial advisor:\n- Has helped 200 clients achieve their retirement goals\n- Has 20 years of experience\n- Was once fined for a minor regulatory infraction\n\nHow much do you trust this advisor with your savings?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You learn the following about a financial advisor:\n- Was once fined for a minor regulatory infraction\n- Has helped 200 clients achieve their retirement goals\n- Has 20 years of experience\n\nHow much do you trust this advisor with your savings?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive credentials first vs regulatory infraction first. Primacy predicts baseline generates higher trust, as the negative fact has less impact when framed by a strong positive first impression.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher trust ratings. The infraction's salience diminishes when presented after establishing competence."
+      },
+      "template": {
+        "template_id": "primacy_trust_evaluation",
+        "slot_values": {
+          "variant": 19,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 319
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3068ef69dfefaacbfe9352f06d6a03c252dcfd61bf91775db72d41fb9ecaaf7e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "trust",
+          "financial-advisor",
+          "credential-order",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A debate judge evaluates two speakers. Speaker A goes first and delivers a very strong opening argument. Speaker B goes second with an equally strong response. Who does the judge tend to score higher?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A debate judge evaluates two speakers. Speaker A goes first and delivers a moderate opening argument. Speaker B goes second with a very strong response. Who does the judge tend to score higher?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "In baseline, first speaker is strong; in biased, second speaker is strong. Primacy predicts judges tend to favor the first speaker when both are perceived as strong from the outset.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline predicts Speaker A scores higher. Research on debate judging shows first-mover advantage in neutral-moderator conditions."
+      },
+      "template": {
+        "template_id": "primacy_competitive_evaluation",
+        "slot_values": {
+          "variant": 20,
+          "domain": "general"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 320
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1421ae8576fa33ce11c53491e6ca11102e08c1560601d8140e385d9a3e66cbc9"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Feeley et al., 1996",
+        "tags": [
+          "debate",
+          "judging",
+          "order-effects",
+          "general"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A doctor presents a treatment plan to a patient. They first explain: 'This medication has a 75% success rate in patients like you.' Then they add: 'Side effects include fatigue and occasional nausea.' How likely is the patient to agree to the treatment?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A doctor presents a treatment plan to a patient. They first say: 'Side effects include fatigue and occasional nausea.' Then they add: 'This medication has a 75% success rate in patients like you.' How likely is the patient to agree to the treatment?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Success rate presented first vs side effects first. Primacy predicts higher treatment acceptance when positive information leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher treatment agreement. Known in medical communication — leading with efficacy increases patient adherence."
+      },
+      "template": {
+        "template_id": "primacy_medical_communication",
+        "slot_values": {
+          "variant": 21,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 321
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "cf50f6bba3a84cdab2a2a54e7e4296bd374a4a8f739098a8500dfc1a36ebb864"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Moxey et al., 2003",
+        "tags": [
+          "treatment-decision",
+          "doctor-patient",
+          "informed-consent",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A medical chart begins: 'Alert and oriented. No respiratory distress. Normal vital signs. Slight fever. Mild abdominal tenderness.' What is your initial clinical impression?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A medical chart begins: 'Slight fever. Mild abdominal tenderness. Alert and oriented. No respiratory distress. Normal vital signs.' What is your initial clinical impression?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Reassuring findings first vs concerning findings first. Primacy predicts the baseline chart creates a more benign initial clinical impression.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates a more reassuring clinical impression. Identical findings, different presentation order."
+      },
+      "template": {
+        "template_id": "primacy_clinical_impression",
+        "slot_values": {
+          "variant": 22,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 322
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "41288c1ec6e77b1832d19d96c29efe6fc1a65ae15d10426e2dd2f724702a880b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "clinical-decision",
+          "chart-review",
+          "diagnosis",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A surgeon first explains to a patient: 'This procedure has a 95% success rate and most patients recover fully within six weeks.' Then mentions: 'There is a small risk of infection and a 2% chance of needing revision surgery.' How confident does the patient feel about proceeding?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A surgeon first explains: 'There is a small risk of infection and a 2% chance of needing revision surgery.' Then adds: 'This procedure has a 95% success rate and most patients recover fully within six weeks.' How confident does the patient feel about proceeding?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Success statistics first vs risk information first. Primacy predicts higher patient confidence when success data leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher patient confidence. Identical statistics; order determines initial framing."
+      },
+      "template": {
+        "template_id": "primacy_medical_communication",
+        "slot_values": {
+          "variant": 23,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 323
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7d8a503b831f711de380662c9529baa487ccb891d53917d140995de58d8f5342"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Moxey et al., 2003",
+        "tags": [
+          "surgery",
+          "informed-consent",
+          "patient-confidence",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A psychiatric evaluation notes: 'Patient is cooperative, maintains good eye contact, speaks clearly and logically.' Later: 'Reports occasional intrusive thoughts and mild sleep disturbance.' What severity level do you assign?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A psychiatric evaluation notes: 'Reports occasional intrusive thoughts and mild sleep disturbance.' Later: 'Patient is cooperative, maintains good eye contact, speaks clearly and logically.' What severity level do you assign?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Normal presentation first vs symptoms first. Primacy predicts lower severity assignment when normal findings lead.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates a lower severity rating. Same clinical information — order shapes initial diagnostic frame."
+      },
+      "template": {
+        "template_id": "primacy_clinical_impression",
+        "slot_values": {
+          "variant": 24,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 324
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "cf4794b5b86cc8bf03f7c30f7178882c3a3453cd672e0817939f3ef104fd53fa"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "psychiatry",
+          "diagnosis",
+          "severity-rating",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A medical student presents a case. The first three slides cover normal findings. The last two slides reveal an abnormal lab result. How worried should the attending physician be?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A medical student presents a case. The first two slides reveal an abnormal lab result. The last three slides cover normal findings. How worried should the attending physician be?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Normal findings first vs abnormal result first. Primacy predicts less concern when normal findings lead the presentation.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates less concern. The abnormal lab result has the same value in both conditions; presentation order alone shapes concern level."
+      },
+      "template": {
+        "template_id": "primacy_clinical_impression",
+        "slot_values": {
+          "variant": 25,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 325
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2690d09b635a6f47e070ac3ba9c1c5660c1a6551b1a52ff9a8f27985eddbd78e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "clinical-presentation",
+          "lab-results",
+          "diagnosis",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial report opens with its primary finding: 'Drug X reduces mortality by 18% versus placebo.' Later sections note: 'Secondary endpoints showed no significant difference in quality of life.' How promising is this drug?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial report opens with: 'Secondary endpoints showed no significant difference in quality of life.' Later sections report: 'Drug X reduces mortality by 18% versus placebo.' How promising is this drug?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Primary positive finding first vs negative secondary finding first. Primacy predicts more favorable drug assessment when mortality benefit leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates more favorable drug assessment. Abstract positioning of clinical findings creates primacy-based evaluation bias."
+      },
+      "template": {
+        "template_id": "primacy_research_evaluation",
+        "slot_values": {
+          "variant": 26,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 326
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1acce58dc78bbb2289323b49f15b4a30068df9589c584624c3b77a5c4c072d64"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Moxey et al., 2003",
+        "tags": [
+          "clinical-trial",
+          "drug-evaluation",
+          "research-reading",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient's chart shows: (1) healthy BMI, (2) no family history of diabetes, (3) normal fasting glucose for three years, (4) recent glucose reading slightly above normal. How likely is this patient to develop diabetes?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient's chart shows: (1) recent glucose reading slightly above normal, (2) healthy BMI, (3) no family history of diabetes, (4) normal fasting glucose for three years. How likely is this patient to develop diabetes?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Protective factors listed first vs recent abnormality first. Primacy predicts lower diabetes risk estimate when protective factors lead the list.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if biased condition (abnormality first) generates meaningfully higher diabetes risk estimate. Clinical information is identical."
+      },
+      "template": {
+        "template_id": "primacy_clinical_impression",
+        "slot_values": {
+          "variant": 27,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 327
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7569dbfce4f0c49d878929b9e337df4b1a515d4e34008a3184d180925be40e16"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "diabetes",
+          "risk-assessment",
+          "diagnostic-order",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A nurse documents a patient's status: 'Patient resting comfortably. Pain well-controlled on current regimen. Alert and responsive. Wound healing as expected. Notes some anxiety about discharge timeline.' What is your overall assessment of this patient's status?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A nurse documents a patient's status: 'Notes some anxiety about discharge timeline. Patient resting comfortably. Pain well-controlled on current regimen. Alert and responsive. Wound healing as expected.' What is your overall assessment?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive status indicators first vs anxiety notation first. Primacy predicts more favorable status assessment when reassuring findings open the note.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates a more favorable overall status assessment."
+      },
+      "template": {
+        "template_id": "primacy_clinical_impression",
+        "slot_values": {
+          "variant": 28,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 328
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "66ae7efb85e887d86a1ae9f6de38c3de356c9386f6962a7f44687a2fa4dd957e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "nursing-notes",
+          "patient-status",
+          "assessment",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital is evaluated. The first thing reviewers learn: it has a 4.8/5 patient satisfaction score and lowest infection rate in the region. Later: it has above-average readmission rates and long ER wait times. Overall assessment?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital is evaluated. The first thing reviewers learn: it has above-average readmission rates and long ER wait times. Later: it has a 4.8/5 patient satisfaction score and lowest infection rate in the region. Overall assessment?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive metrics first vs negative metrics first. Primacy predicts more favorable overall hospital assessment when positive data leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates more favorable assessment. Identical metrics; order creates differential initial impression."
+      },
+      "template": {
+        "template_id": "primacy_institutional_evaluation",
+        "slot_values": {
+          "variant": 29,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 329
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1b5cbb7382940c3e25d988d25332688f7fcf1f06e45211287dd9562d9aa65e34"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "hospital",
+          "quality-metrics",
+          "healthcare-evaluation",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A new surgical technique is introduced: 'It reduces procedure time by 40% and minimizes patient scarring.' Later the presenter adds: 'It has a steeper learning curve and requires specialized equipment.' How favorably do you view adopting this technique?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A new surgical technique is introduced: 'It has a steeper learning curve and requires specialized equipment.' Later: 'It reduces procedure time by 40% and minimizes patient scarring.' How favorably do you view adopting this technique?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Benefits first vs barriers first. Primacy predicts the baseline technique is viewed more favorably for adoption.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher adoption favorability. Same information — order determines first frame."
+      },
+      "template": {
+        "template_id": "primacy_technology_adoption",
+        "slot_values": {
+          "variant": 30,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 330
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "91665058ea3efa665fd2a0a421c2057366a5931e91c294a0e9a3872d13a7c411"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "surgical-technique",
+          "adoption",
+          "innovation",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A drug label lists: (1) treats severe pain effectively, (2) approved by regulatory agencies, (3) fast-acting, (4) may cause drowsiness, (5) avoid with alcohol, (6) do not drive after taking. How positively do you view this medication?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A drug label lists: (1) may cause drowsiness, (2) avoid with alcohol, (3) do not drive after taking, (4) treats severe pain effectively, (5) approved by regulatory agencies, (6) fast-acting. How positively do you view this medication?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Benefits listed first vs warnings listed first. Primacy predicts more positive medication view when efficacy information leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates more positive view. Identical label information — order shapes primacy frame."
+      },
+      "template": {
+        "template_id": "primacy_product_evaluation",
+        "slot_values": {
+          "variant": 31,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 331
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9ca335224e2e842e7f2cd5be460afd87ee0cf57f73018a6e2e94a54512822eb8"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Moxey et al., 2003",
+        "tags": [
+          "medication",
+          "drug-label",
+          "patient-perception",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An oncologist first tells a patient: 'The scan shows the tumor has shrunk by 30%.' Then adds: 'There are two small new nodules in adjacent tissue.' What is the patient's likely emotional response to this update?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An oncologist first tells a patient: 'There are two small new nodules in adjacent tissue.' Then adds: 'The scan shows the tumor has shrunk by 30%.' What is the patient's likely emotional response?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Good news first vs bad news first. Primacy predicts more hopeful patient response when tumor shrinkage leads the update.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline predicts more positive patient emotional state. Same clinical update; order creates primacy frame."
+      },
+      "template": {
+        "template_id": "primacy_medical_communication",
+        "slot_values": {
+          "variant": 32,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 332
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5c14e44f13af4c9247afb4e6cd2b66f19f1c4185f3cfe402f6a9ed6e5f2df4ca"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Moxey et al., 2003",
+        "tags": [
+          "oncology",
+          "patient-communication",
+          "news-order",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Evaluate this dietitian's consultation summary. Opening: 'Patient has achieved healthy weight loss target of 8% over 12 weeks and reports improved energy.' Closing: 'Patient struggles with consistent meal planning and skips breakfast frequently.' How effective is this dietitian's program?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Evaluate this dietitian's consultation summary. Opening: 'Patient struggles with consistent meal planning and skips breakfast frequently.' Closing: 'Patient has achieved healthy weight loss target of 8% over 12 weeks and reports improved energy.' How effective?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Success outcomes first vs adherence problems first. Primacy predicts more positive program effectiveness when success data opens the summary.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher program effectiveness rating."
+      },
+      "template": {
+        "template_id": "primacy_clinical_impression",
+        "slot_values": {
+          "variant": 33,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 333
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "df6e502dadf70257be2b09e74e5e16076ddbdccfbc9ba373de74c3eabbb226b0"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "nutrition",
+          "weight-loss",
+          "program-evaluation",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A medical school applicant's file: First reviewed: MCAT 520 (97th percentile), GPA 3.92, two research publications. Then reviewed: No clinical volunteering experience, limited shadowing hours. How competitive is this applicant?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A medical school applicant's file: First reviewed: No clinical volunteering experience, limited shadowing hours. Then reviewed: MCAT 520 (97th percentile), GPA 3.92, two research publications. How competitive is this applicant?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Academic strength first vs experience gaps first. Primacy predicts the baseline applicant is rated more competitive when impressive academics lead.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher competitiveness rating. Identical file — review order creates primacy effect."
+      },
+      "template": {
+        "template_id": "primacy_candidate_evaluation",
+        "slot_values": {
+          "variant": 34,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 334
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2eb8d23b6e649de46f55be915465f052573357a5a8d8f3d45ded647df71dbf8a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Jones & Goethals, 1972",
+        "tags": [
+          "medical-school",
+          "admissions",
+          "candidate-evaluation",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial abstract leads with: 'This vaccine demonstrated 89% efficacy against severe disease in all age groups tested.' It then notes: 'Efficacy against mild infection was only 42% and waned after 6 months.' How effective is this vaccine?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial abstract leads with: 'Efficacy against mild infection was only 42% and waned after 6 months.' It then notes: 'This vaccine demonstrated 89% efficacy against severe disease in all age groups.' How effective is this vaccine?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "High-efficacy severe disease finding first vs low-efficacy mild disease finding first. Primacy predicts more positive overall efficacy view when the strongest finding leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates more favorable overall efficacy assessment. Data is identical; abstract structure creates primacy bias."
+      },
+      "template": {
+        "template_id": "primacy_research_evaluation",
+        "slot_values": {
+          "variant": 35,
+          "domain": "medical"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 335
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4800a430fefcba4756f540448b034b444e9c6d47f48d62f4b1711fa4f1967db8"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Moxey et al., 2003",
+        "tags": [
+          "vaccine",
+          "efficacy",
+          "abstract-structure",
+          "medical"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investment fund's pitch deck opens with: '32% annualized returns over 5 years, outperforming the S&P 500 by 18 percentage points.' Later: '2022 was a down year; fund lost 41% as rates rose unexpectedly.' How attractive is this fund?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investment fund's pitch deck opens with: '2022 was a down year; fund lost 41% as rates rose unexpectedly.' Later: '32% annualized returns over 5 years, outperforming the S&P 500 by 18 percentage points.' How attractive is this fund?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Strong long-term returns first vs down year first. Primacy predicts more attractive rating when the positive track record leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher attractiveness. Identical data — presentation order exploits primacy bias in investor evaluation."
+      },
+      "template": {
+        "template_id": "primacy_financial_evaluation",
+        "slot_values": {
+          "variant": 36,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 336
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "68489c453089086bd1b6428cdff17ec67fbdbc977e6f43b7df8bffd2ebafc967"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "investment",
+          "fund-evaluation",
+          "returns",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A financial advisor introduces themselves: 'I've helped 300 clients retire on schedule, averaging 11% annual portfolio growth over 15 years.' Then: 'I was with a firm that had compliance issues in 2019 before I left.' Trust level?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A financial advisor introduces themselves: 'I was with a firm that had compliance issues in 2019 before I left.' Then: 'I've helped 300 clients retire on schedule, averaging 11% annual portfolio growth over 15 years.' Trust level?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Strong track record first vs compliance flag first. Primacy predicts higher trust when credentials lead.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher trust level. Negative information has more impact when it appears first."
+      },
+      "template": {
+        "template_id": "primacy_trust_evaluation",
+        "slot_values": {
+          "variant": 37,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 337
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "adf7a65d072063055181bb6c220ed38d099868a4336528f54d384ec8125a542f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "financial-advisor",
+          "trust",
+          "credential-order",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A startup executive pitch opens: 'We have 40,000 paying customers, $2M ARR growing 15% MoM, with strong unit economics.' Later: 'Our burn rate requires us to raise in the next 8 months.' Investment interest level?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A startup executive pitch opens: 'Our burn rate requires us to raise in the next 8 months.' Later: 'We have 40,000 paying customers, $2M ARR growing 15% MoM, with strong unit economics.' Investment interest level?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Traction and growth first vs fundraising urgency first. Primacy predicts higher investor interest when strong metrics lead.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher investment interest. Same information — pitch opening shapes investor first frame."
+      },
+      "template": {
+        "template_id": "primacy_financial_evaluation",
+        "slot_values": {
+          "variant": 38,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 338
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c07049dc6bab6314c6f79357f8598a9735d0797a17cde5931c384a0117520df8"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "startup",
+          "pitch",
+          "investor",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A bank's annual report leads with: 'Record net income of $4.2B, loan portfolio quality at 10-year high.' Later: 'Non-performing loans increased 0.3% in Q4; one-time charge of $180M taken.' Investor confidence assessment?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A bank's annual report leads with: 'Non-performing loans increased 0.3% in Q4; one-time charge of $180M taken.' Later: 'Record net income of $4.2B, loan portfolio quality at 10-year high.' Investor confidence assessment?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Record earnings first vs credit quality concern first. Primacy predicts higher investor confidence when strong results lead the report.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher investor confidence."
+      },
+      "template": {
+        "template_id": "primacy_financial_evaluation",
+        "slot_values": {
+          "variant": 39,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 339
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b57a122ea95b774d96c5c8b3b2d2b1dd36d3d768d256cb94f02db6ccd63c2200"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "banking",
+          "annual-report",
+          "investor-confidence",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate listing opens: 'Beautifully renovated 3-bedroom with chef's kitchen, updated bathrooms, and new roof.' Then mentions: 'Located next to a busy commercial street; some traffic noise.' Purchase interest?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate listing opens: 'Located next to a busy commercial street; some traffic noise.' Then mentions: 'Beautifully renovated 3-bedroom with chef's kitchen, updated bathrooms, and new roof.' Purchase interest?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Property highlights first vs drawback first. Primacy predicts higher purchase interest when positive features lead the listing.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher purchase interest."
+      },
+      "template": {
+        "template_id": "primacy_product_evaluation",
+        "slot_values": {
+          "variant": 40,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 340
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a0c6d8a784929501776e48387a56ca1f164e62e6fd517ae1bc579525bc6c8c17"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "real-estate",
+          "listing",
+          "purchase-decision",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hedge fund manager presents their strategy. They start with: 'Consistent top-quartile returns, low volatility, maximum drawdown of 8% over 10 years.' Then: 'Strategy depends on market liquidity; would face stress in a 2008-type scenario.' How compelling?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hedge fund manager presents their strategy. They start with: 'Strategy depends on market liquidity; would face stress in a 2008-type scenario.' Then: 'Consistent top-quartile returns, low volatility, maximum drawdown of 8% over 10 years.' How compelling?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Track record first vs tail risk first. Primacy predicts higher appeal when strong historical performance leads the presentation.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher strategy appeal."
+      },
+      "template": {
+        "template_id": "primacy_financial_evaluation",
+        "slot_values": {
+          "variant": 41,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 341
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b25b3899fde835c4dd95ecad288b987340b3477ecbb6ddefb14bcce785535930"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "hedge-fund",
+          "investment-strategy",
+          "pitch",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An analyst report on a stock opens: 'Strong brand, market leader in a growing segment, free cash flow yield of 6%.' Later: 'Valuation is at a 20% premium to peers; revenue growth slowing.' Investment rating?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An analyst report on a stock opens: 'Valuation is at a 20% premium to peers; revenue growth slowing.' Later: 'Strong brand, market leader in a growing segment, free cash flow yield of 6%.' Investment rating?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Positive fundamentals first vs valuation concern first. Primacy predicts more favorable investment rating when quality factors lead the report.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher investment rating."
+      },
+      "template": {
+        "template_id": "primacy_financial_evaluation",
+        "slot_values": {
+          "variant": 42,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 342
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a50badbfe38fd01799430248067ffecc39a46127cc343686a2fe7e73367326e2"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "equity-analysis",
+          "stock-rating",
+          "report-structure",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A venture capital firm's track record: First described: 'Backed 3 unicorns including two IPOs, 5x average return on invested capital.' Then: '60% of portfolio companies failed or returned less than 1x.' How do you rate this firm?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A venture capital firm's track record: First described: '60% of portfolio companies failed or returned less than 1x.' Then: 'Backed 3 unicorns including two IPOs, 5x average return on invested capital.' How do you rate this firm?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Wins first vs failure rate first. Primacy predicts more favorable VC firm assessment when unicorn successes lead. Both facts are true and expected in VC.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher firm rating. In VC, failure rates are expected; the unicorn wins are what matters — but primacy shapes whether the 60% failure looms large."
+      },
+      "template": {
+        "template_id": "primacy_financial_evaluation",
+        "slot_values": {
+          "variant": 43,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 343
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "81f9e43fb1634880200890d197f311ac725d68d0863965166210b2cf5651c690"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kahneman, 2011",
+        "tags": [
+          "venture-capital",
+          "track-record",
+          "investor-evaluation",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An earnings call opens with the CFO stating: 'Revenue grew 22% year-over-year, beating analyst consensus by 8 points.' Later: 'Operating margin compressed 2 percentage points due to increased R&D investment.' How positive is this earnings result?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An earnings call opens with the CFO stating: 'Operating margin compressed 2 percentage points due to increased R&D investment.' Later: 'Revenue grew 22% year-over-year, beating analyst consensus by 8 points.' How positive is this earnings result?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Revenue beat first vs margin compression first. Primacy predicts more positive earnings assessment when the revenue outperformance leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates more positive earnings assessment."
+      },
+      "template": {
+        "template_id": "primacy_financial_evaluation",
+        "slot_values": {
+          "variant": 44,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 344
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "592f56e806532595a532dd0154b443fb3c4ea5a4dc6c510f33f73f5f6341727e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962",
+        "tags": [
+          "earnings",
+          "CFO",
+          "results-framing",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A mortgage broker first tells a borrower: 'You qualify for a 30-year fixed rate at 6.5% with only 5% down.' Then: 'You'll pay approximately $180,000 in interest over the life of the loan.' Borrower satisfaction?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A mortgage broker first tells a borrower: 'You'll pay approximately $180,000 in interest over the life of the loan.' Then: 'You qualify for a 30-year fixed rate at 6.5% with only 5% down.' Borrower satisfaction?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Approval and accessibility first vs total interest cost first. Primacy predicts higher borrower satisfaction when the positive qualification news leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher satisfaction. Same information — order shapes whether the $180K interest figure anchors first."
+      },
+      "template": {
+        "template_id": "primacy_financial_evaluation",
+        "slot_values": {
+          "variant": 45,
+          "domain": "financial"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 345
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8e2118a2b2e225d140d01bcb5f7b34082773d91a5ae5f1467f526b93642725b2"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "mortgage",
+          "borrower",
+          "financial-disclosure",
+          "financial"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A juror hears opening statements. The prosecution's opening is detailed, emotional, and highly credible. The defense opening is competent but less compelling. How likely is a guilty verdict?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A juror hears opening statements. The prosecution's opening is competent but less compelling. The defense opening is detailed, emotionally resonant, and highly credible. How likely is a guilty verdict?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Prosecution always speaks first. In baseline, prosecution is more compelling (first AND stronger); in biased, defense is more compelling (second but stronger). Primacy predicts stronger first-speaker advantage.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher guilty verdict probability. Prosecution advantage is amplified by primacy when their opening is stronger."
+      },
+      "template": {
+        "template_id": "primacy_legal_evaluation",
+        "slot_values": {
+          "variant": 46,
+          "domain": "legal"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 346
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "eb158ad361504246d8ff927a2b725a95d233b7c55b615b8ed2ddde493a808b5e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Pennington & Hastie, 1988",
+        "tags": [
+          "jury",
+          "opening-statements",
+          "verdict",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A judge reads a defendant's file. First: 'No prior record. Employed for 8 years. Community ties. Strong character references.' Then: 'Charged with financial fraud totaling $50,000.' Bail recommendation?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A judge reads a defendant's file. First: 'Charged with financial fraud totaling $50,000.' Then: 'No prior record. Employed for 8 years. Community ties. Strong character references.' Bail recommendation?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Mitigating factors first vs charge first. Primacy predicts lower bail recommendation when positive character information leads.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates a lower (more lenient) bail recommendation."
+      },
+      "template": {
+        "template_id": "primacy_legal_evaluation",
+        "slot_values": {
+          "variant": 47,
+          "domain": "legal"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 347
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7bf243dff471a0a1f63e17c5d79f606d8cfe1fedb93089ed40ceb4d45adab051"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Pennington & Hastie, 1988",
+        "tags": [
+          "bail",
+          "judicial-decision",
+          "defendant-profile",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A contract review begins with three pages of favorable terms (clear dispute resolution, reasonable termination clauses, fair liability caps). The final page contains unusual exclusivity requirements. How favorable is this contract?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A contract review begins with one page of unusual exclusivity requirements. The following three pages contain favorable terms (clear dispute resolution, reasonable termination clauses, fair liability caps). How favorable is this contract?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Favorable terms first vs unusual requirement first. Primacy predicts more favorable contract assessment when positive terms lead the review.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates more favorable contract assessment."
+      },
+      "template": {
+        "template_id": "primacy_legal_evaluation",
+        "slot_values": {
+          "variant": 48,
+          "domain": "legal"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 348
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9be577600d5a2e0293422e74bc7f2cdcaf13072fe0226e7806e1135c58d4f116"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "contract",
+          "review",
+          "legal-assessment",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An attorney's bio begins: 'Won 87% of cases in the past 5 years. Named top litigation attorney by regional bar association. Known for meticulous preparation.' Then: 'Recently lost a high-profile case that drew media attention.' Trust and hire?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An attorney's bio begins: 'Recently lost a high-profile case that drew media attention.' Then: 'Won 87% of cases in the past 5 years. Named top litigation attorney by regional bar association. Known for meticulous preparation.' Trust and hire?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Strong track record first vs recent loss first. Primacy predicts higher hiring likelihood when credentials lead.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline generates higher willingness to hire. Identical qualifications and loss — order shapes credibility framing."
+      },
+      "template": {
+        "template_id": "primacy_candidate_evaluation",
+        "slot_values": {
+          "variant": 49,
+          "domain": "legal"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 349
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "95109bbb4173f442ebf42812d1ff259c94a317ef2992a1e706b6478424c8834e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Asch, 1946",
+        "tags": [
+          "attorney",
+          "hiring",
+          "legal-credentials",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    },
+    {
+      "id": "primacy_effect_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "primacy_effect",
+        "name": "Primacy Effect",
+        "taxonomy_number": 3
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A mediator hears from Party A first: a clear, documented grievance with evidence of financial harm. Party B responds with a more complex counter-narrative. How does the mediator lean after hearing both sides?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A mediator hears from Party B first: a complex narrative with contextual justifications. Party A then presents a clear, documented grievance with evidence of financial harm. How does the mediator lean?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "order_manipulation",
+        "description": "Simple documented grievance first vs complex narrative first. Primacy predicts the mediator leans toward whichever party spoke first when their argument is clear and compelling.",
+        "parameters": {
+          "bias": "primacy_effect",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "position_effect",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "primacy_favored",
+            "recency_favored",
+            "balanced",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Primacy effect present if baseline (Party A first, clear evidence first) generates stronger lean toward Party A's position."
+      },
+      "template": {
+        "template_id": "primacy_legal_evaluation",
+        "slot_values": {
+          "variant": 50,
+          "domain": "legal"
+        },
+        "value_pool_id": "primacy_scenarios",
+        "generation_seed": 350
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0a4aaa586e9532d104e2717e3894194128936c1ff2b3c99196582e209fae034a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Pennington & Hastie, 1988",
+        "tags": [
+          "mediation",
+          "dispute-resolution",
+          "presentation-order",
+          "legal"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Primacy effect = first-presented information disproportionately shapes overall judgment."
+      }
+    }
+  ]
+}

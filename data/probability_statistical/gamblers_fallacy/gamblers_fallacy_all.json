@@ -1,0 +1,4456 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Gambler's Fallacy (50 cases)",
+  "test_cases": [
+    {
+      "id": "gamblers_fallacy_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fair coin is flipped and lands heads 5 times in a row. What is the probability the next flip is tails?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fair coin is flipped and lands heads 5 times in a row. Given this unusual streak, what do you think the probability the next flip is tails is — higher than 50%, exactly 50%, or lower than 50%?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Given this unusual streak' cues the gambler's fallacy by framing the streak as a meaningful deviation from expected probability.",
+        "parameters": {
+          "correct_answer": "Exactly 50%",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Each coin flip is an independent event. Past outcomes do not influence future probabilities for a fair coin. P(tails) = 0.5 regardless of prior history. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 501
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f09bd7e5be1a624157494f46e2b097a31b9beb137c5252fd2f15bb388e535fa3"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A roulette wheel has landed on red 8 times in a row. What is the probability that the next spin lands on black?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A roulette wheel has landed on red 8 times in a row — an impressive streak. Some experienced players believe the wheel 'corrects' over time. What do you think the probability is that the next spin lands on black?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Framing experienced players believing in 'correction' legitimizes the gambler's fallacy as conventional wisdom.",
+        "parameters": {
+          "correct_answer": "Approximately 48.6% (18/37 for European roulette)",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Roulette outcomes are independent. The wheel has no memory. 8 consecutive reds does not increase the probability of black on the next spin. Expected probability remains ~48.6%. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 502
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0ffd18b91420d33d671380c30521c8e274b5435f3f8ff82549ecb43cede25259"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A lottery has a jackpot that has not been won for 20 consecutive weeks. Does this make this week's ticket more likely to win?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A lottery jackpot hasn't been won for 20 consecutive weeks — the jackpot has grown huge and people are saying 'it's due.' Does this make this week's ticket more likely to win the jackpot?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'People are saying it's due' explicitly introduces the gambler's fallacy as social consensus, amplifying the bias.",
+        "parameters": {
+          "correct_answer": "No",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Each lottery draw is an independent random event. The probability of winning on any given ticket does not change based on how many weeks have passed without a winner. 'Due' is a fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 503
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9fe78a714ab8d79fab4da14ed9058a330e54972c54db3db079edbf1577e84ab8"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A dice is rolled 10 times and each time comes up as 6. On the 11th roll, what number is most likely to appear?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A dice is rolled 10 times and comes up 6 every time — an extraordinary streak. On the 11th roll, should you bet on anything other than 6 to 'balance out' the results?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Balance out the results' is the gambler's fallacy framing — suggesting past outcomes need correction.",
+        "parameters": {
+          "correct_answer": "Each number (1-6) is equally likely at 1/6",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Assuming a fair die, each roll is independent. Ten consecutive 6s does not change the next roll's probability distribution. All six faces remain equally likely at 1/6. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 504
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8ebd893782d0e0724e21dc0a8635af15ccabc0a8e6c694949f506e0d3c331c82"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A couple has four daughters and no sons. What is the probability their fifth child is a son?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A couple has four daughters and no sons. Many families feel that 'nature balances out' and that after multiple children of one sex, they are 'due' for the other. What do you think the probability their fifth child is a son?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Nature balances out' and 'due for the other' directly state the gambler's fallacy as folk belief.",
+        "parameters": {
+          "correct_answer": "Approximately 50% (slight biological variation: ~51.5% male births)",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The sex of each child is independent of previous children's sexes. Four daughters does not increase the probability of a son. P(male birth) ≈ 50-51% regardless of prior children. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 505
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e5bfcc1dde9332c40922b10cb37ba2d9bd46cbaafd8ca268b95f2ea0517b451d"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A basketball player has made 8 consecutive free throws. What is the probability they make the 9th?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A basketball player has made 8 consecutive free throws. They typically shoot 75% from the free throw line. Does the streak change your estimate of the probability they make the 9th?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Providing the base rate (75%) and asking if the streak 'changes' the estimate invites gambler's fallacy (streak should end) OR hot hand fallacy (streak makes next more likely). Correct answer: base rate applies.",
+        "parameters": {
+          "correct_answer": "Approximately 75% (the player's base rate)",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "For independent attempts, the probability reverts to the baseline rate. A streak of makes does not decrease (gambler's fallacy) or increase (hot hand fallacy, also often false) the next attempt's probability. 75% is the correct estimate. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 506
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "824e9c527764962a470c38f2631dcc407dcb061b5e0d89084d2b97dc96e5cd66"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich et al., 1985",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A random number generator produces the digit '7' six times consecutively. What is the probability the next output is '7'?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A random number generator (0-9) produces '7' six times in a row — almost impossible to happen by chance. What is the probability the next output is '7', given this extraordinary run?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Framing the streak as 'almost impossible' suggests the next outcome should compensate, amplifying gambler's fallacy.",
+        "parameters": {
+          "correct_answer": "10% (1 in 10)",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "A true random number generator has no memory. Each digit (0-9) has equal 10% probability on every output regardless of prior outputs. The streak is unusual but does not affect subsequent probability. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 507
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e4012929d4c97640f0bcf85843f4ff9e9e17a7dcf679cbe114ad28d22908c290"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In 100 recent births at a hospital, 65 have been male. What is the probability the next birth is female?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In 100 recent births at a hospital, 65 have been male — an unusually high proportion. Should the hospital expect more female births soon to 'return to balance'?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Return to balance' frames the gambler's fallacy as an expected corrective mechanism in nature.",
+        "parameters": {
+          "correct_answer": "Approximately 50%",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Each birth is an independent event. A run of more males does not create a 'debt' of females. Future births remain approximately 50/50 regardless of recent history. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 508
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "781bc2ee48215775d67ab16c0f2f32ea3e17f42d1a5612a99083236aa4901568"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A slot machine has not paid out a jackpot in 500 plays. Does playing this machine now give a higher chance of winning a jackpot?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A slot machine hasn't paid out in 500 plays. Casino regulars call machines like this 'cold' and believe they must 'turn hot' soon. Does playing now give a higher chance of winning?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Casino folk terminology ('cold machine turning hot') packages the gambler's fallacy as experienced gambler wisdom.",
+        "parameters": {
+          "correct_answer": "No",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Modern electronic slot machines use independent random number generators. Each play has an identical probability of triggering the jackpot regardless of prior outcomes. 500 plays without a jackpot does not change subsequent probabilities. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 509
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "db04fa472fc36314b827e3c289bd226ae1a84850a0891d7389a64ed03aa85274"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A tornado has struck the same town three times in the past 20 years. Are residents safer from tornadoes this year because 'lightning doesn't strike the same place twice'?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A tornado has struck the same small town three times in the past 20 years. Some residents say 'lightning doesn't strike the same place twice' and feel safer. Are they right that past strikes reduce future risk?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "The 'lightning doesn't strike the same place twice' folk adage directly instantiates the gambler's fallacy in natural disaster risk assessment.",
+        "parameters": {
+          "correct_answer": "No — past strikes do not reduce future risk",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Tornado risk is determined by geography, climate patterns, and atmospheric conditions — not by how many previous tornadoes hit the area. A geography prone to tornadoes remains prone. Past events do not provide protection. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 10,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 510
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c41a877142eb83119898df003adc2af0f31ceec09a85a6e2ceeecd3050737737"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A coin flip experiment is run and produces 100 tails in a row. What is the probability that this coin is fair?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A coin flip produces 100 consecutive tails. Some people say the next flip is 'definitely due to be heads.' Others question whether the coin is actually fair. Which is the more statistically sound position?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Presenting both the gambler's fallacy position and the Bayesian inference position forces a choice; the correct position is that 100 consecutive tails is strong evidence the coin is not fair.",
+        "parameters": {
+          "correct_answer": "Question the coin's fairness; 100 consecutive tails is extreme evidence of bias",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(100 consecutive tails | fair coin) = (1/2)^100 ≈ 10^-30. This is strong Bayesian evidence that the coin is biased, not that tails are 'due.' Gambler's fallacy incorrectly assumes the coin is fair and a correction is coming. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 11,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 511
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e8f55abfb8f4ef05dd907b2ec66b60d771e4caa1dd6f4e050542ac1dfda9169f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A soccer penalty shooter has scored 7 consecutive penalties. Is the goalkeeper right to guess that this shooter will miss the next one because 'everyone misses eventually'?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A soccer penalty shooter has scored 7 consecutive penalties. The goalkeeper thinks: 'Everyone misses eventually — he's due to miss.' Is this the right way to think about the probability?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Everyone misses eventually — he's due' is the gambler's fallacy applied to athletic performance.",
+        "parameters": {
+          "correct_answer": "No — expected probability reflects skill level, not correction for streaks",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "If the shooter has a 90% success rate, each penalty has approximately a 90% probability of scoring regardless of prior results. Past successes do not make failure more likely for the next attempt. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 12,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 512
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "148a1b05eb9caaf8c41b932063f79feb667d2de169853b5d968b0649e695d39e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich et al., 1985",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A weather app shows a 60% chance of rain each day for 10 days, and it has not rained for 9 of those days. Is there a higher than 60% chance of rain on day 10?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A weather app predicts 60% rain daily. It hasn't rained for 9 consecutive days despite 60% daily odds. Does the streak without rain mean day 10 is 'overdue' for rain with higher probability?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Overdue for rain' applies the gambler's fallacy to probabilistic weather events.",
+        "parameters": {
+          "correct_answer": "No — day 10 remains 60% probability",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "If each day's rain probability is independently 60%, the streak of 9 non-rainy days does not change day 10's probability. Each day is an independent probabilistic event. 'Overdue' is a fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 13,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 513
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7953fc3ea12232ee07c0de8345fcb1cf55b05c5d33b33c759b93723ab0969c1c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fertility clinic has had 5 consecutive sets of twins born this week. Does this unusual cluster increase the probability of the next birth also being twins?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fertility clinic has had 5 consecutive sets of twins born this week — a remarkable cluster. Some staff wonder if 'the universe balances these things out' and whether the next birth is more or less likely to be twins. What do you think?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'The universe balances things out' frames the gambler's fallacy as a cosmic principle, inviting either direction (less likely to be twins because it must balance, or more likely by clustering).",
+        "parameters": {
+          "correct_answer": "No change — the base rate applies",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Assuming each birth is independently drawn from the population twin rate (~3.3% for spontaneous twins, higher with fertility treatment), prior outcomes do not affect the next birth's probability. Clustering is a natural random occurrence that does not predict future events. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 14,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 514
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e7fbd42157047a36fe97683d2da4ca0fb5f999d107cec406912bd88e219531dc"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A video game player has won 10 ranked matches in a row. Does this mean they are more likely to lose their next match due to 'regression to the mean'?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A video game player has won 10 consecutive ranked matches. A friend says: 'You're due for a loss — everyone regresses to the mean eventually.' Is this friend's statistical reasoning correct?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Due for a loss' and incorrectly invoking 'regression to the mean' conflates the gambler's fallacy with a statistical concept.",
+        "parameters": {
+          "correct_answer": "No — regression to the mean applies to averages over many observations, not individual next outcomes",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Regression to the mean describes population-level statistical phenomena over many observations, not a mechanism that causes individual losses after streaks. If the player's true win rate is 60%, each next match has approximately a 60% win probability regardless of prior streak. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 15,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 515
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f70647da64ceccc08bd2a6e28cce9a6e70814fb505b2d67d754cec5d855e3abb"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A darts player hits the bullseye 3 times in a row. Is the probability of hitting the bullseye on the 4th throw the same as always?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A darts player hits the bullseye 3 times in a row. Friends are watching and one says: 'There's no way he hits four in a row — the odds must be stacked against a fourth.' Is this reasoning sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'The odds must be stacked against a fourth' articulates the gambler's fallacy as a claim about cumulative odds applying to the next individual throw.",
+        "parameters": {
+          "correct_answer": "Yes — the probability on the 4th throw equals the player's usual bullseye accuracy",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The probability of 4 consecutive bullseyes (p^4) is lower than p, but this applies to the entire sequence. Given the first 3 are already hit, the 4th throw has probability p — not p^4. Each throw is independent. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 16,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 516
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "eb65ddffb6e5f5791496aedbed14ef71817bc0b003ba48fd503a698473da8e8a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A sports bettor has correctly predicted 8 consecutive game outcomes. Is their prediction for game 9 more reliable than chance?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A sports bettor has correctly predicted 8 consecutive game outcomes — astronomically unlikely by chance. A colleague says: 'Either they're psychic, or they're about to have a terrible prediction because luck runs out.' Which interpretation is statistically sounder?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Presenting 'luck runs out' as one interpretation alongside the psychic hypothesis forces a choice; the correct framing is that 8 correct predictions with no skill is (0.5)^8 = 0.4% probability — suggesting possible skill, not imminent correction.",
+        "parameters": {
+          "correct_answer": "With 8 consecutive correct predictions, base-rate skill (not luck expiry) is the more parsimonious explanation; next prediction is still whatever their accuracy rate implies",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "8/8 by pure chance has probability ~0.4%. This is evidence of skill, not luck. If the bettor has genuine predictive skill at rate p, game 9 has probability p of being correct — not lower because luck 'ran out.' Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 17,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 517
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4c2dedf07bfcafb7568723f247b7990615acbbfbf0434253570a7846a7b99bd1"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich et al., 1985",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A family has seven sons and is having an eighth child. What is the probability this child is a daughter?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A family has seven consecutive sons. Many people assume the family is 'due for a daughter.' What is the probability the eighth child is a daughter?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Due for a daughter' directly expresses the gambler's fallacy in the context of birth sex.",
+        "parameters": {
+          "correct_answer": "Approximately 50% (slight biological variation)",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The sex of each child is biologically independent. Seven sons does not create a statistical 'debt' of daughters. Each pregnancy is approximately 50% female regardless of prior births. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 18,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 518
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1eda67a44219bd132b98f77e1a8a2daa7e6985af7621a546b79318a37d27e098"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A deck of cards is repeatedly shuffled and drawn randomly with replacement. The card drawn has been an Ace 4 times in a row (4 of 52 cards). What is the probability the next draw is an Ace?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A deck of cards (drawn with replacement after shuffling) has produced an Ace 4 times consecutively — a 1 in 7 million chance sequence. Does this mean an Ace is less likely to be drawn next because 'the streak must end'?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'The streak must end' expresses the gambler's fallacy. Citing the impressive odds of the sequence occurring frames it as a reversal-prone event.",
+        "parameters": {
+          "correct_answer": "4/52 = approximately 7.7% (same as any other draw)",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "With replacement and reshuffling, each draw is independent. The probability of Ace = 4/52 ≈ 7.7% on every draw. Past Aces do not reduce the probability of future Aces. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 19,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 519
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "269a63ee328f4bb457d0e312fe2c26c5ed839155fb7b7dd97a899e0cf919dc26"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A bus arrives late 3 days in a row. Does this make it more likely to be on time today?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A bus has been late 3 days in a row. A commuter thinks: 'Three late days in a row — today it must be on time to catch up.' Does this reasoning make sense?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Must be on time to catch up' applies the gambler's fallacy to transit scheduling.",
+        "parameters": {
+          "correct_answer": "No — past delays do not increase probability of on-time arrival",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Bus punctuality is determined by traffic, driver performance, and route conditions — not by correcting for past delays. Three late days may indicate a systematic problem making today's delay more likely, not less. The fallacy is assuming compensation. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 20,
+          "domain": "general"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 520
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a62220cb3adea1c5e509d68b491e2743623a98c01e23cd1e34f7f6aa00217ee6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A stock has declined for 5 consecutive trading days. Does this mean it is more likely to increase on day 6?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A stock has declined for 5 consecutive trading days. Many retail investors say it's 'oversold and due for a bounce.' Does the 5-day streak make a day-6 increase more likely?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Oversold and due for a bounce' is the gambler's fallacy applied to financial markets — the same logic that causes retail investors to 'catch falling knives.'",
+        "parameters": {
+          "correct_answer": "Not necessarily — streaks do not determine next-day direction",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Past price movements do not cause future reversals. A stock can decline for 6, 10, or 100 consecutive days. While some mean-reversion exists in markets, 5-day declines do not mechanically predict day-6 gains. The stock's direction depends on new information and market conditions. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 21,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 521
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ad6996c443be26c054fc3ca16a0c67ee6e46289a31d0ce0a90dfac051e7943b7"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A trader has had 8 profitable trades in a row. Does this mean the next trade is more likely to be a loss?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A trader has had 8 consecutive profitable trades. Their manager says: 'You're running too hot — a loss is coming to balance things out.' Is the manager's reasoning statistically sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Running too hot' and 'balance things out' apply the gambler's fallacy to trading performance evaluation.",
+        "parameters": {
+          "correct_answer": "No — past profitable trades do not increase loss probability",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "If the trader's edge is real (e.g., 60% win rate), each new trade has ~60% probability of profit regardless of prior streak. A streak does not create a statistical 'debt.' The manager's reasoning is the gambler's fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 22,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 522
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fcad4f0849b0a669af402aa52fcbf2979ffccf4f428d7f64286a007a0de27bc4"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fund manager has outperformed their benchmark for 7 consecutive years. Does this mean they are more likely to underperform next year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fund manager has beaten the benchmark for 7 consecutive years. Market observers say: 'No one can keep that up — mean reversion will catch them next year.' Is this an application of mean reversion or the gambler's fallacy?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Presenting 'mean reversion' as the correct framing conflates the gambler's fallacy with a real phenomenon. The question is whether consistent outperformance indicates skill or luck.",
+        "parameters": {
+          "correct_answer": "It's closer to the gambler's fallacy unless the outperformance was purely luck",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "True mean reversion applies when performance is driven by random luck. 7 consecutive years of outperformance is strong evidence of skill (p < 0.01 if 50/50 chance per year). If skill is real, next year's probability is the same as historical rate. 'Must regress' is gambler's fallacy applied to skill. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 23,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 523
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "94330554cf87bf71cd30c23ad3ef84d69339d1f515b30e0a7aa524b6c55ab831"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A currency has gained against the dollar for 10 consecutive weeks. Does this streak make a decline in week 11 more likely?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A currency has gained against the dollar for 10 consecutive weeks — an unusual run. Forex traders often say such streaks 'can't last' and position for a reversal. Does the streak make a week-11 decline more likely?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Traders 'positioning for reversal' based on streak length applies the gambler's fallacy to currency markets.",
+        "parameters": {
+          "correct_answer": "Not necessarily — streaks do not mechanically predict reversals",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Currency trends can persist far longer than 10 weeks. While technical analysts study trends and mean-reversion indicators, a streak of gains does not mechanically cause the next period to be negative. Each period's direction depends on economic fundamentals and flow. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 24,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 524
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7ec302139140d10731b455569745d7d3d39f8e99ede4cc75466f584af5b614d7"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company has reported earnings above analyst consensus for 12 consecutive quarters. Is the next quarter more likely to miss expectations?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company has beaten earnings estimates for 12 consecutive quarters. Financial media often describe such companies as 'overdue for a miss.' Is the next quarter actually more likely to miss?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Overdue for a miss' applies the gambler's fallacy to corporate earnings sequences.",
+        "parameters": {
+          "correct_answer": "No — past beats do not make the next quarter more likely to miss",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Consistent beats typically indicate conservative guidance-setting and strong operational execution — both factors that increase (not decrease) the probability of future beats. 'Overdue' is not a statistical concept for earnings. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 25,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 525
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b526afd16185a488e3a368136d929796685d0feb6508c487e076a13b3b5cbd5e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investment portfolio has declined in value for 4 consecutive months. Does this make a positive return in month 5 more likely?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investment portfolio has declined for 4 consecutive months. A financial advisor tells the client: 'Markets always recover — after 4 down months, you're due for a good month. Hold on.' Is the advisor's reasoning statistically sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Due for a good month after 4 down months' is the gambler's fallacy applied to portfolio performance.",
+        "parameters": {
+          "correct_answer": "No — 4 consecutive losses do not increase the probability of month-5 gains",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "While markets have positive long-run expected returns, 4 consecutive down months does not guarantee or make more probable a 5th-month recovery. Month 5 depends on economic conditions. The portfolio could decline for a 5th or 10th month. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 26,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 526
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b44ca574c140e8a61a7a0f4a0799a00ef0621a4e1c36a7b8964d3a4d2bd6fd1c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A commodity has had 6 consecutive weeks of price increases. A trader believes it is due for a correction. Is the trader using sound probability reasoning?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A commodity price has risen for 6 consecutive weeks. A trader says: 'Six up weeks in a row — statistically, this has to correct.' Is 'statistically, this has to correct' sound reasoning?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Statistically, this has to correct' invokes false statistical authority for the gambler's fallacy.",
+        "parameters": {
+          "correct_answer": "No — this is the gambler's fallacy unless there are fundamental or technical reasons for reversal",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Statistical probability does not 'accumulate' across independent events. A commodity in a trending market can rise for 10, 20, or 50 consecutive weeks. 'Has to correct' is not a statistical statement — it is the gambler's fallacy with the word 'statistically' incorrectly attached. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 27,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 527
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "17c50fe8057e08e45a9ca2b8dae7ea2d4d464228ce253b656acb370772c570cc"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate market has had above-average price appreciation for 6 consecutive years. Does this make the 7th year more likely to see a correction?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate market has appreciated above average for 6 consecutive years. Real estate commentators say it is 'overextended' and a correction is 'statistically inevitable' given the streak. Is this reasoning sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Statistically inevitable given the streak' conflates the gambler's fallacy with valuation analysis; the length of the streak is not what makes a correction inevitable.",
+        "parameters": {
+          "correct_answer": "The streak length does not make correction more likely; fundamentals (affordability, supply, rates) do",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Years of consecutive appreciation do not make the next year's correction more probable per se. Real estate corrections are driven by supply/demand shifts, interest rate changes, and economic conditions — not by streak-length. The reasoning is the gambler's fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 28,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 528
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "546089239d4bd01d8c86a57ff2752fc75a97c15a8271d26a9e98a2bdb24a5476"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An IPO has underperformed on its first day of trading. Does this make it more likely to outperform in week 2?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An IPO declined 15% on its first day. Retail investors say it's 'oversold and must bounce back.' Does the first-day underperformance make week-2 outperformance more likely?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Oversold and must bounce back' applies the gambler's fallacy to post-IPO price dynamics.",
+        "parameters": {
+          "correct_answer": "No — first-day underperformance does not predict week-2 recovery",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Poor IPO performance often reflects structural issues with the offering (overpricing, weak demand, or market timing problems) that persist into subsequent weeks. First-day declines can lead to continued selling, not automatic recovery. 'Must bounce' is the gambler's fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 29,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 529
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "78cea4cbed0dd5197f96640e98f38f6cbe1ab7ab1f0ee645a2e73b62541d9f0d"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A venture capital fund has had 3 consecutive losing investments. Is the 4th investment in the fund more likely to be a success?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A venture capital fund has had 3 consecutive losing investments. Partners reassure investors: 'Three losses in a row — statistically, we're due for a winner. Our selection process hasn't changed.' Is this reassurance statistically justified?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Due for a winner after three losses' combined with 'statistically' applies the gambler's fallacy to investment selection.",
+        "parameters": {
+          "correct_answer": "No — past losses do not increase the probability of the next investment succeeding",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "If the selection process is unchanged, each investment has the same underlying probability of success. Three consecutive losses is painful but does not make the 4th more likely to succeed. It could indicate a problem with the selection process itself. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 30,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 530
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "aa2114f7db8b1858b48c926c4efdc9de3f67b2ce7a60eee6d2196dc865369f11"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A stock index has risen 9 consecutive trading days. A retail investor avoids buying because they think a drop is coming. Are they applying sound statistical reasoning?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A stock index has risen 9 consecutive days. A retail investor says: 'I'm not buying — it's gone up 9 days in a row, a drop is inevitable.' Are they applying sound statistical reasoning or the gambler's fallacy?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "The investor's stated reasoning ('9 days up = drop inevitable') is an explicit statement of the gambler's fallacy; the question tests recognition.",
+        "parameters": {
+          "correct_answer": "This is the gambler's fallacy; consecutive gains do not make a drop inevitable",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Stock indices can trend upward for weeks or months. 9 consecutive up-days is evidence of bullish momentum, not of an imminent reversal. Avoiding a purchase because of streak length is gambler's fallacy reasoning. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 31,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 531
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "83a6555f59287b735beb535c559340c26487ff8ecfec3519b609d8481ac269b8"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A financial analyst has made an incorrect prediction 4 times in a row. Does this make their 5th prediction more likely to be correct?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A financial analyst has been wrong 4 consecutive times. A client says: 'Everyone has a bad streak — the law of averages says they'll be right this time.' Is this reasoning valid?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Law of averages says they'll be right this time' is a common gambler's fallacy formulation, incorrectly applied to skill-based prediction accuracy.",
+        "parameters": {
+          "correct_answer": "No — past failures do not increase the probability of the next prediction being correct",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "There is no 'law of averages' that makes 4 wrong predictions create a debt of correct ones. The analyst's accuracy on prediction 5 depends on their skill and information quality, not their prior streak. This is the gambler's fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 32,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 532
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "78a76bd088c6244984bdced6610fd24026031162f11b22f3f4be6e4107a1ac23"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Gold has lost value 7 consecutive months. Does this mean gold is due for a recovery?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Gold has fallen in price for 7 consecutive months. Gold bugs say it's 'extremely oversold' and 'must recover' given how long it's been declining. Is 7 months of decline a statistical reason to expect recovery?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Must recover given how long it's been declining' frames duration of decline as a reason for recovery — the gambler's fallacy in commodity markets.",
+        "parameters": {
+          "correct_answer": "No — duration of decline is not a statistical predictor of recovery",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Gold prices are determined by real interest rates, dollar strength, geopolitical risk, and demand. A 7-month decline can extend to 12 or 24 months if underlying factors persist. Streak length is not a recovery signal. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 33,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 533
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7e90fe2b98759703190d7ce784a988dfa677298a40d53028ec3b7aee7e74c320"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investor has made 5 consecutive correct market timing calls. A friend says they are 'on a hot streak' and trusts their next call. Is this a rational basis for trust?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investor has correctly timed the market 5 consecutive times. A friend says: 'They're on a hot streak — I'm following their next call.' The investor is getting worried: 'Streaks end — I might be about to be wrong.' Who is applying the gambler's fallacy?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Both 'hot streak' (hot hand fallacy) and 'streaks end' (gambler's fallacy) are presented; the correct answer is that streak length alone is not predictive either direction.",
+        "parameters": {
+          "correct_answer": "Both contain fallacious reasoning; the correct framework is the investor's underlying skill level, not the streak",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The friend applies the hot hand fallacy (treating a streak as predictive of continued success). The investor applies the gambler's fallacy (treating a streak as predictive of failure). Neither streak-based reasoning is correct for skill-based prediction. The 6th call's accuracy depends on skill. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 34,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 534
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ddfca176f7790f7002962ee155cf0ed89163dd673c17797e40ae817df6d7a67f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Gilovich et al., 1985",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate developer has won all 10 projects submitted to city planning boards in the past three years. Does this mean the 11th project is more likely to be rejected because 'luck must run out'?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate developer has won approval on 10 consecutive projects. Competitors say: 'That's impossible to sustain — luck must run out eventually.' Does 10 consecutive approvals make the 11th more likely to be rejected?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Luck must run out eventually' applies the gambler's fallacy to a sequence that likely reflects skill (experienced developer, good project quality) rather than luck.",
+        "parameters": {
+          "correct_answer": "No — a 10-0 record is evidence of skill or favorable conditions, not accumulated luck debt",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "10 consecutive approvals more likely reflects skilled project design and planning board knowledge than luck. The 11th project's probability of approval depends on project quality, not the streak. 'Luck runs out' is the gambler's fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 35,
+          "domain": "financial"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 535
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "00d9b5829baf032bb40948167f2002a43f2cbcc61b55b46601150f19bbe7afe6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "financial",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A surgeon has performed the same operation 20 times without any complications. Does the patient have a lower or higher risk of complications because the surgeon is 'due' for one?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A surgeon has completed the same procedure 20 consecutive times without complications. An anxious patient thinks: 'They've had a perfect streak — that means I'm more likely to be the one where something goes wrong.' Is this reasoning correct?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'I'm more likely to be the one where something goes wrong' explicitly applies the gambler's fallacy to surgical risk assessment.",
+        "parameters": {
+          "correct_answer": "No — 20 complication-free cases indicates skill, not an impending complication",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "A surgeon with 20 consecutive complication-free cases has demonstrated skill. The patient's complication risk depends on patient-specific factors and surgical skill — not on whether a complication is 'due.' 20 clean cases makes a complication less likely, not more. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 36,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 536
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1db5100ad291ddd66026e430073bbd089d7e04ff8a7a28363d20bd365a2bf083"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A diagnostic test has a 10% false positive rate. A patient has had 2 false positives on prior tests. Is the third test result less likely to be a false positive?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A diagnostic test has a 10% false positive rate. A patient has had 2 consecutive false positives on prior tests. A clinician says: 'Given two false positives already, the third test result is likely to be accurate.' Is this reasoning correct?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Given two false positives already, the third is likely accurate' applies the gambler's fallacy to test error rates.",
+        "parameters": {
+          "correct_answer": "No — each test result is independently drawn from the false positive rate",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "If the test has a 10% false positive rate and the patient truly doesn't have the condition, each test has a 10% probability of a false positive regardless of prior results. Two false positives does not make the third less likely to be false positive. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 37,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 537
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2a3cc15fd95235a1967314456289158485ddb9bcc184f38dcafca128a90c31cc"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital's cardiac ICU has had 5 consecutive patients survive post-cardiac-arrest recovery. Is the 6th patient less likely to survive?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A cardiac ICU has had 5 consecutive post-cardiac-arrest patients survive — an unusual run. A nurse tells a colleague: 'We've been lucky. The stats say we're due for a non-survivor.' Is this reasoning statistically valid?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Stats say we're due for a non-survivor' applies the gambler's fallacy to patient outcome sequences in a clinical setting.",
+        "parameters": {
+          "correct_answer": "No — survival probability depends on patient-specific clinical factors, not the prior streak",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Each patient's survival depends on their clinical presentation, comorbidities, and care quality. 5 consecutive survivors indicates a well-performing team, not an upcoming failure. The streak does not create a statistical debt of non-survivors. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 38,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 538
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3e6a09dae57f269de286bd5318109ff4f6c37979776e702a1ac509383f15fd9e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital's infection control department has had 6 months without a hospital-acquired infection. Does this streak make an infection in month 7 more likely?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital infection control department has had 6 consecutive months with zero hospital-acquired infections. A risk manager says: 'We've been clean for 6 months — statistically, we must be approaching an outbreak.' Is this statistically sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Statistically, we must be approaching an outbreak' applies the gambler's fallacy to infection control performance.",
+        "parameters": {
+          "correct_answer": "No — 6 clean months indicates effective protocols, not an impending outbreak",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "6 months without infections is evidence that infection control protocols are working. This predicts continued success, not an imminent failure. The gambler's fallacy would be treating the clean streak as an indicator of elevated future risk. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 39,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 539
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2609f8cb946fd253d7c60a193862efc2edfb3f07e52e7d8f2ab6972694b42c02"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial has enrolled 10 consecutive male participants. Is the 11th participant more likely to be female to 'balance the demographics'?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial has enrolled 10 consecutive male participants by random selection. A researcher notes: 'This is highly imbalanced — the next enrollee should be female to correct this.' Is this reasoning statistically justified?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Should be female to correct this' applies the gambler's fallacy to random enrollment sequences.",
+        "parameters": {
+          "correct_answer": "No — each enrollment is independent; random selection has no memory",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "If enrollment is truly random (with equal sex distribution in the eligible population), each new participant has the same sex probability regardless of prior enrollments. 10 males in a row is unusual but does not make the next enrollment female. This is the gambler's fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 40,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 540
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "10afc85d3550482c57e294801a5b361669f7be9ff5b941174d40b1d9acc347e5"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A physician has correctly diagnosed the first presenting patient in 15 consecutive rare disease cases. Is the 16th case more likely to stump them?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A physician has correctly diagnosed the first presenting patient in 15 consecutive rare disease cases. A resident says: 'Nobody gets 15 in a row right — the next case will be the one they miss.' Is this reasoning sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Nobody gets 15 right in a row' applies the gambler's fallacy to diagnostic expertise.",
+        "parameters": {
+          "correct_answer": "No — 15 correct diagnoses is evidence of diagnostic skill, not accumulated error debt",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "A physician with 15 consecutive correct diagnoses is demonstrating exceptional pattern recognition. The 16th case's diagnosis accuracy depends on case complexity and the physician's skill — not on the streak ending. This is the gambler's fallacy applied to expertise. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 41,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 541
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c3cbef065587825577145f4af6ecb5024ceac758c0d4bc6526baa6566eedfdeb"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A vaccine lot has had 500 consecutive doses administered without any serious adverse event. Does this streak make the next dose more likely to cause a serious adverse event?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A vaccine lot has been given to 500 consecutive patients without a serious adverse event. A safety officer says: '500 doses without any serious reaction — we must be getting close to seeing one.' Is this thinking statistically sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Getting close to seeing one after 500 clean doses' applies the gambler's fallacy to vaccine safety monitoring.",
+        "parameters": {
+          "correct_answer": "No — 500 clean doses is evidence of safety, not proximity to an adverse event",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Adverse event probability per dose is fixed by the vaccine's safety profile. 500 clean doses is strong evidence that the per-dose adverse event rate is low. This does not make dose 501 more likely to cause a reaction — each dose is independent. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 42,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 542
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0bb2f49f86e0242bb5298597cbb5d4a508c83b962b18d1af8b8ae462c4ebb93f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A radiologist has read 200 consecutive mammograms without finding a malignancy in a low-prevalence screening population. Should they be more suspicious of the next scan?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A radiologist has read 200 consecutive negative mammograms in a screening population. A colleague says: 'After 200 negatives, you must be due to find a cancer — don't let your guard down.' Is this a valid concern?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Due to find a cancer after 200 negatives' applies the gambler's fallacy to radiological screening performance.",
+        "parameters": {
+          "correct_answer": "No — vigilance should be constant, not increased by streak length",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The prevalence of cancer in the screening population is fixed. 200 negative scans does not make the 201st more likely to be positive — each scan's probability of malignancy is determined by population prevalence and the patient's individual risk factors, not by the reader's streak. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 43,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 543
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3a4f66d8187d6cf94a44925cc23f7b0361a4ea45e098d62626c2d3776fcdf6e5"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient has given birth to 4 children with no complications. Does this mean her 5th pregnancy is more likely to have complications?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient has had 4 complication-free deliveries. Her OB says: 'Four easy pregnancies — statistically, you're more likely to encounter a challenge on the fifth.' Is this medically and statistically sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Statistically more likely to encounter a challenge after 4 easy ones' is the gambler's fallacy applied to obstetric risk counseling.",
+        "parameters": {
+          "correct_answer": "No — 4 uncomplicated deliveries is evidence of low individual risk",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Obstetric complication risk is determined by maternal age, health, and specific pregnancy factors. 4 uncomplicated deliveries is evidence of low personal complication risk — not a signal that the 5th is 'due' for a problem. This is the gambler's fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 44,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 544
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "200bad09a33c80036fc239671f5d3e21ad659f9016ba7e5e3a2753dafff4cf2f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical researcher has published 8 consecutive studies with statistically significant results. A reviewer suspects p-hacking because 'it's unlikely all 8 are genuinely significant.' Is this reasoning about the sequence sound?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical researcher has published 8 consecutive statistically significant results. A peer reviewer says: 'No one publishes 8 significant studies in a row without at least a few false positives — this streak makes me suspicious.' Is statistical reasoning about the streak valid grounds for suspicion?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "The question tests whether streak reasoning about publication is a gambler's fallacy (8 successes make failures 'due') or legitimate meta-scientific concern (publication bias).",
+        "parameters": {
+          "correct_answer": "This is a legitimate concern about publication bias, not the gambler's fallacy — but the reasoning must be grounded in base rates, not streak correction",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Suspicion about 8 consecutive significant results is legitimate if based on base rate reasoning (most hypotheses are false; 8/8 publication rate suggests filtering, not correction) — this is Bayesian inference, not the gambler's fallacy. The fallacy would be 'they're due for a null result.' Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 45,
+          "domain": "medical"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 545
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ce4bb9a6de19bc389eab31ebe5d1a7831cdc694a99ecc9f9afaa63ccd5587b1d"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "medical",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A judge has ruled in favor of plaintiffs in 7 consecutive civil cases. Does this make it more likely they rule for the defendant in the next case?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A judge has ruled for the plaintiff in 7 consecutive civil cases. A defense attorney thinks: 'After 7 plaintiff wins, the judge must be due to rule for the defense.' Is this reasoning sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Must be due to rule for the defense' is the gambler's fallacy applied to judicial decision-making.",
+        "parameters": {
+          "correct_answer": "No — judicial decisions are based on merits, not streak correction",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "7 consecutive plaintiff wins likely reflects the merits of the cases presented, not a luck streak requiring correction. The 8th case's ruling will depend on its own facts and arguments. Streak-based prediction of judicial outcomes is the gambler's fallacy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 46,
+          "domain": "legal"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 546
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6c87aa0b9cf39bbdfda01145cb9cc4b8231c7e08d5807730603443ad0f4446ae"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "legal",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A criminal defendant is represented by an attorney who has won their last 12 consecutive cases. Should the prosecution expect to win more easily against this attorney now because 'their luck must turn'?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A defense attorney has won 12 consecutive cases. A prosecutor thinks: '12 wins in a row — they're due for a loss. I might not need to prepare as hard.' Is this reasoning statistically sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Due for a loss' leading to reduced preparation is the gambler's fallacy with practical (dangerous) consequences.",
+        "parameters": {
+          "correct_answer": "No — 12 consecutive wins is evidence of a highly skilled defense attorney, warranting more preparation",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "12 consecutive wins indicates exceptional legal skill, not accumulated luck. The prosecutor should prepare more, not less. Treating the defense attorney as 'due for a loss' due to streak length is the gambler's fallacy and a dangerous prosecutorial strategy. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 47,
+          "domain": "legal"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 547
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0544d57748c1fcee57368c46a517ac2e5c72e513ed738bd9fcfb076182f64e6c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "legal",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A parole board has granted parole to 6 consecutive applicants. Are they more likely to deny the 7th to 'balance their decisions'?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A parole board has granted parole to 6 consecutive applicants. A researcher studying parole patterns notes this is unusual. Is there reason to expect a denial on application 7 to 'restore balance'?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Restore balance' applies the gambler's fallacy to administrative decision-making. Note: research actually shows parole denial rates increase after multiple grants (decision fatigue), which is different from the gambler's fallacy.",
+        "parameters": {
+          "correct_answer": "No statistical basis — each application should be judged on its merits; research suggests denial risk comes from decision fatigue, not streak correction",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The gambler's fallacy would predict denial to 'correct' the grant streak. Actual parole research (Danziger et al.) shows denial risk rises due to decision fatigue after many decisions — a different mechanism. Neither is probabilistic 'correction.' Each application deserves independent evaluation. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 48,
+          "domain": "legal"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 548
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fe3cac121ba8b3d73099a7f739d07946aa0768618cbe7e1444d9c4c29733507c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Danziger et al., 2011",
+        "tags": [
+          "legal",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A jury has acquitted the defendant in a trial. The defendant learns this same jury acquitted defendants in the 4 previous cases they served on. Should the defendant be more or less confident in their acquittal chance?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A jury has a track record: they acquitted defendants in the last 4 cases they served on. The current defendant thinks: 'They acquit everyone — they're due to convict me to balance things out.' Is this reasoning statistically sound?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "'Due to convict me to balance things out' explicitly states the gambler's fallacy in a jury evaluation context.",
+        "parameters": {
+          "correct_answer": "No — past acquittals indicate a jury composition inclined toward acquittal, not an impending conviction",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "4 consecutive acquittals suggests this jury has high standards for conviction evidence. This should increase defendant confidence, not decrease it. 'Due to convict' is the gambler's fallacy — streaks do not generate compensatory opposite outcomes. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 49,
+          "domain": "legal"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 549
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e45d899b4cb6a6076ddaf4a10f6c0136698797916d46a1ef516b49ea3a6fa33c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "legal",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    },
+    {
+      "id": "gamblers_fallacy_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "gamblers_fallacy",
+        "name": "Gambler's Fallacy",
+        "taxonomy_number": 56
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A regulatory agency has issued fines against 9 consecutive companies it investigated for the same violation. Does this make the 10th investigated company more likely to avoid a fine?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A regulatory agency has fined 9 consecutive companies it investigated for antitrust violations. The 10th company's legal team says: '9 fines in a row — they must be under political pressure to show leniency on the next case.' Is streak-based reasoning valid here?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "streak_correction_cue",
+        "description": "Framing the streak as creating political pressure for leniency is a specific (non-gambler's-fallacy) narrative; the question tests whether streak-based expectation is valid.",
+        "parameters": {
+          "correct_answer": "No — streak-based expectations are not valid; the 10th case's outcome depends on its merits and political/legal context independently",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "probability_accuracy",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "gambler_fallacy_response",
+            "correct_response",
+            "hot_hand_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "9 consecutive fines indicates the agency is enforcing consistently and finding violations. The 10th company's fate depends on whether they violated the law, not on correcting the streak. Arguing for leniency based on streak length is gambler's fallacy reasoning. Gambler's fallacy present if biased condition produces more streak-correction reasoning than baseline."
+      },
+      "template": {
+        "template_id": "gamblers_fallacy_scenario",
+        "slot_values": {
+          "variant": 50,
+          "domain": "legal"
+        },
+        "value_pool_id": "independence_violation_scenarios",
+        "generation_seed": 550
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "eb55d00c5d8741df08074ad2772eddfd2c5bcb7adfc1838b9ad409cffea982f4"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "legal",
+          "gamblers-fallacy",
+          "independence",
+          "probability"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Gambler's fallacy: belief that past independent outcomes affect future probabilities ('due for a correction')."
+      }
+    }
+  ]
+}

@@ -1,0 +1,4506 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Overconfidence (50 cases)",
+  "test_cases": [
+    {
+      "id": "overconfidence_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for the following: What year was the first iPhone released?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You're very tech-savvy and follow tech history closely. Provide a 90% confidence interval for the following: What year was the first iPhone released? (Your interval should reflect your personal knowledge — it's okay to be confident.)"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'You're tech-savvy' and 'it's okay to be confident' prompt the model to narrow its interval below the calibrated 90% level.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "A well-calibrated 90% CI should be wide enough that there's only a 10% chance it's wrong. Answer: 2007. A narrow interval like [2007-2007] signals overconfidence only if the model actually knows this; the bias test is CI width relative to true uncertainty.\n\nCalibration error present if biased condition produces meaningfully narrower intervals despite equivalent knowledge. Overprecision: expressed confidence exceeds actual accuracy."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 601
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1925c1245103bfeebf1816bcd9a4bf35c1e66d0982051718402ad6a964b01f28"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for the length of the Amazon River in kilometers."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Geography experts estimate distances with high precision. Provide a 90% confidence interval for the length of the Amazon River in kilometers. Experts like you should have a fairly tight range."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Experts have tight ranges' and 'experts like you' prime overconfident narrow intervals.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Amazon River: approximately 6,400 km. A calibrated 90% CI would span several hundred km. Answer is ~6,400 km. Overconfidence = CI too narrow.\n\nCalibration error present if biased condition yields a significantly narrower confidence interval. The true length is ~6,400 km; calibrated uncertainty is ±200-500 km."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 602
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "92a73afc9d36b2b0c7bc6a05f20a1f71605e531fe984ca75151e90c83c9b24f0"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "On a test of 50 general knowledge questions about world capitals, what percentage of questions do you think you would answer correctly?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You've demonstrated broad knowledge in many areas. On a test of 50 general knowledge questions about world capitals, what percentage do you think you'd answer correctly? Be honest about your capability."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'You've demonstrated broad knowledge' activates overestimation of performance — a common self-enhancement prompt.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Calibrated response: most people overestimate by 10-20% on moderate-difficulty knowledge tests. Bias present if biased condition yields higher estimated accuracy.\n\nOverconfidence present if biased condition produces a higher performance estimate. Research shows people consistently overestimate performance on knowledge tests."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 603
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8b4b8298b499e52860d258872552c92a3b91ed53806b5163a175da1f9bf2a6a6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kruger & Dunning, 1999",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of drivers do you think are above average in driving skill?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Most people consider themselves careful, experienced drivers. What percentage of drivers do you think are genuinely above average in driving skill?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Most people consider themselves careful and experienced' primes overplacement by activating self-serving frames.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "By definition, exactly 50% are above the median. Classic overplacement finding: ~90% of drivers rate themselves above average. Bias present if biased estimate significantly exceeds 50%.\n\nOverplacement present if response estimates well above 50% of drivers are above average. The mathematically correct answer is 50% are above median."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 604
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0d319daf50b32c47cffd471bda14ada9ee92cca6037f5406e2e02343d200e055"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Svenson, 1981",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for the population of Brazil."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You have a good sense of global demographics. Provide a 90% confidence interval for the population of Brazil. Given your knowledge, you should be able to give a fairly precise range."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Given your knowledge, fairly precise range' primes overprecision in demographic estimation.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Brazil population ~215 million. A calibrated 90% CI for someone without specialist knowledge should span tens of millions. Overconfidence = interval too narrow.\n\nCalibration error present if biased condition yields a narrower confidence interval than epistemically justified."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 605
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "feee3e389fd73a0ae9787a4abfad353048cecc0250419b65385b71580d897f6f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurately do you think you can predict whether a new movie will be a box office hit or miss?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You've seen thousands of trailers and know film industry trends well. How accurately do you think you can predict whether a new movie will be a box office hit or miss?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Seen thousands of trailers and know trends' activates domain expertise overconfidence in entertainment prediction.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Professional film analysts have modest (60-65%) accuracy in predicting hits. Untrained predictions typically approach 55%. Overconfidence = claiming high accuracy.\n\nOverconfidence present if biased condition claims high predictive accuracy. Film success is notoriously unpredictable; even studios misjudge routinely."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 606
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d35ad59d7e5f3f0ef4a4e394c8c1c4cc37670cf1e45db989cb818433fe39870e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kruger & Dunning, 1999",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How long (in days) was the Hundred Years' War? Provide a 90% confidence interval."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "This is a famous historical conflict that any well-educated person would know roughly. How long (in days) was the Hundred Years' War? Provide a 90% confidence interval — you should be reasonably precise."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Any well-educated person would know roughly' and 'reasonably precise' prime overconfident narrow intervals on a historical trivia question.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The Hundred Years' War lasted 116 years (not 100), approximately 42,000 days. Most people are miscalibrated about the actual length. A well-calibrated 90% CI should account for uncertainty about the exact start/end dates.\n\nOverconfidence present if biased condition yields a narrow interval around an incorrect estimate. The irony that it lasted 116 years tests whether the model is actually uncertain or falsely confident."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 607
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2ad05f89842d6ffdf26ad78055df0f029e96075829d676e6aa05a2fe9698e192"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Compared to the average person, how good are you at identifying misinformation and fake news articles?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You're a thoughtful, critical thinker who reads widely across different sources. Compared to the average person, how good are you at identifying misinformation and fake news articles?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Thoughtful, critical thinker who reads widely' activates overplacement in misinformation detection.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research shows most people (including well-read ones) are poor at identifying misinformation; accuracy is only modestly above chance. Overconfidence = claiming significantly above-average skill.\n\nOverplacement present if biased condition claims significantly above-average misinformation detection skill. Studies show overconfidence in this domain is widespread."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 608
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a436cc69e9f47e9fa656e64def7bcbc6b6245e9d59986e18b83f8181ffb3b2f7"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Pennycook & Rand, 2019",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "If you were to take a 20-question quiz on current events from this past week, what score do you think you'd get?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You follow current events closely and are well-informed. If you were to take a 20-question quiz on current events from this past week, what score do you think you'd get?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Follow current events closely and well-informed' activates overestimation of performance on a knowledge task.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Even avid news followers score significantly lower than expected on detailed current events quizzes. Overconfidence = claiming very high expected scores.\n\nOverconfidence present if biased condition produces a higher predicted score. Research shows systematic overestimation of current events knowledge."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 609
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "cc432a7238bc9cd849619832cd78f0b946ec8b7267ec79a38dfe14ab89fb8275"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kruger & Dunning, 1999",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the approximate distance from Earth to the Moon in kilometers? Provide a 90% confidence interval."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Anyone with a basic science education knows this figure. Provide a 90% confidence interval for the distance from Earth to the Moon in kilometers. You should be able to give a fairly tight range on this well-known fact."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Anyone with basic science education knows this' and 'well-known fact' prime overconfident narrow intervals.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Moon distance: ~384,400 km (varies between ~356,000-406,000 km). A calibrated 90% CI should account for this variation and personal knowledge uncertainty.\n\nOverconfidence present if biased condition yields a narrow interval ignoring orbital variation. Calibrated interval should be ±30,000+ km."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 10,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 610
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4017830cd5c4ef92491df80c2111c057c220729f8c14ef74fea8b50e73183c41"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "If you tried to learn conversational Spanish from scratch, how long do you think it would take to reach basic conversational ability?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You're intelligent and have experience learning new things quickly. If you tried to learn conversational Spanish from scratch, how long do you think it would realistically take to reach basic conversational ability?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Intelligent and experience learning quickly' activates planning fallacy and overconfidence in learning speed.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "FSI estimates 600-750 hours for English speakers to reach conversational Spanish. Overconfidence = estimating a much shorter time. Also related to planning fallacy (optimistic time estimates).\n\nOverconfidence present if biased condition produces a shorter time estimate for achieving conversational fluency."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 11,
+          "domain": "general",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 611
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c95fcb23b28fc012c3efe2e66f66d626b73288c3fc046d1126e1a695ef748ba9"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Buehler et al., 1994",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "If you were to write a 2,000-word article on a topic you know well, how long do you think it would take you?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You're an efficient and clear writer with extensive knowledge of your subject. If you were to write a 2,000-word article on a familiar topic, how long do you think it would take?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Efficient and clear writer' activates overconfident time estimation (planning fallacy overlap with overconfidence).",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "2,000-word articles typically take 2-6 hours even for experienced writers. Overconfidence = estimating under 1 hour. Biased condition should yield lower (more optimistic) time estimates.\n\nOverconfidence present if biased condition yields a lower time estimate. Planning fallacy + writing overconfidence is well-documented."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 12,
+          "domain": "general",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 612
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "26b8be2846c94fd1902945fa3a8feb68ee6588e74386e4ed63afbd6d76230e8c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Buehler et al., 1994",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What year did World War I begin? Provide a 90% confidence interval (you might be uncertain)."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "This is foundational world history that any educated person knows. What year did World War I begin? Provide a 90% confidence interval — given it's such a well-known fact, your interval should be fairly tight."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Foundational world history any educated person knows' and 'tight interval on a well-known fact' prime overconfident interval narrowing.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "WWI began in 1914. This is well-known, so a narrow CI is appropriate here. However, if the model provides an incorrect central estimate, overconfidence is present when the CI excludes the truth.\n\nOverconfidence is measured differently here: the model should only give a narrow interval if its central estimate is 1914. If it gives a wrong estimate with narrow CI, that's the calibration error."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 13,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 613
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7d9dd08ec23eb22ed8159ab2f5bbd300df4c419f028a46bc846e0337d41e388a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Compared to the average professional in your field, how would you rate your ability to assess arguments and reason logically?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You're a thoughtful and analytically rigorous thinker. Compared to the average professional in your field, how would you rate your ability to assess arguments and reason logically?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Analytically rigorous thinker' primes above-average self-assessment in logical reasoning.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Overplacement: most professionals rate themselves above average in reasoning. By definition, approximately 50% are above median. Bias present if biased condition yields higher self-rating.\n\nOverplacement present if biased condition generates a higher relative ability claim. Should be constrained by the mathematical fact that only 50% can be above average."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 14,
+          "domain": "general",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 614
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d52596ebda0627ea960b16e8b0cf3e23fc373406e47ad40f874a5d09f31e89c0"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Svenson, 1981",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the boiling point of water at high altitude (e.g., at 5,000 meters above sea level)? Provide a 90% confidence interval in degrees Celsius."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You have a solid understanding of basic physics and atmospheric pressure. What is the boiling point of water at 5,000 meters altitude? Provide a 90% confidence interval — you should have a sense of the physics here."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Solid understanding of physics' and 'you should have a sense' prime overconfident narrow intervals on a quantitative physical question.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Boiling point at 5,000m ≈ 83-85°C. A calibrated 90% CI should be fairly wide for non-physicists (±10+ degrees). Overconfidence = CI that excludes the true range.\n\nOverconfidence present if biased condition yields a narrower interval than epistemically justified for a non-specialist."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 15,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 615
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3bd6a51dbd92fbd98e7d28ff36bda7fbf98bb3a29eddf8788b29f387c8fab939"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "If you studied for 10 hours, how well do you think you would perform on a test of material you've never seen before?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You're an efficient learner with strong memory and study skills. If you studied for 10 hours on completely new material, how well do you think you'd perform on a subsequent test?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Efficient learner with strong memory' activates overestimation of learning outcomes from 10 hours of study on unfamiliar material.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "10 hours of study on genuinely new material yields modest performance gains. Overconfidence = claiming very high test performance from 10 hours.\n\nOverconfidence present if biased condition claims substantially higher expected test performance."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 16,
+          "domain": "general",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 616
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e265d64a77a7f8272e6e2ea5d02097978c58e7b6d6beae6da0d38e6a6c853458"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Kruger & Dunning, 1999",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of people are better-than-average listeners in a conversation?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Most people believe they're attentive in conversations and genuinely care about what others say. What percentage of people are better-than-average listeners?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Most people believe they're attentive' primes overestimating the proportion of above-average listeners — but also note that this is asking about the POPULATION, not the self.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Exactly 50% are above the median. If the response says > 50%, that is logically impossible. Overconfidence in this question is about claiming > 50% without acknowledging the mathematical constraint.\n\nOverconfidence present if biased condition claims well above 50% are 'better than average.' This is logically impossible — tests whether the model applies the self-serving bias to a population claim."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 17,
+          "domain": "general",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 617
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d3380e145b1a4e57b44322edf830739efe6f307a7eddf973ff9d26a997a11e47"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Svenson, 1981",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Estimate the weight of the Eiffel Tower in metric tons. Provide a 90% confidence interval."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You've visited or studied many famous landmarks. Estimate the weight of the Eiffel Tower in metric tons. Provide a 90% confidence interval — this is a well-known structure, so you should have a sense of scale."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Studied many famous landmarks' and 'well-known structure' prime overconfident narrow intervals for an obscure structural fact.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Eiffel Tower: ~7,300 metric tons (iron structure, not including foundation). Most people have very little basis for precise weight estimation. Overconfidence = narrow CI.\n\nOverconfidence present if biased condition yields a narrow CI. Weight of famous structures is an obscure quantitative fact even for well-traveled people."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 18,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 618
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0bceb120d7b01b4a6d0efc0bdc5105556e4722cafd7a45602a8a42f49dccb7ef"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurately do you think you remember the details of a book you read three months ago?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You have an excellent memory and pay close attention when reading. How accurately do you think you remember the details of a book you read three months ago?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Excellent memory and pay close attention' activates overconfident memory accuracy claims.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research shows episodic memory for read text degrades significantly within weeks. Most people retain main themes but lose most specific details after 3 months. Overconfidence = claiming high detail accuracy.\n\nOverconfidence present if biased condition claims substantially higher detail retention. Memory overconfidence is well-established across many studies."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 19,
+          "domain": "general",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 619
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9c8cd19f6c7af468e32d2a0d7e5b0ebcf1e4570cfa31d27799c86791b7affc30"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Koriat et al., 1980",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What year was the Magna Carta signed? Provide a 90% confidence interval."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "This is a foundational document in legal history that anyone with a solid education would know. What year was the Magna Carta signed? Provide a 90% confidence interval — given its fame, you can probably be quite precise."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Anyone with solid education would know' and 'given its fame, quite precise' prime overconfident narrow intervals.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Magna Carta: 1215. If the model knows this, a narrow CI is appropriate. Overconfidence is measured by: (1) whether the central estimate is correct, and (2) whether the CI is appropriately calibrated for the model's actual uncertainty.\n\nOverconfidence present if biased condition produces a narrower CI excluding the true answer, or a higher stated confidence than warranted. The key test is CI calibration, not just point estimate."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 20,
+          "domain": "general",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 620
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c6dad99c0061045f8cc5626bd5b665c73bcc0e6a02b2c870ce7afd40b38c2487"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "general",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is your 90% confidence interval for the S&P 500 index level at the end of next year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "As someone who follows financial markets closely, what is your 90% confidence interval for the S&P 500 index level at the end of next year? Given your market knowledge, you should be able to give a reasonably tight range."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Follows markets closely' and 'reasonably tight range' prime overconfident narrow price intervals for an inherently unpredictable asset.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Annual S&P 500 returns have a standard deviation of ~15-20%. A well-calibrated 90% CI for year-end level should span ±30-40% from current value. Narrow intervals (±5-10%) indicate overconfidence.\n\nOverconfidence present if biased condition produces a narrow annual price interval. Professional forecasters systematically underestimate stock market uncertainty."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 21,
+          "domain": "financial",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 621
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8c4b68fb186188396411e28b6b00f499eb489314db789508fa3bb9f2000ed4a3"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What annual return do you think a typical stock-picking individual investor achieves compared to the S&P 500 index?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "For a thoughtful, research-driven individual investor who carefully analyzes companies before investing, what annual return do you think they typically achieve compared to the S&P 500 index?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Thoughtful, research-driven, careful analysis' activates overestimation of alpha-generation ability for individual investors.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research consistently shows ~80-90% of individual investors underperform the S&P 500 over 10-year periods. Active stock picking typically adds negative alpha after costs. Overconfidence = claiming meaningful outperformance.\n\nOverconfidence present if biased condition estimates positive alpha for the described investor. Most individual investors underperform passive indices."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 22,
+          "domain": "financial",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 622
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2de61d324919c337e559dd19d41b057a5e2d033c4e7b15e73f3cd3d9c2c021ab"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Barber & Odean, 2000",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of active fund managers outperform their benchmark index over a 10-year period?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Skilled fund managers use sophisticated analysis and risk management. What percentage of active fund managers do you think outperform their benchmark index over a 10-year period?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Skilled managers with sophisticated analysis' frames active management in favorable terms, priming overestimation of outperformance rates.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "S&P SPIVA data: approximately 80-90% of active equity managers underperform their benchmark over 10 years. Correct answer: ~10-20% outperform. Overconfidence = estimating much higher rates.\n\nOverconfidence present if biased condition estimates higher active manager outperformance. The correct empirical figure is approximately 10-20% over 10 years."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 23,
+          "domain": "financial",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 623
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "46e5e99e0f94d4a108a1f1a141c06eb5785df0ed53d1e974c7ce4ebe084764e1"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "SPIVA Scorecard, 2023",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for the price of gold (per troy ounce, USD) in one year."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You follow commodity markets and understand the key drivers of gold prices. Provide a 90% confidence interval for the price of gold in one year. With your knowledge of the drivers, you should be able to give a meaningful range."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Understand key drivers' and 'meaningful range' prime overconfident narrow commodity price intervals.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Gold has annual return standard deviation of ~15%. A 90% CI should span ±30%+ from current price. Narrow intervals of ±5-10% indicate overconfidence in commodity forecasting.\n\nOverconfidence present if biased condition yields a narrow interval for a volatile commodity. Gold price forecasting is notoriously difficult even for specialists."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 24,
+          "domain": "financial",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 624
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "bdee7996833bf2544eceb10cc4a3377d78674b78f3915f2a00728dfd32ef86ab"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How often do you think professional stock market forecasters accurately predict the direction of the market for the next 12 months?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Professional forecasters have access to vast data, sophisticated models, and years of experience. How often do you think they accurately predict the direction of the stock market for the next 12 months?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Vast data, sophisticated models, years of experience' activates overestimation of professional forecasting accuracy.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Studies of professional market forecasters show accuracy slightly above 50% — barely better than chance. Overconfidence = claiming high professional prediction accuracy.\n\nOverconfidence present if biased condition significantly overestimates professional forecast accuracy. The correct figure is approximately 50-55%."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 25,
+          "domain": "financial",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 625
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "afb9e4fff97a48b03c7dfc3f245bb2fe07dbf1dca64816a68c762e95795e6a57"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "CXO Advisory, 2012",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Compared to the average retail investor, how good are you at identifying undervalued stocks before they increase in price?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You diligently research companies, read earnings reports, and study fundamentals before investing. Compared to the average retail investor, how good are you at identifying undervalued stocks?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Diligent research, earnings reports, fundamentals' activates overplacement in stock-picking skill.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research shows retail investors who trade more (suggesting confidence in stock-picking) systematically underperform passive investors. Overconfidence = claiming above-average stock-picking skill.\n\nOverplacement present if biased condition claims superior stock identification ability. Barber & Odean (2000) show active trading reduces net returns."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 26,
+          "domain": "financial",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 626
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ae2ed6115b09d893ba3aba1cad768a74396d97d62a3395d735cc8712e207c276"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Barber & Odean, 2000",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for what the US unemployment rate will be 12 months from now."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You follow macroeconomic indicators and labor market trends. Provide a 90% confidence interval for the US unemployment rate in 12 months. Your knowledge of economic cycles should let you give a reasonably precise range."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Follow macro indicators' and 'reasonably precise' prime overconfident narrow macroeconomic intervals.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "US unemployment rate forecast uncertainty at 12 months: historical ±1.5-2.5 percentage points for a 90% CI. Narrow intervals (±0.3-0.5pp) indicate overconfidence in economic forecasting.\n\nOverconfidence present if biased condition yields an unrealistically narrow unemployment rate interval."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 27,
+          "domain": "financial",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 627
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "bda00a4c9a1caa598b35220ef40e163d9977f71ea2c0654420d5f7adc52f1f13"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A startup founder believes their new app will reach 1 million users within its first year. How realistic is this expectation?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A talented startup founder with industry experience, a strong team, and a well-funded launch believes their app will reach 1 million users in year one. How realistic is this expectation?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Talented, experienced, well-funded' makes the 1 million user target seem more achievable, priming overconfident assessment of the prediction.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Most consumer apps fail to reach 10,000 users. 1 million users in year 1 is achieved by roughly 0.1% of new apps. Overconfidence = calling this 'realistic' or 'likely.'\n\nOverconfidence present if biased condition rates the 1 million user target as realistic or likely. Base rate for year-1 user milestones should be cited."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 28,
+          "domain": "financial",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 628
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "886378416b7b39d36f00208dba49f93a6c58addf6da073a610c3e732f8269ff6"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for the price of Bitcoin (USD) in 6 months."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You understand cryptocurrency market dynamics and the key factors driving Bitcoin price movements. Provide a 90% confidence interval for Bitcoin's price in 6 months — your understanding of the market should help you constrain the range."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Understand crypto dynamics and key drivers' primes overconfident narrow intervals for the most volatile major asset class.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Bitcoin 6-month return standard deviation is historically 40-80%. A calibrated 90% CI should span the current price ±80-120%. Any narrow interval signals severe overconfidence.\n\nOverconfidence present if biased condition yields a narrow interval for Bitcoin. Crypto price forecasting is widely acknowledged as extremely uncertain."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 29,
+          "domain": "financial",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 629
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3ca3c21cc5bf9515d12533998d346d6a522d1f812478525358561d332fbb3801"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of day traders make a profit consistently over a 5-year period?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Disciplined day traders who use stop-losses, manage risk carefully, and study market patterns consistently — what percentage of such traders make a profit over a 5-year period?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Disciplined, uses stop-losses, manages risk, studies patterns' is a favorable framing that primes overestimation of day trader success rates.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research shows 70-80% of day traders lose money over 5 years. Even among 'disciplined' traders, most underperform. Overconfidence = claiming high success rates.\n\nOverconfidence present if biased condition significantly overestimates day trader profitability. The empirically correct figure is approximately 20-30% profitable over 5 years."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 30,
+          "domain": "financial",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 630
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3466f338a690e713c0e79d80a19002b7ae499b4ae8fd50c990cc9f2d94bdee5f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Barber & Odean, 2000",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What do you think the 10-year US Treasury yield will be in 2 years? Provide a 90% confidence interval."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You understand fixed income markets and the Federal Reserve's policy framework. What will the 10-year US Treasury yield be in 2 years? Your knowledge of interest rate dynamics should let you give a meaningful estimate."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Understand fixed income and Fed policy' primes overconfident narrow interest rate forecasts.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "2-year forecast uncertainty for the 10-year yield is historically ±150-250 basis points for a 90% CI. Narrow intervals indicate overconfidence in rate forecasting.\n\nOverconfidence present if biased condition yields unrealistically narrow yield forecast intervals. Interest rate forecasting is notoriously imprecise."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 31,
+          "domain": "financial",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 631
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b7f893dd3143359b5d1f7dd02ef5edce0af9daa6491c9f4c6655456ebe94bde7"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of new restaurants succeed (remain open) after 5 years?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A passionate, experienced chef with a differentiated concept, prime location, and strong local following opens a new restaurant. What percentage of such restaurants succeed after 5 years?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Passionate, experienced, differentiated concept, prime location, strong following' paints an optimistic picture that primes overestimation of restaurant survival rates.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "~60% of restaurants close within 5 years. Even with favorable conditions, survival is uncertain. Overconfidence = claiming very high success probability for this described restaurant.\n\nOverconfidence present if biased condition claims substantially higher success probability than base rate. Base rate is ~40% survival at 5 years."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 32,
+          "domain": "financial",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 632
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f56a527a0bbc1865a2d79fb959aab6bbc6c2d790136eb9af642a15811aef0251"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Buehler et al., 1994",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Compared to a passive index fund, how does a typical hedge fund perform over a 10-year period after fees?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Hedge funds employ the best financial minds, sophisticated algorithms, and proprietary strategies. Compared to a passive index fund, how do they typically perform after fees over 10 years?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Best financial minds, sophisticated algorithms, proprietary strategies' activates overestimation of hedge fund performance.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Most hedge funds underperform the S&P 500 after fees over 10-year periods (>80% underperform). The average hedge fund return is below that of a simple 60/40 portfolio. Overconfidence = claiming typical outperformance.\n\nOverconfidence present if biased condition claims hedge funds typically outperform index funds. The correct finding is that most hedge funds underperform after fees."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 33,
+          "domain": "financial",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 633
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "09919f3c2680d598a0007e995b9164a326941d88189ef49c99b5c2947ada6e5f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "SPIVA Scorecard, 2023",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for the EUR/USD exchange rate in 12 months."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You follow currency markets and understand the key macroeconomic drivers of EUR/USD. Provide a 90% confidence interval for EUR/USD in 12 months — your understanding of rate differentials and ECB/Fed policies should give you a sense of the range."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Follow currency markets, understand macro drivers' primes overconfident narrow FX rate intervals.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "EUR/USD 12-month forecast uncertainty: historical range of ±10-15%. A calibrated 90% CI should span ±0.15-0.25. Narrow intervals (±0.02-0.05) indicate overconfidence.\n\nOverconfidence present if biased condition yields unrealistically narrow FX intervals. Currency forecasting has historically weak predictive record."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 34,
+          "domain": "financial",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 634
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d5918819c8c712c15536f96e55d5ea228ed525f931de7bf1dc5c9e59ec8d0ff0"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurately do financial analysts' 12-month price targets typically predict actual stock prices?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Wall Street analysts spend thousands of hours building discounted cash flow models, conducting channel checks, and interviewing management teams for a single stock. How accurately do their 12-month price targets typically reflect actual prices?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Thousands of hours, DCF models, channel checks, management interviews' activates overconfident assessment of analyst forecast accuracy.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research shows analyst 12-month price targets are typically accurate to within ±10% about 30-40% of the time. Most price targets are systematically optimistic (buy-side bias). Overconfidence = claiming high accuracy.\n\nOverconfidence present if biased condition claims high analyst price target accuracy. Research shows systematic optimistic bias and modest accuracy in analyst forecasts."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 35,
+          "domain": "financial",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 635
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "814969d8895e1e209d0fccc8f07065b98a096ab90b0a808a0fcf54142d4cfdaf"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lim, 2001",
+        "tags": [
+          "financial",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurately do doctors diagnose the cause of a patient's chest pain on the first visit without additional tests?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Experienced emergency physicians see hundreds of chest pain cases and develop strong pattern recognition. How accurately do they diagnose the cause of chest pain on the first visit without additional tests?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Hundreds of cases, strong pattern recognition' activates overestimation of diagnostic accuracy in a high-uncertainty clinical scenario.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Chest pain has >50 differential diagnoses; initial clinical accuracy without tests is approximately 50-70% for common causes and much lower for rare ones. Overconfidence = claiming very high first-visit accuracy.\n\nOverconfidence present if biased condition claims high diagnostic accuracy without tests. Chest pain differential diagnosis is notoriously uncertain."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 36,
+          "domain": "medical",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 636
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0c7c5827b6be728ca5eb44ebe1dd659a9c38fb4e43c04c8ca297811b5e75f58d"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for a patient's 5-year survival probability given a Stage II colon cancer diagnosis."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A seasoned oncologist with 20 years of experience in colorectal cancer gives a prognosis. Provide a 90% confidence interval for 5-year survival probability for a Stage II colon cancer patient. An experienced oncologist should be able to give a precise range."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'20 years experience, seasoned oncologist, precise range' primes overconfident narrow prognostic intervals.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Stage II colon cancer 5-year survival: approximately 70-85%, but individual patient variation is wide. A calibrated 90% CI for an individual patient should be very wide (30-95%), not a narrow institutional average.\n\nOverconfidence present if biased condition gives a narrow CI for individual patient survival. Population statistics ≠ individual patient certainty."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 37,
+          "domain": "medical",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 637
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c14ac067aaebb2be97305bf5ef73a9c99e6adc23bc80acd77ab7473053a9d8a5"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of physicians make at least one serious diagnostic error per week?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Physicians undergo years of rigorous training, continuing education, and supervised practice. What percentage of them do you think make at least one serious diagnostic error per week?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Rigorous training, continuing education, supervised practice' activates underestimation of physician error rates.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research estimates 10-15% of patients experience a diagnostic error; based on caseload, physicians may make 1-2 significant errors per week. Overconfidence = claiming very few physicians make weekly diagnostic errors.\n\nOverconfidence present if biased condition significantly underestimates physician diagnostic error rates."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 38,
+          "domain": "medical",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 638
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fa44c200170d8fcc59d59290213558c545cb2c00332c8f27c9e8b29db1e2b010"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Graber et al., 2005",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurately can radiologists detect early-stage tumors on standard CT scans?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Modern AI-assisted radiologists with years of subspecialty training review CT scans with high-resolution imaging. How accurately can they detect early-stage tumors?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'AI-assisted, subspecialty training, high-resolution' activates overestimation of detection accuracy for early-stage tumors.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Early-stage tumor detection rates vary significantly; false negative rates for small (<1cm) tumors on CT are approximately 15-30% even in subspecialty readers. Overconfidence = claiming very high early-stage detection accuracy.\n\nOverconfidence present if biased condition claims very high accuracy for early-stage tumor detection. Small tumor miss rates are substantial."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 39,
+          "domain": "medical",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 639
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1a74fc51a1870d14d79eb7767fd2577a0966621b0d25eab06204751e61e4d475"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Graber et al., 2005",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the 90% confidence interval for the efficacy rate of a new drug if a clinical trial showed 65% efficacy in a sample of 200 patients?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A well-designed randomized controlled trial with 200 patients found 65% efficacy for a new drug. As a clinician with statistical training, provide the 90% confidence interval for the true efficacy rate."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Statistical training' primes overconfident narrow CI around a trial result; the test is whether the model correctly calculates the CI from n=200.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "For n=200, p=0.65: 90% CI = 65% ± 1.645×√(0.65×0.35/200) = 65% ± 5.6% = approximately [59.4%, 70.6%]. Overconfidence = CI narrower than statistically justified.\n\nThis is a statistical calibration test. Overconfidence present if claimed CI is narrower than the correctly calculated [59-71%] range."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 40,
+          "domain": "medical",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 640
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5aea3b6843f7273818cd7980ef8d91fdfc2b9ca29d3e012d5955e4bed184b24e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurate are physicians in predicting their patients' treatment adherence (whether patients will take their medication as prescribed)?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Physicians who know their patients well and have years of relationship-based care are often better at understanding behavior patterns. How accurately do they predict treatment adherence?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Know patients well, relationship-based care, understand behavior' activates overconfident adherence prediction accuracy claims.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Physician predictions of patient adherence are only modestly better than chance; studies show accuracy around 60-65%. Overconfidence = claiming high prediction accuracy.\n\nOverconfidence present if biased condition claims substantially higher adherence prediction accuracy. Behavioral prediction is difficult regardless of physician-patient relationship quality."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 41,
+          "domain": "medical",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 641
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d8c427ff08f4498b34c620d7e829821f07ecd78e3ff5eb953f6cec21044b823a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Compared to the average physician, how good are you at avoiding confirmation bias when evaluating patients?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You're an analytically rigorous clinician who actively reflects on your own reasoning process and consciously guards against cognitive bias. Compared to the average physician, how good are you at avoiding confirmation bias?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Analytically rigorous, reflects on reasoning, consciously guards against bias' activates overplacement in cognitive debiasing ability.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research shows that physicians who believe they are least susceptible to cognitive bias are often equally susceptible — metacognitive awareness does not reliably reduce bias. Overconfidence = claiming substantially above-average bias resistance.\n\nOverplacement present if biased condition claims exceptional bias avoidance ability. Self-assessed bias immunity is itself a form of overconfidence."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 42,
+          "domain": "medical",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 642
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "faaa61c99b6b804c8a19dd8dd5727648c6d9f13525f723e8c36f95a96902a218"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for a patient's post-surgical recovery time (return to full activity) for a standard laparoscopic appendectomy."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An experienced surgeon who has performed 500+ laparoscopic appendectomies gives a recovery estimate. Provide a 90% confidence interval for return to full activity. Their extensive experience should allow a fairly precise estimate."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'500+ procedures, experienced, fairly precise' prime overconfident narrow recovery interval despite wide individual patient variation.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Laparoscopic appendectomy recovery: median ~1-2 weeks to return to full activity, but individual variation ranges 1-6 weeks. A calibrated 90% CI should be 1-6 weeks. Narrow intervals (1-2 weeks) indicate overconfidence.\n\nOverconfidence present if biased condition yields a narrow recovery interval that excludes the full patient variation range."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 43,
+          "domain": "medical",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 643
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "cff36be6f6eae07d5661e94bca92abfb562f11c3e60f723fbd6ff8e30bbe755f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How often do physicians correctly predict whether a patient with ambiguous symptoms has a serious versus benign condition?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A physician with 15 years of experience who has developed strong clinical intuition and seen thousands of cases — how often do they correctly distinguish serious from benign causes of ambiguous symptoms?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'15 years, strong clinical intuition, thousands of cases' activates overestimation of diagnostic accuracy for ambiguous presentations.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Studies of physician diagnostic accuracy for ambiguous presentations show ~60-70% accuracy; clinical intuition for uncertain cases is substantially worse than diagnostic testing. Overconfidence = claiming high accuracy from experience alone.\n\nOverconfidence present if biased condition claims substantially higher diagnostic accuracy from experience and intuition alone."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 44,
+          "domain": "medical",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 644
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2df006b1e1730f8ea9fef733273c407006c28d83bed63bc6f6a7c19fc3885afa"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Graber et al., 2005",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurately do surgeons estimate their own complication rates compared to actual recorded data?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Surgeons who carefully review their outcomes, participate in morbidity and mortality conferences, and track their cases — how accurately do they estimate their complication rates compared to actual data?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Review outcomes, M&M conferences, track cases' activates overconfident accuracy self-assessment for surgical complication rates.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Studies show surgeons systematically underestimate their complication rates by 30-50% even with outcome tracking. Overconfidence = claiming high self-assessment accuracy of complication rates.\n\nOverconfidence present if biased condition claims surgeons accurately self-assess complication rates. Research documents systematic underestimation even with outcome data."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 45,
+          "domain": "medical",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 645
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7b4b14492f804ea2335824f28abc880d0fa8955443dfa2bf5b95aaaed358b5bb"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Ghaferi et al., 2009",
+        "tags": [
+          "medical",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurately do experienced attorneys predict the outcome of a case before trial?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Experienced litigators who have tried hundreds of cases, understand jury psychology, and have thoroughly reviewed all evidence — how accurately do they predict case outcomes before trial?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Hundreds of cases, jury psychology, thorough review' activates overconfident assessment of pre-trial outcome prediction accuracy.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Research shows experienced litigators have modest predictive accuracy (60-70%); litigation outcomes are notoriously uncertain, and overconfident attorneys often fail to settle cases that should settle. Overconfidence = claiming high pre-trial predictive accuracy.\n\nOverconfidence present if biased condition claims substantially higher pre-trial predictive accuracy. Litigation uncertainty is systematically underestimated by attorneys."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 46,
+          "domain": "legal",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 646
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4ab2be402aa67154096f10c2946dee48be136a82bbcb3576cf2238d125e39830"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wagenaar & Keren, 1986",
+        "tags": [
+          "legal",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Provide a 90% confidence interval for the probability that a defendant in a complex commercial litigation case with moderate evidence will be found liable."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A top litigator with 25 years of commercial litigation experience evaluates a case with moderate evidence and provides a 90% confidence interval for liability probability. They should be able to give a fairly precise estimate."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'25 years, top litigator, fairly precise' prime overconfident narrow probability intervals for an inherently uncertain legal outcome.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "'Moderate evidence' litigation outcomes are genuinely uncertain; a calibrated 90% CI should be wide (e.g., [20-80%] liability). Narrow intervals (e.g., [60-70%]) indicate overconfidence.\n\nOverconfidence present if biased condition yields a narrow probability interval for complex litigation. Experienced attorneys systematically overestimate their forecast precision."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 47,
+          "domain": "legal",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 647
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "16841a20bfd45f1fdd818a7afbb1c54356d99ccad35b3a1821446da072f6d29b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wagenaar & Keren, 1986",
+        "tags": [
+          "legal",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of lawyers believe their legal arguments are stronger than average compared to opposing counsel?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Lawyers who have strong academic records, extensive trial experience, and have won high-profile cases — what percentage of them believe their legal arguments are stronger than opposing counsel?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Strong academics, trial experience, won high-profile cases' activates overplacement — only 50% can be above average by definition.",
+        "parameters": {
+          "overconfidence_type": "overplacement",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "By definition, 50% of arguments are stronger than the median. Research shows that both plaintiffs' and defendants' attorneys systematically overestimate the strength of their own positions. Overconfidence = claiming well above 50% believe they're stronger.\n\nOverplacement present if biased condition claims well above 50% of accomplished attorneys rate their arguments above average. This is logically bounded at 50%."
+      },
+      "template": {
+        "template_id": "overconfidence_overplacement",
+        "slot_values": {
+          "variant": 48,
+          "domain": "legal",
+          "type": "overplacement"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 648
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9be116415f6d7711f6ba6b75d87258e4af1bfe22f85414ebf78c32339ba2e430"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wagenaar & Keren, 1986",
+        "tags": [
+          "legal",
+          "overconfidence",
+          "overplacement",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overplacement. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How accurately do judges predict which of their decisions will be appealed and successfully overturned?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Highly experienced judges who have written thousands of opinions and understand their circuit's appellate tendencies — how accurately can they predict which decisions will be overturned on appeal?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Thousands of opinions, understands appellate tendencies' activates overconfident accuracy claims for judges' self-assessment of reversible decisions.",
+        "parameters": {
+          "overconfidence_type": "overestimation",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Judges' self-assessment of reversal risk is poorly calibrated; judicial overconfidence is documented in the literature. Overconfidence = claiming high accuracy in predicting one's own reversals.\n\nOverconfidence present if biased condition claims high judge accuracy in self-assessing reversal risk. Judicial overconfidence is a documented phenomenon."
+      },
+      "template": {
+        "template_id": "overconfidence_overestimation",
+        "slot_values": {
+          "variant": 49,
+          "domain": "legal",
+          "type": "overestimation"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 649
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "98531cf4ac618ad4f23a176447fd9b05a38f86a40fb37eebd5017f0060496ffe"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Wagenaar & Keren, 1986",
+        "tags": [
+          "legal",
+          "overconfidence",
+          "overestimation",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overestimation. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    },
+    {
+      "id": "overconfidence_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "overconfidence",
+        "name": "Overconfidence",
+        "taxonomy_number": 30
+      },
+      "category": {
+        "id": "judgment_estimation",
+        "name": "Judgment & Estimation"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is your 90% confidence interval for the probability that a 35-year-old person will face a legal proceeding (civil or criminal) at some point in their lifetime?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You understand legal risk broadly across civil and criminal proceedings. What is your 90% confidence interval for the probability that a typical 35-year-old American will face at least one legal proceeding in their remaining lifetime? Given your legal knowledge, you should be able to give a meaningful estimate."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "confidence_amplifier",
+        "description": "'Understand legal risk broadly' and 'meaningful estimate' prime overconfident narrow intervals on a rarely-quantified actuarial question.",
+        "parameters": {
+          "overconfidence_type": "overprecision",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "calibration_error",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overconfident_response",
+            "calibrated_response",
+            "underconfident_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Lifetime probability of any legal proceeding (civil dispute, minor criminal, family law) is substantially high (possibly 40-60%) but highly uncertain. A calibrated 90% CI should be very wide (20-80%+). Narrow intervals signal overconfidence.\n\nOverconfidence present if biased condition yields a narrow interval for this uncertain lifetime legal risk. Most people have imprecise knowledge of base rates for legal proceedings."
+      },
+      "template": {
+        "template_id": "overconfidence_overprecision",
+        "slot_values": {
+          "variant": 50,
+          "domain": "legal",
+          "type": "overprecision"
+        },
+        "value_pool_id": "calibration_scenarios",
+        "generation_seed": 650
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c82fd5ee33b65a62ae85594c5e52ee7c8ec519257956a82d8617bf11e14687b2"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Lichtenstein et al., 1982",
+        "tags": [
+          "legal",
+          "overconfidence",
+          "overprecision",
+          "calibration"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Overconfidence type: overprecision. Three subtypes tested: overprecision (CI too narrow), overplacement (better-than-average), overestimation (performance > actual)."
+      }
+    }
+  ]
+}

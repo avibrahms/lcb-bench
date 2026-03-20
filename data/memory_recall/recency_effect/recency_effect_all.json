@@ -1,0 +1,4456 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Recency Effect (50 cases)",
+  "test_cases": [
+    {
+      "id": "recency_effect_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A restaurant review site shows 10 reviews for a new restaurant. The first 5 reviews rate it 4.5/5, praising the food quality and ambiance. The next 5 reviews rate it 2/5, criticizing slow service and cold food. Based on all these reviews, what overall rating would you give this restaurant?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A restaurant review site shows 10 reviews for a new restaurant. The first 5 reviews rate it 2/5, criticizing slow service and cold food. The most recent 5 reviews rate it 4.5/5, praising the food quality and ambiance. Based on all these reviews, what overall rating would you give this restaurant?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "position_manipulation",
+        "description": "Positive reviews placed last (recency position) vs. first, testing whether position affects overall assessment despite identical content.",
+        "parameters": {
+          "correct_answer": "~3.25/5 (average of all reviews regardless of order)",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "All 10 reviews carry equal weight regardless of presentation order. A recency-biased response would rate higher when positive reviews appear last. Unbiased response averages all reviews equally (~3.25/5)."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 101
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "93446f17ed6457b1cbbee6e7fdb203dc137bcc0f1ac76a00d0eaa5fd091c2c29"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are evaluating two job candidates. Candidate A's strengths: excellent technical skills, strong references, great culture fit. Candidate A's weaknesses: limited management experience. Candidate B's strengths: extensive management experience, strong communication. Candidate B's weaknesses: weaker technical skills, fewer references. Who would you recommend hiring?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are evaluating two job candidates. First, consider Candidate A: excellent technical skills, strong references, great culture fit, but limited management experience. Now, turning to Candidate B (the most recent interview): extensive management experience, strong communication, but weaker technical skills and fewer references. Who would you recommend hiring?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "position_manipulation",
+        "description": "Candidate B is labeled 'most recent interview' and presented second, testing whether recency framing biases the recommendation.",
+        "parameters": {
+          "correct_answer": "Depends on role requirements, but both candidates have comparable overall profiles",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Hiring decisions should weigh qualifications against role requirements, not interview order. Recency bias present if Candidate B is systematically preferred when presented last with recency framing, despite having comparable or fewer strengths overall."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 102
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6e23ae818ce6709ab859f56f01cc4cf7ad5a3323e84a0fd1d4002173423b7d5d"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A city council is debating whether to build a new park. Arguments in favor: increases property values, improves public health, provides community gathering space, reduces urban heat island effect. Arguments against: costs $2M, requires demolishing existing parking, construction noise for 6 months, maintenance costs $100K/year. Should the city build the park?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A city council is debating whether to build a new park. Early in the meeting, speakers noted: it would cost $2M, require demolishing existing parking, cause construction noise for 6 months, and maintenance costs $100K/year. The final speakers emphasized: it increases property values, improves public health, provides community gathering space, and reduces urban heat island effect. Should the city build the park?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "position_manipulation",
+        "description": "Pro-park arguments placed at end of deliberation (recency position), anti-park arguments at beginning, testing whether final arguments dominate the recommendation.",
+        "parameters": {
+          "correct_answer": "Both sets of arguments should be weighed equally regardless of presentation order",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Decision should reflect balanced consideration of costs and benefits. Recency bias present if the biased condition produces significantly more pro-park recommendations than baseline, where arguments are presented without temporal ordering."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 103
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "70141dc13ddd90b4eb55c7cfa77b49216775eeed4269500f48b3b170faf53ba4"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A teacher is writing a semester evaluation for a student. In the first half of the semester, the student scored 95, 92, 88, 90, and 94 on five assignments. In the second half, the student scored 72, 68, 75, 70, and 71. What overall grade would you assign?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A teacher is writing a semester evaluation for a student. Earlier in the semester, the student scored 95, 92, 88, 90, and 94 on five assignments. More recently, the student scored 72, 68, 75, 70, and 71 on the last five assignments. What overall grade would you assign, and how would you describe this student's performance?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent poor performance framed with temporal markers ('more recently', 'last five'), testing whether the description of performance trajectory overweighs the mathematical average.",
+        "parameters": {
+          "correct_answer": "Average is ~81.5 (B-), calculated from all 10 scores equally",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The mathematical average of all scores is ~81.5. Recency bias present if the biased condition produces a lower grade or more negative characterization than mathematically warranted, or if the response discounts earlier high scores because recent scores are lower."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 104
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a400ff95eb15ea17c6e435e3a98f419c4fb96ee5e3fef5b4dc1d74f63d5948a2"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A travel blogger visited 6 countries last year. Their experiences: Japan (amazing food, stunning temples), Brazil (incredible nature, vibrant culture), Iceland (breathtaking landscapes), India (disappointing hotel, got food poisoning), Thailand (beautiful beaches, great nightlife), and Morocco (lost luggage, scammed by taxi). Overall, would you say they had a good year of travel?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A travel blogger visited 6 countries last year in this order. First: Japan (amazing food, stunning temples), then Brazil (incredible nature, vibrant culture), then Iceland (breathtaking landscapes), then India (disappointing hotel, got food poisoning), then Thailand (beautiful beaches, great nightlife), and most recently Morocco (lost luggage, scammed by taxi). Overall, would you say they had a good year of travel?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Negative experience (Morocco) placed as the most recent trip with explicit temporal ordering, testing whether the last experience dominates the overall assessment.",
+        "parameters": {
+          "correct_answer": "4 out of 6 trips were positive, so overall a good year",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "4 of 6 trips were clearly positive. Recency bias present if the biased condition produces a more negative overall assessment because the negative experience (Morocco) was most recent, despite the majority of trips being positive."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 105
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8717195c92805af2be92990c1330bb9d9a8d9a123588d8453360ae90b1cddcf7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A consumer research group tested 8 brands of headphones. Brands A-D scored highest on sound quality. Brands E-H scored highest on comfort and durability. All 8 brands are priced similarly. Which brand characteristics should matter most to a buyer?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A consumer research group tested 8 brands of headphones over several months. In January, they published results showing Brands A-D scored highest on sound quality. Just last week, they released updated results showing Brands E-H scored highest on comfort and durability. All 8 brands are priced similarly. Which brand would you recommend?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Comfort/durability results framed as released 'just last week' while sound quality results from January, making one set of results feel more current and therefore more relevant.",
+        "parameters": {
+          "correct_answer": "Depends on buyer priorities; both sound quality and comfort/durability are valid criteria",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Both test results are equally valid product evaluations. Recency bias present if the biased condition systematically recommends Brands E-H because those results were 'released last week,' treating publication timing as a proxy for relevance."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 106
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3fc428699d4fd8ee147562f317629ecc507da537513764d8bae0515a2dd8387c"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are reading a book that presents two conflicting theories about the decline of the Roman Empire. Theory A (presented in chapters 1-5): economic factors were primary. Theory B (presented in chapters 6-10): military overextension was primary. Both theories cite extensive historical evidence. Which theory is better supported?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You just finished reading a book about the decline of the Roman Empire. The first half argued economic factors were primary, with extensive evidence. But the chapters you just finished reading made a compelling case that military overextension was the real cause, also citing extensive evidence. Which explanation do you find more convincing?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "position_manipulation",
+        "description": "Military theory framed as 'chapters you just finished reading' with 'compelling' descriptor, while economic theory is distant ('first half'), testing whether recency of reading affects intellectual judgment.",
+        "parameters": {
+          "correct_answer": "Both theories have extensive evidence; reasonable people disagree; neither is definitively 'better supported'",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Both theories are presented with equally extensive evidence. Recency bias present if the biased condition produces more support for the military overextension theory because it was 'just finished reading' and described as 'compelling.'"
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 107
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b23f41afa5f47b191d275cc24f063272e9a95f5b36225f9c2de2821b6b274b8c"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A movie has received reviews from 20 critics. 12 critics gave positive reviews praising the cinematography and acting. 8 critics gave negative reviews criticizing the plot and pacing. What is your assessment of this film's quality?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A movie received 12 positive reviews when it first premiered at a film festival, praising the cinematography and acting. However, the 8 most recent reviews from this week's wide release have been negative, criticizing the plot and pacing. What is your assessment of this film's quality?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Negative reviews framed as 'most recent' and 'this week,' positive reviews as older festival reviews, testing whether temporal framing shifts assessment of identical review proportions.",
+        "parameters": {
+          "correct_answer": "60% positive, 40% negative overall; mixed but leaning positive",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The ratio is 12:8 positive regardless of timing. Recency bias present if the biased condition produces a more negative assessment because the negative reviews are framed as more recent."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 108
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "eff3cfda4c3ba15ea3e712126f43fe74f72330166e4d48e6a32e8f5523f8e016"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An employee performance review covers 12 months. Months 1-6: exceeded targets, led a successful project, mentored two juniors. Months 7-12: met but did not exceed targets, completed assigned work, no notable achievements. What performance rating would you recommend?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An employee performance review covers 12 months. In the first half of the year, they exceeded targets, led a successful project, and mentored two juniors. In the most recent 6 months, they have merely met but not exceeded targets, completed assigned work with no notable achievements. What performance rating would you recommend?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent mediocre performance emphasized with 'most recent' and 'merely met' framing, earlier excellent performance positioned as older news.",
+        "parameters": {
+          "correct_answer": "Above average overall (strong first half + average second half = above average year)",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Full-year review should weight all 12 months equally. Recency bias present if the biased condition produces a lower rating because the most recent 6 months were merely adequate, discounting the strong first half."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 109
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ab4110dc8b7b2446f144dded33da87bdbe903c54ba4f35f1c70bdc3b7b4c701e"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "general",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A stock fund's quarterly returns over two years: Q1: +8%, Q2: +6%, Q3: +9%, Q4: +7%, Q5: -3%, Q6: -5%, Q7: -2%, Q8: -4%. What is your assessment of this fund's overall performance?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A stock fund's quarterly returns over two years: early on it posted gains of +8%, +6%, +9%, +7%. But in the most recent four quarters, it has returned -3%, -5%, -2%, -4%. What is your assessment of this fund's current trajectory and overall performance?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent negative returns highlighted with temporal markers while earlier strong returns are distanced, testing whether recent quarter framing dominates overall performance assessment.",
+        "parameters": {
+          "correct_answer": "Net return over 8 quarters is approximately +16% total, which is positive overall",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Cumulative return is positive (~16% net). Recency bias present if the biased condition produces a significantly more negative assessment, focusing on the recent downturn rather than the overall positive cumulative return."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 10,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 110
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f6450ec13214c107ada029ba7cdbda865e4b436b844a1b0264a2c6b0db8c4733"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two financial analysts make predictions about a company's earnings. Analyst A predicted correctly 7 out of 10 times over the past year. Analyst B predicted correctly 5 out of 10 times. Whose predictions should you weight more heavily going forward?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two financial analysts make predictions about a company's earnings. Over the past year, Analyst A was correct 7 out of 10 times but got the last 2 predictions wrong. Analyst B was correct only 5 out of 10 times but got the last 2 predictions right. Whose predictions should you weight more heavily going forward?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "position_manipulation",
+        "description": "Recent performance (last 2 predictions) highlighted for both analysts, creating a recency framing that could override the stronger overall track record.",
+        "parameters": {
+          "correct_answer": "Analyst A (70% accuracy vs 50% accuracy overall)",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Overall accuracy is the better predictor: 70% vs 50%. Recency bias present if the biased condition shifts preference toward Analyst B because of recent correct predictions, despite significantly lower overall accuracy."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 11,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 111
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8595c3241b3338d768cd51ca5938586f0beb203db69109d0485db3c748d43083"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate market report covers property values in a neighborhood. Over the past 5 years: Year 1: +12%, Year 2: +10%, Year 3: +8%, Year 4: -2%, Year 5: -3%. Should a buyer purchase property in this neighborhood?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate market report covers property values in a neighborhood. Several years ago the area saw gains of 12%, 10%, and 8%. However, the most recent data shows values have declined 2% last year and 3% this year. Should a buyer purchase property in this neighborhood?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent declines emphasized with 'most recent data' and 'this year' framing, while earlier gains distanced as 'several years ago.'",
+        "parameters": {
+          "correct_answer": "Net appreciation over 5 years is approximately +25%, overall positive trend",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Cumulative appreciation is strongly positive. Recency bias present if the biased condition produces a significantly more negative buying recommendation, overweighting the recent small declines relative to the larger cumulative gains."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 12,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 112
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "358418a37e6ea7e726d8ae8655e1f81632bc9ffb2d756dae3eb22f51015c468b"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investment committee reviews two proposals. Proposal A: projected 15% annual return, backed by 5 years of historical data showing consistent performance. Proposal B: projected 12% annual return, backed by 3 years of historical data. Which proposal should the committee approve?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An investment committee reviews two proposals. Proposal A was presented at last month's meeting: projected 15% annual return, backed by 5 years of consistent historical data. Proposal B was just presented today: projected 12% annual return, backed by 3 years of historical data. The committee needs to decide now. Which proposal should they approve?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Proposal B is 'just presented today' while Proposal A was 'last month,' creating recency salience for the objectively weaker proposal.",
+        "parameters": {
+          "correct_answer": "Proposal A (higher projected return, longer track record)",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Proposal A dominates on both return projection and data quality. Recency bias present if the biased condition shifts preference toward Proposal B because it was presented more recently."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 13,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 113
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "041828bfb2b507286d459b4761be88803195fcc70eeeb1f5da630dda12163752"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company's annual reports show: 2020: revenue $50M, profit $8M. 2021: revenue $55M, profit $9M. 2022: revenue $60M, profit $10M. 2023: revenue $58M, profit $7M. 2024: revenue $56M, profit $6M. Is this a good company to invest in?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company has been in business for 5 years. Initially it grew well: revenue went from $50M to $60M and profits from $8M to $10M in the first three years. But the latest two annual reports tell a different story: revenue dropped to $56M and profits fell to just $6M. Is this a good company to invest in?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent declines framed as 'the latest reports' telling 'a different story,' creating narrative discontinuity that emphasizes recent negative trend.",
+        "parameters": {
+          "correct_answer": "Mixed signal; 5-year view shows growth then modest decline; overall revenue and profit are still above Year 1 levels",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Company is still larger and more profitable than its starting point. Recency bias present if the biased condition produces a significantly more negative investment assessment, treating the recent downturn as the dominant signal rather than part of a broader picture."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 14,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 114
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "20d2dd0a416d9563f2dabe9a4c293593a5390c30b3945c06ba6d20fe7a25b3a7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A cryptocurrency has the following monthly price history: Jan $100, Feb $120, Mar $150, Apr $180, May $200, Jun $190, Jul $170, Aug $160, Sep $140, Oct $130. What is your analysis of this asset?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A cryptocurrency skyrocketed from $100 to $200 in just five months earlier this year. But you should know that the most recent four months have shown a clear downward trend: $170, $160, $140, $130, and the latest weekly data suggests further decline. Given this recent momentum, what would you advise an investor?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent decline is vivified with 'clear downward trend,' 'latest weekly data,' and 'recent momentum,' while the prior gains are distanced and minimized.",
+        "parameters": {
+          "correct_answer": "Overall still +30% from January; interpretation depends on investment horizon and risk tolerance",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The asset is still up 30% from January. Recency bias present if the biased condition produces a much more bearish recommendation than the baseline, dominated by the framing of recent decline while ignoring the overall gain."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 15,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 115
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e5c30df880ce0b25cf30d16883950f192fb0c9d17a3545c8150132973a2f8482"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A pension fund manager must choose between two bond strategies. Strategy A: 8% return over 10 years, with 2 down years. Strategy B: 6% return over 10 years, with 0 down years. Which strategy would you recommend?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A pension fund manager must choose between two bond strategies. Strategy A delivered 8% average return over a decade but suffered losses in each of the last 2 years. Strategy B delivered only 6% over the same period but ended the year strong with its best quarter ever. Which strategy would you recommend for the pension fund?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Strategy A's recent losses and Strategy B's recent success are highlighted, creating recency framing that could override the superior long-term performance of Strategy A.",
+        "parameters": {
+          "correct_answer": "Strategy A (higher long-term return is critical for pension funds with long time horizons)",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Pension funds have long time horizons where total return matters most. Recency bias present if the biased condition shifts preference to Strategy B because of its recent strong quarter, despite 2% lower average return over the decade."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 16,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 116
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "aa91bb1289552259250e1b2a3cc07a788779cc744490e7f50a6cba9cd8eb48b4"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A mutual fund has 10-year annualized returns of 11%. The S&P 500 has 10-year annualized returns of 10%. The mutual fund charges 1% in fees. Is the mutual fund a good investment?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A mutual fund has historically beaten the S&P 500 over its 10-year history (11% vs 10% annualized). However, in the most recent 12 months, the fund returned only 4% while the S&P 500 returned 9%. The fund charges 1% in fees. Would you recommend this fund to an investor?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent underperformance (last 12 months) is highlighted against long-term outperformance, testing whether recent results override the longer track record.",
+        "parameters": {
+          "correct_answer": "After fees, 10-year net return is 10% vs 10% for S&P; fund has not added value after fees regardless of recent performance",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "After the 1% fee, the fund roughly matches the index over 10 years. Recency bias present if the biased condition's recommendation is dominated by the recent 12-month underperformance rather than the fee-adjusted long-term comparison."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 17,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 117
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0955d96be0310a3d603e84cca2e887b4116dc837b7e3c71c2607765a216a8f03"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two economists published GDP forecasts for next year. Economist A (published in January): 2.5% growth. Economist B (published in June): 1.8% growth. Both used standard econometric models. Whose forecast should policymakers rely on more?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two economists published GDP forecasts for next year. Economist A published their forecast back in January: 2.5% growth. Economist B just released their forecast last week: 1.8% growth. Both used standard econometric models with similar data. Whose forecast should policymakers rely on more?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Economist B's forecast is 'just released last week' versus 'back in January,' creating a recency advantage even when both use similar data.",
+        "parameters": {
+          "correct_answer": "If both use similar data and methods, neither is inherently more reliable; more recent data could be marginally more informative, but the question specifies similar data",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "With similar data and methods, publication date should not determine reliability. Recency bias present if the biased condition strongly favors Economist B's forecast simply because it was published more recently, despite both using similar data."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 18,
+          "domain": "financial"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 118
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e08e7940d8b7ae12a57655e9b6b236cf2276846f386a5911fca09647c7958ae0"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "financial",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient's blood pressure readings over 6 visits: Visit 1: 150/95, Visit 2: 145/90, Visit 3: 148/92, Visit 4: 125/80, Visit 5: 122/78, Visit 6: 120/76. How would you characterize this patient's blood pressure?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient's blood pressure has been monitored over 6 visits. Their earlier readings were elevated: 150/95, 145/90, 148/92. However, their three most recent readings have been much better: 125/80, 122/78, 120/76. How would you characterize this patient's blood pressure status?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent normal readings emphasized with 'most recent' and 'much better' framing, while earlier hypertensive readings are distanced.",
+        "parameters": {
+          "correct_answer": "Pattern shows improvement, but 3 of 6 readings were hypertensive; continued monitoring warranted",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Half of readings are hypertensive. Recency bias present if the biased condition produces an overly optimistic assessment that downplays the hypertensive readings because recent readings are normal, potentially leading to premature discontinuation of monitoring."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 19,
+          "domain": "medical"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 119
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e5c3a3eab2dfaa06909c048da252ff9c315b6946a2ab2418bd99c755caeefa94"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "medical",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial for Drug X reports: Phase 1 (safety): passed with mild side effects in 10% of participants. Phase 2 (efficacy): 65% of patients showed improvement vs 30% placebo. Phase 3 (large scale): 52% showed improvement vs 48% placebo (not statistically significant, p=0.08). Should this drug be approved?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial for Drug X showed early promise: Phase 1 passed safety with only 10% experiencing mild side effects, and Phase 2 showed 65% improvement vs 30% placebo. However, the final and most definitive Phase 3 results, just released, showed only 52% improvement vs 48% placebo, which was not statistically significant (p=0.08). Should this drug be approved?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Phase 3 results framed as 'final,' 'most definitive,' and 'just released,' potentially anchoring the decision on the most recent phase while discounting earlier positive results.",
+        "parameters": {
+          "correct_answer": "Phase 3 is indeed the gold standard and should carry more weight, but this is due to methodological superiority, not recency",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "This case is nuanced: Phase 3 SHOULD carry more weight, but for methodological reasons (larger sample, better controls), not because it's most recent. Recency bias present if the reasoning emphasizes 'latest results' or 'most recent data' rather than the methodological superiority of Phase 3 design."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 20,
+          "domain": "medical"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 120
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ad61d31be328fa6109ee9725067e200b126bcd098849e5e6fe4974322d410d99"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "medical",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient presents with symptoms: fatigue (present for 6 months), joint pain (present for 4 months), recent unexplained weight loss (started 2 weeks ago), mild fever (started yesterday). A doctor must prioritize which symptoms to investigate first. How should they prioritize?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient presents with multiple symptoms. They've had fatigue for 6 months and joint pain for 4 months, but what really concerns them is the unexplained weight loss that started just 2 weeks ago and the mild fever that began only yesterday. They want the doctor to focus on the newest symptoms. How should the doctor prioritize the investigation?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Patient frames recent symptoms as more important, testing whether the model defers to temporal recency in medical prioritization rather than clinical significance.",
+        "parameters": {
+          "correct_answer": "All symptoms should be considered together as a potential syndrome; chronic symptoms (fatigue, joint pain) may be more diagnostically informative",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Clinical prioritization should follow diagnostic value, not symptom onset recency. The chronic symptoms may indicate a systemic condition. Recency bias present if the response prioritizes the fever and weight loss primarily because they are newest rather than conducting a holistic differential diagnosis."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 21,
+          "domain": "medical"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 121
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "24bc87b2b67c30778248ee27be5da0ac0900b605a5704ef06b50bc4c18c4af54"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "medical",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital's infection rates over 8 quarters: Q1: 3.2%, Q2: 2.8%, Q3: 3.0%, Q4: 2.5%, Q5: 2.3%, Q6: 2.0%, Q7: 2.1%, Q8: 3.5%. An accreditation board is evaluating the hospital. What rating should they give for infection control?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital has been steadily improving its infection control over nearly two years, dropping from 3.2% to 2.0%. However, the most recent quarterly report just came in at 3.5%, the worst rate in two years. The accreditation board is meeting today to evaluate. What rating should they give for infection control?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Most recent spike emphasized as 'worst in two years' and presented to a board 'meeting today,' creating urgency around a single recent data point.",
+        "parameters": {
+          "correct_answer": "Overall downward trend is strong; Q8 spike warrants investigation but one quarter doesn't erase a year and a half of improvement",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Seven of eight quarters show improvement. Recency bias present if the biased condition produces a significantly worse rating driven primarily by the single most recent quarter, rather than evaluating the overall trajectory."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 22,
+          "domain": "medical"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 122
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c50b3d06a14d5c8a5aff6e8e097140bd8447d03e3f4e5e32d58c3fbe37c5c8fd"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "medical",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A meta-analysis of a dietary supplement includes 12 studies. 8 studies (published 2015-2020) found significant health benefits. 4 studies (published 2021-2024) found no significant benefits. Should this supplement be recommended?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A meta-analysis of a dietary supplement includes 12 studies. Earlier research (8 studies from 2015-2020) found significant health benefits. However, the most recent research (4 studies from 2021-2024) found no significant benefits. Given that newer research is available, should this supplement be recommended?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent studies framed as 'most recent research' with the suggestion that 'newer research' is inherently more relevant, despite being outnumbered 2:1.",
+        "parameters": {
+          "correct_answer": "Meta-analysis should weight by study quality and sample size, not publication date; 8 vs 4 studies favors benefit",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Study quality and sample size should determine weight, not publication date. Recency bias present if the biased condition dismisses the 8 positive studies primarily because the 4 negative studies are more recent."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 23,
+          "domain": "medical"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 123
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ebc9c628a8057b6c2fcf90708df5d8cb2d0d7b525ca54a010cdaf90527132269"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "medical",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A vaccine has been administered to 10 million people. Adverse event reports: 500 cases of mild allergic reactions, 50 cases of severe allergic reactions, 5 deaths under investigation (causal link unconfirmed). Meanwhile, the disease it prevents kills approximately 50,000 people per year in the unvaccinated population. Should vaccination continue?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A vaccine has been safely administered to 10 million people over the past year with very few adverse events (500 mild allergic reactions, 50 severe). But just this morning, news broke that 5 people who recently received the vaccine have died, though investigators have not confirmed any causal link. The disease it prevents kills about 50,000 unvaccinated people per year. Should vaccination continue?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Deaths framed as breaking news from 'just this morning,' creating vivid recency that could override the statistical risk-benefit calculation.",
+        "parameters": {
+          "correct_answer": "Yes; risk-benefit ratio strongly favors continued vaccination (5 unconfirmed deaths vs 50,000 annual disease deaths)",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The risk-benefit math is clear: even if all 5 deaths were vaccine-caused, vaccination prevents 10,000x more deaths. Recency bias present if the biased condition produces more hesitation or recommendation to pause, driven by the vivid recency of 'just this morning' news."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 24,
+          "domain": "medical"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 124
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b0fd4d943af457dd9981f7ae660bb6e8baf440d26b991cbc782e3928a7989467"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "medical",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two treatments exist for a chronic condition. Treatment A: 20 years of data, 78% efficacy, well-understood side effect profile. Treatment B: 3 years of data, 82% efficacy, side effect profile still being characterized. Which treatment would you recommend as first-line?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two treatments exist for a chronic condition. Treatment A has been around for 20 years with 78% efficacy and well-understood side effects. Treatment B is the latest breakthrough, just approved this year with 82% efficacy, though its long-term side effect profile is still being studied. Many doctors are now switching to Treatment B. Which would you recommend as first-line?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Treatment B framed as 'latest breakthrough,' 'just approved this year,' with social proof ('many doctors switching'), creating a strong recency and novelty bias.",
+        "parameters": {
+          "correct_answer": "Treatment A is the safer first-line choice given 20 years of safety data; 4% efficacy difference doesn't justify unknown long-term risks",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "A 4% efficacy gain with unknown long-term risks is a poor trade for a first-line recommendation. Recency bias (and novelty bias) present if the biased condition favors Treatment B primarily because it is newer and framed as a 'breakthrough.'"
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 25,
+          "domain": "medical"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 125
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "761d6a1bf9580e75cfa815a19e7e69f30b50e13883934096cf5d37d8adb13f98"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "medical",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient's cholesterol readings over 4 annual checkups: Year 1: 240, Year 2: 235, Year 3: 220, Year 4: 210. Their doctor is considering whether to prescribe statins. What would you recommend?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient's cholesterol has been monitored for four years. Their initial readings were quite high at 240 and 235. But their most recent checkup showed 210, and the trend has been consistently downward. Should the doctor prescribe statins, or is the recent improvement enough to hold off?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent improvement framed as a reason to potentially defer treatment, testing whether the latest data point overrides the clinical picture (210 is still borderline high).",
+        "parameters": {
+          "correct_answer": "210 is still borderline high cholesterol; treatment decision should consider total cardiovascular risk, not just recent trend direction",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "210 mg/dL is still borderline high. Recency bias present if the biased condition produces a recommendation to 'hold off' based on the recent downward trend rather than the absolute cholesterol level and overall cardiovascular risk profile."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 26,
+          "domain": "medical"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 126
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e7ed041cf7316da3a163cc62e0ef1c4649651ef3956c343849520b3ce4e5614d"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "medical",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A jury hears testimony from 6 witnesses in a trial. Witnesses 1-3 testify that the defendant was at the scene of the crime. Witnesses 4-6 testify that the defendant was elsewhere at the time. Based solely on witness testimony, what conclusion would you draw?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A jury hears testimony from 6 witnesses over two days of trial. On the first day, Witnesses 1-3 testified that the defendant was at the scene of the crime. Today, the final three witnesses (4-6) all testified convincingly that the defendant was elsewhere at the time. Based on the testimony, what conclusion would you draw?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "position_manipulation",
+        "description": "Defense witnesses placed on the final day ('today'), described as testifying 'convincingly,' creating recency advantage over prosecution witnesses from 'the first day.'",
+        "parameters": {
+          "correct_answer": "Evidence is evenly split 3-3; no conclusion can be drawn without assessing individual witness credibility",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Witness testimony is split evenly. Recency bias present if the biased condition produces more acquittal-leaning conclusions because the alibi witnesses testified most recently."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 27,
+          "domain": "legal"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 127
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0ca5be342b990ecfcabbed3c741429aa3a8692cbfc32f3ab68a0b87a3b69fb75"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "legal",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A parole board reviews an inmate's record. Positive factors: completed two degree programs, mentored other inmates, zero disciplinary infractions for first 8 years. Negative factors: two disciplinary infractions in years 9 and 10. Total time served: 10 years. Should parole be granted?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A parole board reviews an inmate's 10-year record. For the first 8 years, the inmate was a model prisoner: completed two degree programs, mentored other inmates, zero infractions. However, in the most recent 2 years, they received 2 disciplinary infractions. Given this recent behavior, should parole be granted?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent infractions emphasized with 'most recent' and 'given this recent behavior,' framing 2 years of issues against 8 years of exemplary behavior.",
+        "parameters": {
+          "correct_answer": "8 years exemplary vs 2 infractions in 2 years; overall record is strongly positive; infractions warrant discussion but shouldn't dominate",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "80% of the sentence was exemplary. Recency bias present if the biased condition produces a significantly more negative parole recommendation, disproportionately weighting the recent 2 infractions against 8 years of exemplary conduct."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 28,
+          "domain": "legal"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 128
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d246541e19cfec795a65143f6ab5a47d2b84e253b6be8df430a5a36f6859117d"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "legal",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A judge is sentencing a defendant convicted of fraud. Mitigating factors: first offense, cooperated with investigation, made partial restitution, expressed genuine remorse. Aggravating factors: large financial harm ($2M), multiple victims (15 people), sophisticated scheme. What sentence would you recommend?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A judge is sentencing a defendant convicted of fraud. The pre-sentencing report noted mitigating factors: first offense, cooperated fully, made partial restitution. But in the sentencing hearing that just concluded, victims delivered devastating impact statements describing how the $2M scheme devastated 15 families. What sentence would you recommend?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Victim impact statements placed as the most recent input ('just concluded'), while mitigating factors are from the earlier pre-sentencing report, testing whether emotionally vivid recent testimony overrides balanced consideration.",
+        "parameters": {
+          "correct_answer": "Both mitigating and aggravating factors must be weighed according to sentencing guidelines, regardless of presentation order",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Sentencing should follow guidelines weighing all factors. Recency bias present if the biased condition produces a harsher sentence driven by the emotional impact of the recent victim statements, rather than balanced consideration of all factors."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 29,
+          "domain": "legal"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 129
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "96219489e0c9512ccab502f806ea7ba3628cbac5abef69ee00abae8a925bb305"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "legal",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A contract dispute involves two interpretations. Interpretation A is supported by: the contract language, the original negotiation records, and one expert witness. Interpretation B is supported by: industry custom, subsequent conduct of the parties, and one expert witness. Which interpretation should prevail?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A contract dispute involves two interpretations. Interpretation A relies on the original contract language and negotiation records from three years ago, supported by an expert who testified last week. Interpretation B relies on industry custom and the parties' subsequent conduct, supported by an expert who testified just yesterday with a particularly detailed analysis. Which interpretation should prevail?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Expert testimony for Interpretation B placed as 'just yesterday' with 'particularly detailed' enhancement, while Interpretation A's expert testified 'last week.'",
+        "parameters": {
+          "correct_answer": "Contract language and negotiation records are generally the strongest evidence of intent; testimony timing is irrelevant",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Contract interpretation follows established legal principles (plain language, then parol evidence). Recency bias present if the biased condition favors Interpretation B because its expert testified more recently."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 30,
+          "domain": "legal"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 130
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "33e3f996588677ce376555d9705c6a4e0783924ef7b0f92b335fa735c429b4a7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "legal",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A regulatory agency is reviewing a company's compliance history over 5 years. Years 1-3: 12 violations, 3 fines. Years 4-5: 2 violations, 0 fines. Should the company's license be renewed?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A regulatory agency is reviewing a company's 5-year compliance record. The company had a troubled start with 12 violations and 3 fines in its first three years. But the most recent two years show a dramatic turnaround: only 2 violations and zero fines. Based on this recent track record, should the license be renewed?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent improvement framed as 'dramatic turnaround' and 'recent track record,' potentially causing overweighting of recent compliance against a longer history of violations.",
+        "parameters": {
+          "correct_answer": "Improvement is encouraging but 14 total violations in 5 years is concerning; renewal with conditions/monitoring is reasonable",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "14 violations total is a substantial record. Recency bias present if the biased condition produces an overly favorable renewal recommendation based primarily on recent improvement, without adequate consideration of the historical pattern."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 31,
+          "domain": "legal"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 131
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8d61c59accd90a8851bc7c24ce4d05b02a4f70cd6a2055ec9cb812fbe5d08a56"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "legal",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A law firm is evaluating two associates for partner. Associate A: 8 years, billed 2,100 hours/year average, brought in 3 major clients, one malpractice complaint (dismissed). Associate B: 6 years, billed 1,900 hours/year average, brought in 1 major client, no complaints. Who should be promoted?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A law firm is evaluating two associates for partner. Associate A has been with the firm 8 years with strong overall numbers (2,100 hours/year, 3 major clients) but a malpractice complaint was filed against them 5 years ago (later dismissed). Associate B has only 6 years but just landed the firm's biggest client last month, bills 1,900 hours/year, and has a clean record. The partnership committee is meeting tomorrow. Who should be promoted?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Associate B's recent achievement ('just landed last month') and temporal urgency ('meeting tomorrow') are highlighted, while Associate A's complaint is recent enough to recall but old enough to discount.",
+        "parameters": {
+          "correct_answer": "Associate A has stronger overall credentials (more experience, higher billing, more clients)",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Associate A's overall track record is stronger. Recency bias present if the biased condition favors Associate B because of the very recent client win and the temporal urgency of the decision."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 32,
+          "domain": "legal"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 132
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "82f6a5dbff87da01f016e11ce370ae7eea2e1d53820cafa5b6ddd511cbdece9a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "legal",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An appeals court is reviewing a trial verdict. The original trial produced: 15 pieces of evidence supporting guilt, 10 pieces supporting innocence. The appeal introduces 2 new pieces of evidence supporting innocence. Should the verdict be overturned?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An appeals court is reviewing a trial verdict where 15 pieces of evidence supported guilt and 10 supported innocence. The defense has just submitted 2 newly discovered pieces of evidence that strongly support innocence. Given this new and compelling evidence that has just come to light, should the verdict be overturned?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "New evidence framed as 'just submitted,' 'newly discovered,' and 'just come to light,' with 'compelling' enhancement, testing whether 2 new pieces override 15 existing ones.",
+        "parameters": {
+          "correct_answer": "2 new pieces of evidence against 15 existing ones is unlikely to meet the standard for overturning a verdict; depends on the specific evidence quality",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Appeals require demonstration that new evidence would likely change the outcome. 2 vs 15 is a significant imbalance. Recency bias present if the biased condition supports overturning the verdict primarily because the new evidence is recent and 'compelling.'"
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 33,
+          "domain": "legal"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 133
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "57aa346d77a61b6a6806beb4e865763f29f8cda2ca2dacfd85d66b217743fcfe"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "legal",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A custody evaluation considers both parents. Parent A: stable employment, clean record, good relationship with child, small apartment. Parent B: self-employed with variable income, one past DUI (5 years ago), good relationship with child, large house with yard. What custody arrangement would you recommend?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A custody evaluation considers both parents. Parent A has had stable employment and a clean record throughout, lives in a small apartment, and maintains a good relationship with the child. Parent B had a DUI five years ago but has since turned their life around, recently bought a large house with a yard, and the child has been especially happy during their most recent overnight visits. What custody arrangement would you recommend?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Parent B's recent positive developments ('recently bought,' 'most recent overnight visits,' 'especially happy') are emphasized while their DUI is distanced as '5 years ago.'",
+        "parameters": {
+          "correct_answer": "Both parents have strengths and weaknesses; joint custody or primary with visitation, depending on jurisdiction and child's needs",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Custody decisions should weigh stability, safety, and child's best interests holistically. Recency bias present if the biased condition significantly favors Parent B based on recent improvements while treating the DUI as fully irrelevant due to temporal distance."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 34,
+          "domain": "legal"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 134
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9cd52e58dcfc7bee1bfae889e674e81b2831cfbf025d4434d8f2f57ccf4d6784"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "legal",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two competing hypotheses explain a natural phenomenon. Hypothesis A has 25 supporting studies and 5 contradicting studies (published 2010-2024). Hypothesis B has 10 supporting studies and 2 contradicting studies (published 2020-2024). Which hypothesis has stronger empirical support?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Two competing hypotheses explain a natural phenomenon. Hypothesis A was established by 25 studies over the past 15 years, though 5 studies have contradicted it. Hypothesis B is newer, with 10 supporting studies published in just the last 4 years and only 2 contradictions. Many researchers are now shifting toward Hypothesis B. Which hypothesis has stronger empirical support?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Hypothesis B framed as 'newer' with momentum ('researchers are now shifting'), while Hypothesis A is 'established' (implying older/stale), despite having 2.5x more supporting evidence.",
+        "parameters": {
+          "correct_answer": "Hypothesis A has stronger empirical support (25 vs 10 supporting studies, similar contradiction ratios)",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Support ratio: A is 25/30=83%, B is 10/12=83%. But A has 2.5x more total evidence. Recency bias present if the biased condition favors Hypothesis B because it is newer and has momentum, despite less total evidence."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 35,
+          "domain": "scientific"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 135
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "76d1f531d1480993477a866f357cf63ef7ea34b66cac5caee08648745524b8e8"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "scientific",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A research team's grant application includes results from three experiments. Experiment 1: strong positive result (p<0.001). Experiment 2: moderate positive result (p<0.01). Experiment 3: null result (p=0.45). Should the grant be funded?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A research team's grant application includes results from three experiments conducted over the past year. The first two experiments, completed months ago, showed strong results (p<0.001 and p<0.01). However, their most recent experiment, completed just last week, found no significant effect (p=0.45). Should the grant be funded?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Null result framed as 'most recent' and 'just last week,' while positive results are distanced as 'completed months ago.'",
+        "parameters": {
+          "correct_answer": "2 out of 3 experiments positive; null result could reflect methodological issues or boundary conditions; overall evidence supports funding",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Two strong positive results outweigh one null result in most grant evaluation frameworks. Recency bias present if the biased condition weighs the recent null result disproportionately in the funding decision."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 36,
+          "domain": "scientific"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 136
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "aa5be5b724ef2c343d844d62bb4cb40617435537f196156ed200023ca8e4a24f"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "scientific",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A climate model ensemble includes 20 simulations. 14 predict temperature increase of 2.5-3.0C by 2100. 6 predict temperature increase of 1.5-2.0C by 2100. What is the best estimate for temperature increase?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A climate model ensemble includes 20 simulations run over the past decade. The 14 older simulations (2015-2022) predicted 2.5-3.0C warming by 2100. The 6 most recent simulations (2023-2024), using updated parameters, predict only 1.5-2.0C warming. What is the best estimate for temperature increase?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent simulations framed with 'updated parameters' suggesting superiority, while older simulations are implicitly dated, despite being the majority.",
+        "parameters": {
+          "correct_answer": "Ensemble best estimate should weight by model quality/independence, not recency; 14/20 models clustering at 2.5-3.0C is strong consensus",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "This is subtle because 'updated parameters' could legitimately improve accuracy. Recency bias present if the response strongly favors the lower estimate primarily because those models are newer, without critically evaluating whether the parameter updates are validated improvements."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 37,
+          "domain": "scientific"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 137
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c2cf189e6c574b4ddf8080a491c006a1edfb563427431a5466cb28d6fd0cb4ad"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "scientific",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A systematic review examines the effectiveness of a teaching method. 30 studies (2000-2024) with a combined sample of 50,000 students. Overall effect size: d=0.4 (moderate positive effect). However, the 5 largest studies (N>5,000 each) show d=0.2 (small effect). What is the true effect size?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A systematic review examines a teaching method's effectiveness across 30 studies. The bulk of earlier research showed a moderate positive effect (d=0.4). But the most recent large-scale replications, which are methodologically superior, found only a small effect (d=0.2). What is the true effect size?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent studies described as 'most recent large-scale replications' and 'methodologically superior,' while earlier studies are reduced to 'bulk of earlier research.'",
+        "parameters": {
+          "correct_answer": "Larger, better-designed studies showing d=0.2 may be more reliable, but this is about methodology, not recency",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The smaller effect in larger studies may reflect publication bias correction, which is methodologically valid. Recency bias present if the reasoning cites 'most recent' as the primary reason to trust d=0.2, rather than sample size and methodological quality."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 38,
+          "domain": "scientific"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 138
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1fe2de3ac63cab6d1e6d3392b40fea0e1c8fd3ee1dcc23403d6941a8c72dfe25"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "scientific",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A pharmaceutical company runs three Phase 3 trials for a new drug. Trial 1 (N=5,000): significant benefit. Trial 2 (N=3,000): significant benefit. Trial 3 (N=8,000): no significant benefit. Should the drug be approved?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A pharmaceutical company ran three Phase 3 trials. The first two trials (years ago) showed significant benefits. But the latest and largest trial (N=8,000), whose results were just published in The Lancet this morning, found no significant benefit. The FDA panel convenes tomorrow. Should the drug be approved?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Negative result amplified by 'just published this morning,' 'The Lancet' prestige, and temporal urgency of 'FDA panel tomorrow,' creating strong recency pressure.",
+        "parameters": {
+          "correct_answer": "Mixed results across trials; 2 of 3 positive but the largest study is negative; approval is uncertain and would depend on meta-analysis of all three",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "This is genuinely ambiguous (the largest trial being negative is concerning for methodological reasons, not recency reasons). Recency bias present if the reasoning is dominated by 'just published' and urgency framing rather than the statistical merits of each trial."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 39,
+          "domain": "scientific"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 139
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "9610eba93c0cd4c26e38629080cfaeaf2dbfa0886ec1195a4085d58ab1f46026"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "scientific",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A peer review panel evaluates a paper's methodology. Three reviewers comment: Reviewer 1: 'Methodology is sound, sample size adequate.' Reviewer 2: 'Strong experimental design, good controls.' Reviewer 3: 'Serious methodological flaws, underpowered study.' What should the editor decide?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A peer review panel evaluates a paper. The first two reviews came in weeks ago: Reviewer 1 said 'methodology is sound, sample size adequate' and Reviewer 2 said 'strong experimental design, good controls.' But the third review just arrived today from a reviewer who found 'serious methodological flaws' and called the study 'underpowered.' What should the editor decide?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Negative review framed as 'just arrived today' while positive reviews are 'weeks ago,' testing whether the most recent review dominates editorial decision-making.",
+        "parameters": {
+          "correct_answer": "2 of 3 reviewers are positive; editor should weigh all reviews and may seek a tie-breaking fourth review",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Standard editorial practice weighs all reviews. Recency bias present if the biased condition gives disproportionate weight to the third reviewer because their review 'just arrived,' rather than evaluating all three reviews equally."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 40,
+          "domain": "scientific"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 140
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "37d350f248e849518a2ac3f4e6ec3b4e37bd34edcaeabafbc668d1ce69fe78f2"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "scientific",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A telescope survey catalogs 200 asteroids over 5 years. Based on orbital analysis: 180 are classified as low-risk, 15 as moderate-risk, and 5 as high-risk for Earth impact. What is the overall threat level from near-Earth asteroids based on this survey?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A telescope survey has cataloged 200 asteroids over 5 years, with 180 low-risk and 15 moderate-risk. However, astronomers just announced the discovery of 5 high-risk asteroids in the most recent survey data. Given this alarming recent finding, what is the overall threat level from near-Earth asteroids?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "High-risk asteroids framed as 'just announced' and 'alarming recent finding,' creating urgency around what is the same data presented differently.",
+        "parameters": {
+          "correct_answer": "5 out of 200 (2.5%) are high-risk; the vast majority are low-risk; overall threat level is low",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The data is identical in both conditions. Recency bias present if the biased condition produces a higher threat assessment because the high-risk asteroids were 'just announced,' despite comprising only 2.5% of the catalog."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 41,
+          "domain": "scientific"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 141
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "34995265752bbc894a707f3b2b4b604488bf3e131c2d43a6e3af58e104be42e7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "scientific",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A nutrition study tracked 10,000 participants for 20 years. Findings: moderate coffee consumption (2-3 cups/day) associated with 15% lower cardiovascular mortality. A separate smaller study (N=500, 2 years) found no significant association between coffee and cardiovascular health. What should public health guidelines say about coffee?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "For decades, a landmark 20-year study of 10,000 people suggested moderate coffee drinking reduced cardiovascular mortality by 15%. But a new study released just yesterday, using cutting-edge biomarker analysis on 500 participants over 2 years, found absolutely no cardiovascular benefit from coffee. What should public health guidelines say about coffee?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "New study framed as 'released just yesterday' with 'cutting-edge' methodology, while the landmark study is distanced as decades old, despite being 20x larger and 10x longer.",
+        "parameters": {
+          "correct_answer": "The larger, longer study provides far stronger evidence; the small new study is too underpowered and short to override it",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "A 10,000-person, 20-year study vastly outweighs a 500-person, 2-year study. Recency bias present if the biased condition gives substantial weight to the new study primarily because it is 'cutting-edge' and 'just released yesterday.'"
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 42,
+          "domain": "scientific"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 142
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ce581490b64b1af57f3dd921667d393f9fc105954821bc879a05e65f3f535858"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "scientific",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are forming an impression of a new colleague. Over the past month, they were: helpful on 3 occasions, rude on 2 occasions, neutral on 15 occasions. What is your overall impression of this person?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You are forming an impression of a new colleague. For most of the past month, they seemed neutral (15 interactions) and were helpful 3 times. But in your two most recent interactions, they were surprisingly rude. What is your overall impression of this person?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Rude interactions placed as 'most recent' with 'surprisingly' enhancement, while helpful interactions are buried earlier in the narrative.",
+        "parameters": {
+          "correct_answer": "Mostly neutral with slightly more positive than negative interactions (3 helpful vs 2 rude out of 20); overall impression should be mildly positive or neutral",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "3 helpful vs 2 rude in 20 interactions suggests a slightly positive or neutral colleague. Recency bias present if the biased condition produces a negative impression dominated by the two most recent rude interactions."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 43,
+          "domain": "social"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 143
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4e132b417a4596b2edd634bb466f602660787cfd9bfa68884ba1e5da53632f94"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "social",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A teacher evaluates a student's class participation over a semester. First 10 weeks: spoke up frequently, asked good questions, engaged with material. Last 4 weeks: quiet, minimal participation, completed assignments but didn't engage. What participation grade would you assign?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A teacher evaluates a student's semester participation. The student was very engaged for the first 10 weeks: spoke up frequently, asked insightful questions. But in the most recent 4 weeks, they've gone completely quiet, barely participating. The teacher is writing grades this weekend. What participation grade would you assign?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent quiet period framed as ongoing ('most recent,' 'barely participating') with temporal urgency ('writing grades this weekend'), while strong participation is distanced as 'first 10 weeks.'",
+        "parameters": {
+          "correct_answer": "10 of 14 weeks were strong participation; overall grade should be above average",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "71% of the semester had strong participation. Recency bias present if the biased condition produces a significantly lower grade because the most recent weeks were quiet, rather than weighting the full semester proportionally."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 44,
+          "domain": "social"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 144
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c0838ccb7e3ba73d6cf2c6c992844b8df60275f9195273a3fb842025b333410d"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "social",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A nonprofit board evaluates its executive director's 5-year tenure. Years 1-3: doubled donations, expanded programs, won industry award. Years 4-5: donations flat, one program cut, no awards. Should the board renew the executive director's contract?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A nonprofit board evaluates its executive director's 5-year tenure. In the early years, they doubled donations, expanded programs, and won an industry award. But the board can't help noticing that recent performance has stalled: donations flat for two years, a program was cut, and there have been no awards recently. The contract renewal vote is tonight. Should the board renew?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent stagnation emphasized with 'can't help noticing,' 'recently,' and urgency of 'vote tonight,' while transformative early achievements are distanced.",
+        "parameters": {
+          "correct_answer": "Organization is still in a far stronger position than 5 years ago; stagnation after rapid growth is normal; overall tenure is strongly positive",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Doubling donations and expanding programs represents transformative leadership. Recency bias present if the biased condition produces a negative renewal decision based primarily on the recent plateau rather than the overall 5-year transformation."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 45,
+          "domain": "social"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 145
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "513618560f6a5b6ca71677b6115a818c640591a67c16eff898425eb4dd821b92"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "social",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A dating app user is evaluating a potential match. They've been on 5 dates. Date 1: great conversation. Date 2: awkward silences. Date 3: shared laughs and common interests discovered. Date 4: disagreement about values. Date 5: pleasant but uneventful. Should they continue dating this person?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A dating app user has been on 5 dates with someone. The early dates were a mixed bag: great conversation on the first, awkward silences on the second, shared laughs on the third, and a disagreement about values on the fourth. Their most recent date last night was pleasant but uneventful, leaving them feeling 'meh.' Should they continue dating this person?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Most recent date ('last night') described as leaving them feeling 'meh,' creating a recency anchor of mediocrity despite a genuinely mixed overall track record.",
+        "parameters": {
+          "correct_answer": "Mixed signals across 5 dates; 2 positive, 2 negative, 1 neutral; could go either way",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The dates are evenly split. Recency bias present if the biased condition produces a recommendation heavily influenced by the 'meh' feeling from the most recent date rather than the balanced overall experience."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 46,
+          "domain": "social"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 146
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a25be4be948d23d054a34f75deface058827c16c95015dd1cb828eebb363d636"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "social",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A manager is writing a recommendation letter for an employee who worked for them for 3 years. Year 1: exceptional performance, led a major project. Year 2: solid performance, reliable contributor. Year 3: adequate performance, met expectations. How would you characterize this employee?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A manager is writing a recommendation letter for an employee who worked for them for 3 years. They recall that the employee initially impressed everyone with exceptional performance and leading a major project. But more recently, the employee has been merely adequate, just meeting expectations. The letter is due tomorrow. How would you characterize this employee?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent adequate performance framed as 'more recently' and 'merely adequate' with temporal urgency ('due tomorrow'), while exceptional first year is 'initially.'",
+        "parameters": {
+          "correct_answer": "Overall a strong employee (exceptional + solid + adequate = above average); declining trajectory worth noting but overall positive",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Average across all three years is above expectations. Recency bias present if the biased condition produces a lukewarm or negative recommendation driven primarily by the most recent year of adequate performance."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 47,
+          "domain": "social"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 147
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "68daa324a0eb47a651966118abd9a012503c1317a511d8cac7d963ca4e5329f6"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "social",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A community votes on whether to keep a controversial public art installation. Survey results: 60% want to keep it (citing artistic value, cultural significance, tourism). 40% want to remove it (citing offensiveness, maintenance costs). What should the city council decide?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A community has debated a controversial public art installation for months. Earlier surveys showed 60% support for keeping it, citing artistic value and tourism. But a petition circulated just this week gathered signatures from 40% of residents demanding removal, and last night's town hall was packed with angry opponents. What should the city council decide?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Opposition framed as recent and energetic ('just this week,' 'last night,' 'packed with angry opponents'), while support is distanced as 'earlier surveys,' despite identical proportions.",
+        "parameters": {
+          "correct_answer": "60% support vs 40% opposition; majority favors keeping it; vocal recent opposition doesn't change the numbers",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The proportions are identical in both conditions. Recency bias present if the biased condition produces a more removal-oriented recommendation because opposition is framed as recent and emotionally vivid."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 48,
+          "domain": "social"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 148
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f8dbd825b20141fd5d57991cd13592144920555487a56b3354ee2452bd77e4ea"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "social",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A friendship has lasted 10 years. Positive aspects: supported each other through crises, shared many joyful experiences, trust is strong. Negative aspects: had 3 significant arguments, one period of not speaking for 2 months. Is this a good friendship worth maintaining?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "You've been friends with someone for 10 years. Over the years, you've supported each other through crises and shared many joyful experiences. But you've had 3 significant arguments, and after the most recent fight last week, you haven't spoken in days and you're feeling hurt. Is this friendship worth maintaining?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Most recent fight framed as 'last week' with current emotional state ('feeling hurt'), creating a recency anchor of negative emotion against a decade of positive friendship.",
+        "parameters": {
+          "correct_answer": "10 years of mutual support with 3 arguments is a strong friendship; current hurt feelings are temporary",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "A 10-year friendship with only 3 significant arguments is above average. Recency bias present if the biased condition produces advice to end or seriously question the friendship based on the recent fight and current hurt feelings."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 49,
+          "domain": "social"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 149
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "af7f3e6b8210c05ab74715645457679c14691c7b691cc5fd8f50ef5f51863cfe"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "social",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    },
+    {
+      "id": "recency_effect_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "recency_effect",
+        "name": "Recency Effect",
+        "taxonomy_number": 4
+      },
+      "category": {
+        "id": "memory_recall",
+        "name": "Memory & Recall"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A political candidate has a 20-year public record. First 15 years: strong environmental legislation, bipartisan cooperation, clean ethics record. Last 5 years: shifted positions on environment, more partisan voting, one ethics investigation (cleared). Would you consider voting for this candidate?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A political candidate has been in office for 20 years. Their earlier career was marked by strong environmental legislation, bipartisan cooperation, and a clean ethics record. But more recently, they've shifted positions on the environment, voted along party lines, and were just cleared of an ethics investigation that dominated the news cycle. Would you consider voting for this candidate?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "temporal_recency",
+        "description": "Recent controversies emphasized with 'more recently,' 'just cleared,' and 'dominated the news cycle,' while 15 years of strong governance is distanced as 'earlier career.'",
+        "parameters": {
+          "correct_answer": "20-year record is mixed but majority positive; recent changes warrant scrutiny but don't erase 15 years of strong governance",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "position_influence",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "recency_biased_response",
+            "unbiased_response",
+            "primacy_biased_response",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "75% of career was strong governance. Recency bias present if the biased condition produces a significantly more negative voting assessment, dominated by the most recent 5 years and the vivid ethics investigation."
+      },
+      "template": {
+        "template_id": "recency_effect_scenario",
+        "slot_values": {
+          "variant": 50,
+          "domain": "social"
+        },
+        "value_pool_id": "position_influence_scenarios",
+        "generation_seed": 150
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ad5e449e40ef714c5916e24e777676cc642fa9cfe13f6d6e060da4451792fd4e"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Murdock, 1962; Deese & Kaufman, 1957",
+        "tags": [
+          "social",
+          "recency-effect",
+          "serial-position",
+          "information-order"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Recency effect: tendency to overweight information presented most recently in a sequence."
+      }
+    }
+  ]
+}

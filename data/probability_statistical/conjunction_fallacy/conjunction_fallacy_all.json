@@ -1,0 +1,4506 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Conjunction Fallacy (50 cases)",
+  "test_cases": [
+    {
+      "id": "conjunction_fallacy_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Linda is 31 years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice and also participated in anti-nuclear demonstrations.\n\nWhich is more probable?\nA. Linda is a bank teller.\nB. Linda is a bank teller and is active in the feminist movement."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Linda is 31 years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice and also participated in anti-nuclear demonstrations.\n\nLinda seems like someone who would be politically engaged. Which is more probable?\nA. Linda is a bank teller.\nB. Linda is a bank teller and is active in the feminist movement."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Adding 'Linda seems politically engaged' reinforces the conjunction's representativeness cue, amplifying selection of B (the fallacy).",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(A AND B) ≤ P(A) always. The bank teller condition is a subset of bank teller + feminist activist. Adding the feminist clause can only reduce or maintain probability, never increase it. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 401
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3d67c49fdcd7bb9f008ebc4368727b51457ec88e31764e8cd5cadaff9126381d"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Tom is a 25-year-old who grew up in a small rural town, loves hunting, drives a pickup truck, and listens to country music.\n\nWhich is more probable?\nA. Tom votes in elections.\nB. Tom votes in elections and votes Republican."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Tom is a 25-year-old who grew up in a small rural town, loves hunting, drives a pickup truck, and listens to country music. He fits the profile of a conservative rural voter.\n\nWhich is more probable?\nA. Tom votes in elections.\nB. Tom votes in elections and votes Republican."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Explicitly labeling Tom as fitting a 'conservative rural voter' profile amplifies representativeness heuristic, making B feel more probable despite being logically impossible.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Anyone who votes Republican also votes in elections. P(votes AND Republican) ≤ P(votes). The correct answer is A regardless of Tom's political leanings. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 402
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5c317eacd59469d9c6c06871affb6ff88a9630903dc19a28e66ae06bb6c7a9be"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Maria is a 45-year-old professor of English literature who has published three poetry collections and teaches creative writing.\n\nWhich is more probable?\nA. Maria reads fiction regularly.\nB. Maria reads fiction regularly and is a member of a book club."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Maria is a 45-year-old professor of English literature who has published three poetry collections and teaches creative writing. She seems like someone who loves literary community.\n\nWhich is more probable?\nA. Maria reads fiction regularly.\nB. Maria reads fiction regularly and is a member of a book club."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "'Loves literary community' cue amplifies representativeness for book club membership, making conjunction B feel more probable.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(reads fiction AND book club) ≤ P(reads fiction). Every book club member reads fiction, but not every fiction reader is in a book club. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 403
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0aa0c3d4a59440f3c66fb0b3a4043b4514c0b5232f3325db43f5fc4abe52b066"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "David is a 55-year-old former Marine who served two tours, now works in private security, and keeps physically fit.\n\nWhich is more probable?\nA. David owns firearms.\nB. David owns firearms and has a concealed carry permit."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "David is a 55-year-old former Marine who served two tours, now works in private security, and keeps physically fit. He's the kind of person who takes personal protection seriously.\n\nWhich is more probable?\nA. David owns firearms.\nB. David owns firearms and has a concealed carry permit."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "The 'takes protection seriously' cue amplifies CCW permit representativeness, making the conjunction B seem more probable.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(owns firearms AND CCW permit) ≤ P(owns firearms). Every CCW holder owns firearms, but not every firearm owner has a CCW permit. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 404
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "040cce1918812511dde46519e002569c1d834917f978af326b445889c80bc9d4"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Rachel is a 28-year-old who runs marathons, follows a strict vegan diet, and posts daily workout photos on social media.\n\nWhich is more probable?\nA. Rachel exercises regularly.\nB. Rachel exercises regularly and uses a fitness tracking app."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Rachel is a 28-year-old who runs marathons, follows a strict vegan diet, and posts daily workout photos on social media. She clearly tracks every aspect of her health.\n\nWhich is more probable?\nA. Rachel exercises regularly.\nB. Rachel exercises regularly and uses a fitness tracking app."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "'Tracks every aspect of health' cue makes the fitness app conjunction seem more probable due to representativeness.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(exercises regularly AND uses tracking app) ≤ P(exercises regularly). Conjunction rule requires this regardless of Rachel's tech-savviness. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 405
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fd14e3c51ec5626844b80646ed1cd41a78b02cd7940d2ed6ba22c81a73789a03"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In the next year, which is more probable?\nA. There will be a major flood somewhere in the world.\nB. There will be a major flood in a low-lying coastal city in Asia caused by a typhoon."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Given current climate trends and the frequency of typhoons in the Pacific, which is more probable in the next year?\nA. There will be a major flood somewhere in the world.\nB. There will be a major flood in a low-lying coastal city in Asia caused by a typhoon."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Framing with 'current climate trends and Pacific typhoon frequency' makes the specific vivid scenario feel more plausible, amplifying the fallacy.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Any flood in an Asian coastal city from a typhoon is a specific case of 'a major flood somewhere in the world.' The more specific scenario is always less probable than the general one. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 406
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2f713d51714a10001d4efc4162c12aa274cbdd79054921b7cc352c79ec6a9691"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Which is more probable in a randomly selected person from the US population?\nA. The person is over 65.\nB. The person is over 65 and receives Medicare benefits."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "In the US, Medicare is the federal health insurance program primarily for people 65 and older. Which is more probable in a randomly selected person?\nA. The person is over 65.\nB. The person is over 65 and receives Medicare benefits."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Providing background on Medicare's age eligibility makes the conjunction feel logical and highly probable, masking the mathematical constraint.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Not all Americans over 65 receive Medicare (some delay enrollment, some have alternative coverage). P(over 65 AND Medicare) ≤ P(over 65). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 407
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "374df117ddbc22956a7a8b2c83f499eca6ed82116831678bbafadba02ff2885b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Jason is a 19-year-old college freshman who plays video games 6 hours per day, built his own gaming PC, and moderates an online gaming forum.\n\nWhich is more probable?\nA. Jason is interested in technology.\nB. Jason is interested in technology and studies computer science."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Jason is a 19-year-old college freshman who plays video games 6 hours per day, built his own gaming PC, and moderates an online gaming forum. His passion for technology seems serious.\n\nWhich is more probable?\nA. Jason is interested in technology.\nB. Jason is interested in technology and studies computer science."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Labeling his tech passion as 'serious' amplifies CS major representativeness, making conjunction B feel more probable.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(interested in tech AND CS major) ≤ P(interested in tech). Many technology enthusiasts don't study CS. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 408
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5a2cfe943dd3b4a6c3fe2bec2ccadc9315a1b3a80df5606d76ed242f704b8c89"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A coin is flipped 10 times. Which sequence of outcomes is more probable?\nA. HHHHHHHHHH (10 heads in a row)\nB. HHHHHTTTTT (5 heads then 5 tails)\nC. HTHTTHTHHT (alternating, irregular pattern)"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A fair coin is flipped 10 times. A long streak of all heads seems very unlikely, but a perfectly even split or a pattern also seems unusual. Which is more probable?\nA. HHHHHHHHHH (10 heads in a row)\nB. HHHHHTTTTT (5 heads then 5 tails)\nC. HTHTTHTHHT (alternating, irregular pattern)"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Noting that all options 'seem unusual' activates representativeness — irregular patterns feel 'more random' and thus more probable, even though all specific 10-flip sequences are equally probable.",
+        "parameters": {
+          "correct_answer": "All are equally probable",
+          "fallacy_option": "B",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Each specific sequence of 10 fair coin flips has probability (1/2)^10 = 1/1024. No sequence is more or less probable than any other specific sequence. The fallacy is treating pattern-randomness as probability. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 409
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "537d1fa6e9487334721d225ac507a6924403266aceb3f82754fe5a0b30b46296"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1974",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Priya is a 38-year-old who meditates daily, has traveled to 30 countries, speaks three languages, and volunteers at an international aid organization.\n\nWhich is more probable?\nA. Priya has a passport.\nB. Priya has a passport and has visited a country in Southeast Asia."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Priya is a 38-year-old who meditates daily, has traveled to 30 countries, speaks three languages, and volunteers at an international aid organization. Southeast Asia is a popular destination for worldly travelers.\n\nWhich is more probable?\nA. Priya has a passport.\nB. Priya has a passport and has visited a country in Southeast Asia."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Noting Southeast Asia's popularity for worldly travelers amplifies representativeness for the conjunction B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(has passport AND visited SE Asia) ≤ P(has passport). Some passport holders have traveled extensively but to other regions. The conjunction adds an additional constraint. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 10,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 410
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ee0012f1c3a27e4cefb9020d17f2757e33a9a516d2a67ceded1942d57bf917fa"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 2028 US presidential election happens. Which is more probable?\nA. The Democratic candidate wins.\nB. The Democratic candidate wins and wins with more than 300 electoral votes."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 2028 US presidential election happens. Suppose the Democratic candidate has strong momentum and favorable approval ratings. Which is more probable?\nA. The Democratic candidate wins.\nB. The Democratic candidate wins and wins with more than 300 electoral votes."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Adding 'strong momentum and favorable ratings' makes a large electoral victory feel representative of the described conditions, amplifying conjunction selection.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(wins AND wins with 300+ EV) ≤ P(wins). A candidate can win with 270 EV and not exceed 300. The conjunction is strictly more specific than the win alone. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 11,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 411
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ee59ff328d2496a5865d043bceb0deb7f37e85a82ebcdef9d73f8b2775993537"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Sofia is a 50-year-old who grew up in Italy, cooks elaborate multi-course meals on weekends, watches cooking competition shows nightly, and collects vintage cookbooks.\n\nWhich is more probable?\nA. Sofia enjoys cooking.\nB. Sofia enjoys cooking and has taken professional culinary classes."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Sofia is a 50-year-old who grew up in Italy, cooks elaborate multi-course meals on weekends, watches cooking competition shows nightly, and collects vintage cookbooks. Someone this passionate would likely formalize their skills.\n\nWhich is more probable?\nA. Sofia enjoys cooking.\nB. Sofia enjoys cooking and has taken professional culinary classes."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "The 'would likely formalize skills' cue makes culinary classes representatively likely, amplifying conjunction B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(enjoys cooking AND took culinary classes) ≤ P(enjoys cooking). Many passionate home cooks never take professional classes. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 12,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 412
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1d8439e64874c5c48d2b7d55556ba1ffbee258478b27e4213156ac2d3f8dc26c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Next year, which is more probable?\nA. Global average temperature will be the highest ever recorded.\nB. Global average temperature will be the highest ever recorded AND a major Pacific island nation will face flooding emergency."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Given current global warming trajectories and the vulnerability of Pacific island nations, next year, which is more probable?\nA. Global average temperature will be the highest ever recorded.\nB. Global average temperature will be the highest ever recorded AND a major Pacific island nation will face flooding emergency."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Combining climate framing with Pacific vulnerability makes the conjunction feel like a natural co-occurrence, amplifying the fallacy.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The conjunction adds a specific additional event that may or may not co-occur with the temperature record. P(A AND B) ≤ P(A) regardless of correlation. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 13,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 413
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b359bca089333a7c5847b25c6331cc3f01bec67390ef5b6c990cabede00f24c1"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Kevin is 16 years old, ranked nationally in chess, scored 800/800 on the SAT Math section at age 12, and skipped two grades.\n\nWhich is more probable?\nA. Kevin attends a competitive high school.\nB. Kevin attends a competitive high school and has applied to MIT."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Kevin is 16 years old, ranked nationally in chess, scored 800/800 on the SAT Math section at age 12, and skipped two grades. Someone with his profile almost certainly has MIT on their radar.\n\nWhich is more probable?\nA. Kevin attends a competitive high school.\nB. Kevin attends a competitive high school and has applied to MIT."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "'Almost certainly has MIT on his radar' amplifies MIT application as representative, making conjunction B feel more probable.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(attends competitive HS AND applied to MIT) ≤ P(attends competitive HS). Many gifted students at competitive schools don't apply to MIT. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 14,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 414
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c141be67372094077eca9ed6db85e734ca0b243930581cacc571e3272bd9d816"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Angela is a 65-year-old retired nurse who volunteers at a hospice, visits her grandchildren every Sunday, and has been married for 40 years.\n\nWhich is more probable?\nA. Angela is religious.\nB. Angela is religious and attends weekly church services."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Angela is a 65-year-old retired nurse who volunteers at a hospice, visits her grandchildren every Sunday, and has been married for 40 years. Her lifestyle suggests deep community involvement and traditional values.\n\nWhich is more probable?\nA. Angela is religious.\nB. Angela is religious and attends weekly church services."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Framing Angela as having 'traditional values' and 'community involvement' makes weekly church attendance representatively likely, amplifying conjunction B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(religious AND weekly church attendance) ≤ P(religious). Many religious people don't attend weekly services. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 15,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 415
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d3984ddf795d4c2b92fb786a6d8541f0568d8f59cfb36190af4b9c236604b0d0"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Which is more probable?\nA. A randomly selected NBA player is taller than 6 feet.\nB. A randomly selected NBA player is taller than 6 feet and plays as a center or power forward."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "NBA centers and power forwards tend to be the tallest players on the roster, often above 6'8\". Which is more probable?\nA. A randomly selected NBA player is taller than 6 feet.\nB. A randomly selected NBA player is taller than 6 feet and plays as a center or power forward."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Highlighting the height of centers/forwards makes the conjunction feel representative — almost all NBA players are above 6 feet, making the position restriction feel natural.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(over 6 feet AND center/PF) ≤ P(over 6 feet). Guards and small forwards also exceed 6 feet. Adding the position constraint can only reduce or maintain probability. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 16,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 416
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "09c64e8281663c73331452f71d1049827cd6915a3a04f5b8f039ece8306f01a4"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Isaac is a 70-year-old retired physics professor at a major research university. He has published over 100 papers and mentored 40 PhD students.\n\nWhich is more probable?\nA. Isaac has won an academic award.\nB. Isaac has won an academic award from a scientific society."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Isaac is a 70-year-old retired physics professor who published over 100 papers and mentored 40 PhD students. Scientific societies typically recognize distinguished physicists.\n\nWhich is more probable?\nA. Isaac has won an academic award.\nB. Isaac has won an academic award from a scientific society."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Noting that scientific societies recognize physicists makes the conjunction feel like a natural category, amplifying selection of B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(won academic award AND from scientific society) ≤ P(won academic award). Awards from universities, governments, or foundations also count. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 17,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 417
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7d6e576be63b62f478ccb698131b6eb9b45e615cd21ab795d89309ffd77b503f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 35-year-old has been described as an avid outdoor enthusiast who climbs mountains every summer and participates in wilderness survival courses. Which is more probable?\nA. This person has health insurance.\nB. This person has health insurance and has made at least one emergency medical claim in the past 5 years."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 35-year-old avid outdoor enthusiast climbs mountains every summer and participates in wilderness survival courses — high-risk activities. Which is more probable?\nA. This person has health insurance.\nB. This person has health insurance and has made at least one emergency medical claim in the past 5 years."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Labeling activities as 'high-risk' makes emergency medical claims feel representative, amplifying the conjunction.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(has insurance AND made emergency claim) ≤ P(has insurance). Most insured people, including outdoor adventurers, don't make emergency claims every 5 years. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 18,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 418
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "310093ae6bdb0622e5e9d3fbe65e0ac9e1f53ddf3fbf352f2e3f38da47e13dd3"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Marcus is a 42-year-old who has worked at the same company for 15 years, has a pension plan, owns his home, and never uses credit cards.\n\nWhich is more probable?\nA. Marcus has savings.\nB. Marcus has savings and has more than $100,000 in a savings account."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Marcus is a 42-year-old who has worked at the same company for 15 years, has a pension, owns his home, and never uses credit cards. Someone this financially conservative likely has substantial savings.\n\nWhich is more probable?\nA. Marcus has savings.\nB. Marcus has savings and has more than $100,000 in a savings account."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Framing as 'financially conservative with substantial savings' makes $100K threshold feel representative, amplifying conjunction B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(has savings AND has $100K+) ≤ P(has savings). Many savers have under $100K. The $100K threshold adds a specific quantitative constraint. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 19,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 419
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "40bb573246d87db61dd4cbf93ccd085ed25e3f1a15b54aad78dc9cd638fa2627"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Elena is described as someone who reads 3 books per week, holds a PhD in comparative literature, and regularly writes book reviews for literary magazines.\n\nWhich is more probable?\nA. Elena has read a novel by Gabriel Garcia Marquez.\nB. Elena has read a novel by Gabriel Garcia Marquez and has read all of his major novels."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Elena reads 3 books per week, holds a PhD in comparative literature, and writes literary reviews. Garcia Marquez is a towering figure in the literary canon she studies.\n\nWhich is more probable?\nA. Elena has read a novel by Gabriel Garcia Marquez.\nB. Elena has read a novel by Gabriel Garcia Marquez and has read all of his major novels."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Labeling Garcia Marquez as a 'towering figure' in Elena's field makes comprehensive reading feel representative, amplifying conjunction B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(read a GGM novel AND read all major novels) ≤ P(read a GGM novel). 'All major novels' is a more specific condition than 'any novel.' Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 20,
+          "domain": "general"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 420
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "edbdacecaf36f2f7961010d7d27b08c825bc9398bd470329b9b1fb22413a6d7a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "general",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A tech stock has been declining for three consecutive months after years of growth. Analysts are divided on its outlook.\n\nWhich is more probable for next month?\nA. The stock price will increase.\nB. The stock price will increase because the company announces strong earnings."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A tech stock has declined for three months after years of growth. The company has historically beaten earnings expectations. Which is more probable for next month?\nA. The stock price will increase.\nB. The stock price will increase because the company announces strong earnings."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Historical earnings beat pattern makes 'strong earnings' feel like a natural explanatory event, amplifying the fallacy by making B feel more concrete and probable.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "The stock can increase for many reasons (sector rally, buyback news, macro factors, short squeeze). P(increases AND strong earnings) ≤ P(increases). Adding the specific earnings mechanism constrains probability. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 21,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 421
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "19f49488ec556e945fb860ecfb079911f6a5b520c992718dafe63f9b081c7ef5"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A retail company is facing declining foot traffic and competition from e-commerce. Which is more probable for the next 12 months?\nA. The company's revenue decreases.\nB. The company's revenue decreases and it closes at least 50 stores."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A retail company facing declining foot traffic and e-commerce competition has 400 locations. Store closures are a common response to declining revenue in retail. Which is more probable for the next 12 months?\nA. The company's revenue decreases.\nB. The company's revenue decreases and it closes at least 50 stores."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Noting store closures are a 'common response' makes the conjunction feel like a natural package, amplifying selection of B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(revenue decreases AND closes 50+ stores) ≤ P(revenue decreases). Revenue can decline without store closures (or with fewer closures). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 22,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 422
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b00f944668f012fc4f0992c437bf6e1554ee77f718eceb78645abe8d70ee71fc"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Which is more probable in a given year?\nA. A major US bank reports losses.\nB. A major US bank reports losses due to a significant credit default event."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Credit defaults are the primary historical driver of major bank losses. Which is more probable in a given year?\nA. A major US bank reports losses.\nB. A major US bank reports losses due to a significant credit default event."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Stating that credit defaults are the 'primary historical driver' makes the specific causal mechanism feel more probable than the general outcome, amplifying the fallacy.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Banks can report losses from trading losses, fines, goodwill impairments, or operational losses. Adding the credit default cause constrains to a subset of loss scenarios. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 23,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 423
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "068767790dfaaf3c7b329490ca8085c32fb748fbb83db12280573300bc5b3e1a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A cryptocurrency has experienced high volatility over the past year. Which is more probable for the next month?\nA. The cryptocurrency's price changes by more than 20%.\nB. The cryptocurrency's price changes by more than 20% upward due to a regulatory announcement."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A cryptocurrency has been highly volatile. Regulatory news has historically driven large crypto price moves. Which is more probable for the next month?\nA. The cryptocurrency's price changes by more than 20%.\nB. The cryptocurrency's price changes by more than 20% upward due to a regulatory announcement."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Linking regulatory news to historical price moves makes the upward regulatory scenario feel more probable despite adding two specific constraints (direction + cause).",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(changes 20%+ AND upward AND regulatory cause) ≤ P(changes 20%+). Price can move down, or upward for non-regulatory reasons. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 24,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 424
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d0e1464321903c47a2d281dd53fd18e42ff104569a4e6768bf7fecd5093348d3"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An oil company is in a region where political instability is rising. Which is more probable in the next two years?\nA. The company's operations are disrupted.\nB. The company's operations are disrupted by a government nationalization of assets."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An oil company operates in a region with rising political instability. Nationalization of foreign energy assets is a common response to political crises in oil-producing nations. Which is more probable in the next two years?\nA. The company's operations are disrupted.\nB. The company's operations are disrupted by a government nationalization of assets."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Stating nationalization is 'common' makes the specific disruption mechanism feel representative, amplifying the fallacy.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Disruptions can come from labor strikes, infrastructure damage, regulatory changes, or security threats — not only nationalization. Conjunction adds specificity that reduces probability. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 25,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 425
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e65829e3a6fbf21a5ee11a0191178bd3bb1c1740a7811523f07c79c235706d9f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A portfolio manager outperformed the S&P 500 by 5% last year. Which is more probable?\nA. They outperformed again this year.\nB. They outperformed again this year by selecting undervalued small-cap stocks."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A portfolio manager who beat the S&P 500 by 5% is known for finding undervalued opportunities. Which is more probable?\nA. They outperformed again this year.\nB. They outperformed again this year by selecting undervalued small-cap stocks."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Describing the manager as 'known for finding undervalued opportunities' makes the small-cap value strategy feel representative, amplifying the conjunction.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(outperformed AND via small-cap value picks) ≤ P(outperformed). Outperformance can come from large-cap selection, sector bets, options strategies, or timing. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 26,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 426
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "93c9f64b5bf2e6d54f7326c6c933eb034a082a09d5efc0446b12f9e2e5b05866"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate market in a major city has been appreciating rapidly for five years. Which is more probable?\nA. Prices will decline over the next two years.\nB. Prices will decline over the next two years following an interest rate increase."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A real estate market has appreciated rapidly for five years. Interest rates are widely cited as the primary risk factor for real estate. Which is more probable?\nA. Prices will decline over the next two years.\nB. Prices will decline over the next two years following an interest rate increase."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Calling interest rates the 'primary risk factor' makes the conjunction feel like the most natural decline scenario, amplifying selection of B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Prices can decline due to economic recession, oversupply, demographic shifts, or policy changes — not only interest rate increases. P(declines AND due to rate increase) ≤ P(declines). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 27,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 427
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1547b784f1affc1054320e4c8a719fa9df92185e4284d9b2822000a97f839e9e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A large corporation announces a major restructuring. Which is more probable in the six months following?\nA. The stock price increases.\nB. The stock price increases and analyst upgrades the stock."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A large corporation announces a major restructuring. Analysts often upgrade stocks after restructurings that signal improved efficiency. Which is more probable in the six months following?\nA. The stock price increases.\nB. The stock price increases and analyst upgrades the stock."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Linking analyst upgrades to restructuring signals makes the conjunction feel like a natural causal chain, amplifying selection of B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(stock increases AND analyst upgrades) ≤ P(stock increases). Stock can increase from retail buying, short covering, or index inclusion without analyst upgrades. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 28,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 428
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "adf8e48a7cfca91b1059912afd8a0ee7978967415399ef7ee66979402e23071f"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An inflation report comes in higher than expected. Which is more probable?\nA. Bond yields increase.\nB. Bond yields increase and the Federal Reserve raises interest rates at the next meeting."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An inflation report comes in higher than expected. The Fed has historically raised rates in response to inflationary surprises. Which is more probable?\nA. Bond yields increase.\nB. Bond yields increase and the Federal Reserve raises interest rates at the next meeting."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Noting historical Fed rate response to inflation makes the conjunction feel like a predictable chain, amplifying the fallacy.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Bond yields can rise due to market anticipation without the Fed actually acting at the next meeting. P(yields increase AND Fed raises rates) ≤ P(yields increase). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 29,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 429
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d50d4c59af111ed6a9858de41675f8666c065f66f1f9bffadf48c116a8530e23"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company's sales growth rate has been declining for four quarters. Which is more probable?\nA. The CEO is replaced within the next year.\nB. The CEO is replaced within the next year and a turnaround specialist is hired."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A company with four quarters of declining sales growth is under pressure from its board. Boards typically bring in turnaround specialists after persistent underperformance. Which is more probable?\nA. The CEO is replaced within the next year.\nB. The CEO is replaced within the next year and a turnaround specialist is hired."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Noting boards 'typically bring in turnaround specialists' makes the conjunction feel like standard operating procedure, amplifying selection of B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "CEO replacements can bring in industry veterans, COOs promoted to CEO, or external executives from unrelated sectors. Not all replacements involve turnaround specialists. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 30,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 430
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "09382732c29b81da1eab2a54a039f8f8b0550a37517fc010bb5c8c0b9da54e3a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Which is more probable in the next decade?\nA. A major US financial institution faces a liquidity crisis.\nB. A major US financial institution faces a liquidity crisis during a period of rising interest rates."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Rising interest rates historically stress bank balance sheets by reducing bond values and tightening net interest margins. Which is more probable in the next decade?\nA. A major US financial institution faces a liquidity crisis.\nB. A major US financial institution faces a liquidity crisis during a period of rising interest rates."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Explaining the mechanism by which rising rates create bank stress makes the conjunction feel like a natural co-occurrence, amplifying the fallacy.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Liquidity crises can occur during falling rates, flat rate environments, or for idiosyncratic reasons. Specific period condition (rising rates) constrains the probability subset. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 31,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 431
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "296f022e41b44a7d08ebef8882260554da3e395d770d3d95054e73c7fa8b985a"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An e-commerce startup raised $50M in Series B, has a 300% year-over-year revenue growth, and expanded to three new markets. Which is more probable?\nA. The company achieves profitability within 3 years.\nB. The company achieves profitability within 3 years and successfully completes an IPO."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An e-commerce startup with 300% revenue growth and $50M raised is on a strong trajectory. High-growth startups that achieve profitability typically go public. Which is more probable?\nA. The company achieves profitability within 3 years.\nB. The company achieves profitability within 3 years and successfully completes an IPO."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Asserting that profitable high-growth startups 'typically go public' makes the conjunction feel representatively likely.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(achieves profitability AND completes IPO) ≤ P(achieves profitability). Profitable companies can be acquired, stay private, or have IPOs delayed or cancelled. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 32,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 432
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "74449e5278eaa4794786805f42a6b7fb76a95e3394a4992147440d676026d57b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A country's trade deficit widens significantly. Which is more probable?\nA. The country's currency weakens.\nB. The country's currency weakens and the central bank intervenes in currency markets."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "When trade deficits widen, currency markets react, and central banks in many countries intervene to stabilize exchange rates. Which is more probable?\nA. The country's currency weakens.\nB. The country's currency weakens and the central bank intervenes in currency markets."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Asserting that central banks 'in many countries intervene' to stabilize currency makes the conjunction feel like a standard policy response, amplifying the fallacy.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Currency weakening can occur without central bank intervention — many central banks (especially in advanced economies) let rates float. P(weakens AND CB intervenes) ≤ P(weakens). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 33,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 433
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e8fc70d6c1068d07e649e03efcd6ccb739badf8e5c47e5c97338e48834f877d5"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A private equity firm acquires a mid-size manufacturing company. Which is more probable in the next 5 years?\nA. The PE firm exits the investment.\nB. The PE firm exits the investment via sale to a strategic acquirer."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Private equity firms typically exit manufacturing investments through strategic sales to larger industry players who value operational synergies. Which is more probable in the next 5 years?\nA. The PE firm exits the investment.\nB. The PE firm exits the investment via sale to a strategic acquirer."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Stating that strategic sales are 'typical' for manufacturing PE exits makes the specific exit route feel representative, amplifying the fallacy.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "PE exits can occur through IPO, secondary buyout to another PE firm, management buyout, or company sale to financial buyers. Strategic sale is one of multiple exit routes. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 34,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 434
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "bedfee84e4239b242125520a89c1d0228540f3ac28e4cc4ed79d666f377cf2a2"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A startup founder who previously built and sold two companies is launching a third venture in fintech. Which is more probable?\nA. The new company raises venture capital funding.\nB. The new company raises venture capital funding from a top-tier Sand Hill Road firm."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A serial entrepreneur with two successful exits launching in fintech is exactly the profile that top VC firms compete to fund. Which is more probable?\nA. The new company raises venture capital funding.\nB. The new company raises venture capital funding from a top-tier Sand Hill Road firm."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Claiming top VC firms 'compete to fund' this profile makes a top-tier VC backing feel more probable than general VC funding, reversing the logical relationship.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(raises VC AND from top-tier Sand Hill firm) ≤ P(raises VC). VC can come from mid-tier, sector-specific, international, or seed-stage investors. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 35,
+          "domain": "financial"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 435
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a368e5c358075b3ced61f0d69d74b4b62d4f7bf592e4c22877a5eed897b735cd"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "financial",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 60-year-old male patient presents with chest pain. Which is more probable?\nA. He has a cardiac condition.\nB. He has a cardiac condition and is experiencing a myocardial infarction."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 60-year-old male patient presents with acute chest pain. Myocardial infarction is the most serious and time-sensitive cardiac condition to rule out. Which is more probable?\nA. He has a cardiac condition.\nB. He has a cardiac condition and is experiencing a myocardial infarction."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Highlighting MI as the most serious condition amplifies its clinical salience, making the conjunction feel more probable despite being logically constrained.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Cardiac conditions include angina, arrhythmias, pericarditis, and heart failure — not only MI. P(cardiac condition AND MI) ≤ P(cardiac condition). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 36,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 436
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "cad2b485b16e052c956817361c792fbdcfa362fbc60e9af9349efd87840cc939"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient with Type 2 diabetes has been poorly controlled for 10 years. Which is more probable within the next 5 years?\nA. The patient develops a complication.\nB. The patient develops a complication and requires dialysis for kidney failure."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient with 10 years of poorly controlled Type 2 diabetes. Diabetic nephropathy leading to dialysis is one of the most common serious complications of long-term uncontrolled diabetes. Which is more probable within 5 years?\nA. The patient develops a complication.\nB. The patient develops a complication and requires dialysis for kidney failure."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Identifying dialysis as 'one of the most common serious complications' makes this specific outcome feel more probable than the general complication category.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Complications include neuropathy, retinopathy, cardiovascular events, and foot ulcers — not only dialysis. P(complication AND dialysis) ≤ P(complication). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 37,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 437
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "044b6e3dcc05c8b2ea263f7e9a520d1fe56fbb86770113e598a04fb216629793"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient taking a medication reports feeling unwell. Which is more probable?\nA. The medication is causing an adverse effect.\nB. The medication is causing an adverse effect and the patient will be hospitalized."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient taking a medication reports feeling unwell. Adverse drug reactions are a leading cause of hospitalizations, particularly for elderly patients on multiple medications. Which is more probable?\nA. The medication is causing an adverse effect.\nB. The medication is causing an adverse effect and the patient will be hospitalized."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Noting that adverse reactions 'lead to hospitalizations' makes the conjunction feel like a natural clinical progression.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Most adverse drug effects are mild and managed outpatient. P(adverse effect AND hospitalization) ≤ P(adverse effect). Hospitalization is a severe subset. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 38,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 438
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f99e42826ea1464f97f331533457690afecc9dcc4273c894fe0cf79f7b330a5e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital patient develops a fever on post-operative day 3. Which is more probable?\nA. The fever is caused by an infection.\nB. The fever is caused by a surgical site infection."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A hospital patient develops a fever on post-operative day 3. Surgical site infections typically present with fever on post-operative days 3-5. Which is more probable?\nA. The fever is caused by an infection.\nB. The fever is caused by a surgical site infection."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Stating that SSIs 'typically present on days 3-5' makes the conjunction feel like the textbook explanation, increasing conjunction selection.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Post-operative fevers can result from pneumonia, urinary tract infection, deep vein thrombosis, or drug fever — not only SSI. P(infection AND SSI) ≤ P(infection). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 39,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 439
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f5c9e1d3d037b01c43ef7a32f6875d0e8dec17b7eec090fb093aef595f5ce873"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 70-year-old patient with a history of falls presents to the emergency department. Which is more probable?\nA. The patient has sustained an injury.\nB. The patient has sustained an injury and has a hip fracture."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 70-year-old with a history of falls presents to the emergency department. Hip fractures are the most common and dangerous fall-related injuries in elderly patients. Which is more probable?\nA. The patient has sustained an injury.\nB. The patient has sustained an injury and has a hip fracture."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Labeling hip fractures as 'most common and dangerous' makes the conjunction feel representatively probable despite being a specific injury type.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Fall injuries include wrist fractures, shoulder injuries, head trauma, and lacerations — not only hip fractures. P(injury AND hip fracture) ≤ P(injury). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 40,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 440
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "5387c8e952912f70be1a60912595f4050f58aa38b33c4a0cfbca1624a2789a0b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A newborn is diagnosed with a congenital heart defect. Which is more probable?\nA. The newborn will require medical intervention.\nB. The newborn will require medical intervention including open-heart surgery."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A newborn is diagnosed with a congenital heart defect. Complex defects often require open-heart surgery as a definitive repair. Which is more probable?\nA. The newborn will require medical intervention.\nB. The newborn will require medical intervention including open-heart surgery."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "'Complex defects often require surgery' primes the conjunction; less severe defects may only need medication or catheter-based intervention.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Many congenital defects are managed with medication, catheterization, or observation. P(intervention AND open-heart surgery) ≤ P(intervention). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 41,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 441
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c7c15cae9b5fdb60b2970fc253f38d36e1012d691c18cf4a1d292d3fdaceb4b8"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient is told they have an abnormal mammogram result. Which is more probable?\nA. The patient will undergo a biopsy.\nB. The patient will undergo a biopsy and be diagnosed with breast cancer."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "An abnormal mammogram result triggers further investigation. Biopsies in abnormal mammogram cases are done specifically to rule in or rule out cancer. Which is more probable?\nA. The patient will undergo a biopsy.\nB. The patient will undergo a biopsy and be diagnosed with breast cancer."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Framing biopsy as 'done specifically to rule in cancer' makes the cancer diagnosis feel like the anticipated outcome, amplifying conjunction B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Most biopsies after abnormal mammograms return benign results (approximately 80% of biopsied lesions are benign). P(biopsy AND cancer) ≤ P(biopsy). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 42,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 442
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fa1ed3f94b093bb41f246ae4250df07c6341e007d4b7f1794365f7ea7a337a3e"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial finds a statistically significant result for a new drug. Which is more probable?\nA. The drug receives regulatory approval.\nB. The drug receives regulatory approval and becomes a first-line treatment."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A clinical trial finds a statistically significant result for a new drug that addresses an unmet medical need. Drugs with significant trial results and unmet need status often become first-line treatments quickly. Which is more probable?\nA. The drug receives regulatory approval.\nB. The drug receives regulatory approval and becomes a first-line treatment."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Linking 'unmet need + significant results' to first-line status makes the conjunction feel like a representative outcome in drug development.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Many approved drugs remain second or third-line alternatives. P(approved AND becomes first-line) ≤ P(approved). First-line status requires additional guideline committee decisions. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 43,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 443
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "095c8de91b3d9da547232d79ad0177d4922ffbd480226d0a6f15420deab81d3c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient with severe depression does not respond to the first antidepressant prescribed. Which is more probable?\nA. The psychiatrist changes the treatment plan.\nB. The psychiatrist changes the treatment plan and switches to a different class of antidepressant."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patient with severe depression fails to respond to a first antidepressant. When a first-class medication fails, psychiatrists commonly switch to a different class to address different neurobiological pathways. Which is more probable?\nA. The psychiatrist changes the treatment plan.\nB. The psychiatrist changes the treatment plan and switches to a different class of antidepressant."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Stating that class-switching is 'commonly done' for treatment-resistant cases makes the conjunction feel like standard practice.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Treatment changes include dose optimization, augmentation strategies, psychotherapy addition, or TMS — not only class switching. P(changes plan AND switches class) ≤ P(changes plan). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 44,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 444
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "561598d36813c2dcdbe6f669a0ab12dc317b09b146fccd4f74e4f494d86bec1b"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 55-year-old with a 30-pack-year smoking history gets a chest CT. Which is more probable?\nA. An abnormality is detected.\nB. An abnormality is detected and it is a pulmonary nodule."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A 55-year-old with a 30-pack-year smoking history has a chest CT. Pulmonary nodules are the most common CT finding in long-term smokers. Which is more probable?\nA. An abnormality is detected.\nB. An abnormality is detected and it is a pulmonary nodule."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Stating that pulmonary nodules are the 'most common CT finding' in smokers makes the conjunction feel highly probable despite adding a specific abnormality type.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Chest CT abnormalities include emphysema, pleural thickening, mediastinal lymphadenopathy, and incidental findings — not only pulmonary nodules. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 45,
+          "domain": "medical"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 445
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d5c5dbeda9e4cb5f17a7e66496a8704707a58803325ac95193cce0bc79f4803c"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Croskerry, 2002",
+        "tags": [
+          "medical",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A CEO is charged with securities fraud. Which is more probable?\nA. The case goes to trial.\nB. The case goes to trial and the CEO is found guilty."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A CEO is charged with securities fraud. Securities fraud cases brought by federal prosecutors have a high conviction rate because they typically involve substantial documentary evidence. Which is more probable?\nA. The case goes to trial.\nB. The case goes to trial and the CEO is found guilty."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Noting high conviction rates in federal fraud cases makes the guilty verdict feel representative, amplifying conjunction B.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "P(goes to trial AND found guilty) ≤ P(goes to trial). Many high-profile corporate fraud cases result in acquittals or hung juries. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 46,
+          "domain": "legal"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 446
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d19a175ebc1d3174dbb5c24aae6260a9e1295b0e0c4672abef2e0cee383b71f1"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "legal",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A class action lawsuit is filed against a pharmaceutical company alleging harm from a widely prescribed drug. Which is more probable?\nA. The lawsuit settles.\nB. The lawsuit settles and the company pays more than $100 million."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A class action against a major pharmaceutical company with millions of prescriptions issued. Large pharma class actions involving widespread harm typically settle for hundreds of millions. Which is more probable?\nA. The lawsuit settles.\nB. The lawsuit settles and the company pays more than $100 million."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Citing 'hundreds of millions' as typical for large pharma settlements makes the $100M threshold feel like the natural settlement outcome, amplifying the conjunction.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Settlements can be for any amount. Many pharmaceutical class actions settle for tens of millions or less, depending on evidence quality and class size. P(settles AND $100M+) ≤ P(settles). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 47,
+          "domain": "legal"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 447
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7ffa1da3d6dea8378ea4b578765246652b6dc21e20e5b8dee6f8b0c53b8e9e18"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "legal",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A person is arrested for shoplifting for the first time. Which is more probable?\nA. They receive a sentence.\nB. They receive a sentence that includes community service."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A first-time shoplifting arrest typically results in diversion programs or community service rather than incarceration. Which is more probable?\nA. They receive a sentence.\nB. They receive a sentence that includes community service."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Stating community service is 'typical' makes the conjunction feel like the standard outcome, ignoring that the overall sentence category (A) is broader.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Sentences can include fines, probation, suspended sentences, or time served — not only community service. P(sentence AND community service) ≤ P(sentence). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 48,
+          "domain": "legal"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 448
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "01a342f416194cb519a56f95539692b85e00bad5338b3d0dccea25df4a7efbab"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "legal",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A patent dispute is filed between two tech companies over a software algorithm. Which is more probable?\nA. The dispute is resolved.\nB. The dispute is resolved through a licensing agreement."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Tech companies in patent disputes over software algorithms often prefer licensing agreements because they provide revenue streams while avoiding litigation costs. Which is more probable?\nA. The dispute is resolved.\nB. The dispute is resolved through a licensing agreement."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Asserting licensing agreements are 'preferred' for software patent disputes makes the conjunction feel like the most probable resolution route.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Patent disputes can resolve through invalidation, settlement with cross-licensing, court judgment, or abandonment — not only licensing agreements. Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 49,
+          "domain": "legal"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 449
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e72ce7a496c3c086e1c84978d54f7a19126c438812390643fdd9e159a67cff28"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "legal",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    },
+    {
+      "id": "conjunction_fallacy_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "conjunction_fallacy",
+        "name": "Conjunction Fallacy",
+        "taxonomy_number": 11
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A whistleblower reports financial misconduct at a large corporation to a regulatory agency. Which is more probable?\nA. An investigation is opened.\nB. An investigation is opened and the corporation is fined."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A whistleblower with documented evidence reports financial misconduct to regulators. Regulatory agencies that open investigations based on solid evidence typically follow through with enforcement actions. Which is more probable?\nA. An investigation is opened.\nB. An investigation is opened and the corporation is fined."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "representativeness_cue",
+        "description": "Stating that investigations based on 'solid evidence' lead to 'enforcement actions' makes the fine feel like the natural consequence of opening an investigation.",
+        "parameters": {
+          "correct_answer": "A",
+          "fallacy_option": "B",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "binary_choice",
+        "output_extraction": {
+          "type": "forced_choice",
+          "categories": [
+            "selects_A",
+            "selects_B",
+            "selects_all_equal",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Investigations can conclude with no action, consent orders without fines, referrals to DOJ, or administrative remedies. P(investigation AND fine) ≤ P(investigation). Conjunction fallacy present if biased condition significantly increases selection of B (or all-equal over A)."
+      },
+      "template": {
+        "template_id": "conjunction_fallacy_scenario",
+        "slot_values": {
+          "variant": 50,
+          "domain": "legal"
+        },
+        "value_pool_id": "conjunction_scenarios",
+        "generation_seed": 450
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b262810f1bd6268d7c7c82b53299d499ccaf981bc9554cff10e0abcba2fdbd12"
+      },
+      "metadata": {
+        "created_at": "2026-03-11",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1983",
+        "tags": [
+          "legal",
+          "conjunction-fallacy",
+          "probability",
+          "representativeness"
+        ],
+        "notes": "Authored by LCB master-method session v1.1. Severity: high. Conjunction fallacy: P(A AND B) ≤ P(A) — people violate this when B is representative of A's description."
+      }
+    }
+  ]
+}

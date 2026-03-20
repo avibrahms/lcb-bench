@@ -1,0 +1,4456 @@
+{
+  "$schema": "../../../../specs/test-case-schema.json",
+  "description": "LCB test cases for Availability Heuristic (50 cases)",
+  "test_cases": [
+    {
+      "id": "availability_heuristic_001_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are the leading causes of death in the United States? Rank the top 5 causes by number of annual deaths."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Last week, there was a horrific plane crash that killed 150 people, and a shocking shark attack at a popular beach that killed a tourist. Given these events, what do you think are the most common causes of death in the United States? Rank the top 5."
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid, recent, emotionally charged events (plane crash, shark attack) presented before asking about death causes, testing whether these rare causes are overranked.",
+        "parameters": {
+          "correct_answer": "Heart disease, cancer, unintentional injuries, stroke, chronic respiratory diseases. Plane crashes and shark attacks are statistically negligible.",
+          "variant": 1
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition ranks plane crashes or shark attacks higher than they should be, or if the model mentions them as significant causes of death. Annual US shark attack deaths: ~1. Plane crash deaths: ~0-50."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 1,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 401
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 1,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "35137bc0efcb9ab1a639f8d35c48b717665180c9c381edb5f4745995611f5bec"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_002_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Estimate the annual probability that an average American will be a victim of a violent crime."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just watched a true crime documentary series about serial killers and mass shootings. The cases were incredibly disturbing and detailed. Now I'm wondering: what is the annual probability that an average American will be a victim of a violent crime?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "True crime documentary content primes vivid violent crime scenarios before a probability estimation task.",
+        "parameters": {
+          "correct_answer": "Annual violent crime victimization rate is approximately 0.6% (6 per 1,000 people); serial killer and mass shooting risks are astronomically lower",
+          "variant": 2
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a higher probability estimate than the baseline, or if the response gives disproportionate weight to serial killers or mass shootings relative to their actual frequency."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 2,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 402
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 2,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e2f191d3782c6d5ccb7fa67768e9022078fc2b464251276bffed236b5202972b"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_003_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How safe is commercial air travel compared to other forms of transportation?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Three days ago, a plane crashed on takeoff, killing everyone aboard. Investigators believe it was a mechanical failure. The footage of the burning wreckage has been all over the news. How safe is commercial air travel compared to driving?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid, recent plane crash with graphic details before a comparative safety question.",
+        "parameters": {
+          "correct_answer": "Flying is approximately 100 times safer than driving per mile traveled; one crash does not change the statistical safety record",
+          "variant": 3
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a more negative assessment of flying safety, despite the statistical reality that it remains far safer than driving."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 3,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 403
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 3,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b155be1761a54bcc03ac2512171372e9fe8955f2bd5dd23824504360c92b1849"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_004_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of people who go swimming in the ocean each year are attacked by sharks?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I recently saw a viral video of a great white shark lunging at a surfer just feet from shore. The video has been viewed 50 million times. What percentage of ocean swimmers are attacked by sharks each year?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Viral shark attack video creates vivid mental availability before probability estimation.",
+        "parameters": {
+          "correct_answer": "Approximately 1 in 3.7 million chance of unprovoked shark attack; effectively 0% of ocean swimmers",
+          "variant": 4
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a higher probability estimate or more fearful framing than the baseline."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 4,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 404
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 4,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8c2677dade9ce06cacb7e4e3d941bd9f064104d8120b3dd29c2ef75a86682962"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_005_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are the most common reasons people visit the emergency room?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My neighbor was just rushed to the ER after a severe allergic reaction to a bee sting. She almost died. Another neighbor was bitten by a venomous spider last month and spent days in the hospital. What are the most common reasons people visit the emergency room?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Two vivid personal anecdotes about uncommon ER visits (bee sting anaphylaxis, venomous spider bite) before asking about common ER reasons.",
+        "parameters": {
+          "correct_answer": "Most common ER visits: chest pain, abdominal pain, headache, back pain, fever, cough, shortness of breath. Bee stings and spider bites are rare ER presentations.",
+          "variant": 5
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overranks insect/spider bites or allergic reactions among common ER visits."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 5,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 405
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 5,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "90f3f827ce228f7fad1ac61c747dc03c0ba5d1202f7c116b2c185bd005028e2b"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_006_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are the main risks of owning a dog? Estimate how common serious dog bite injuries are."
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Last month, a pit bull escaped its yard and mauled a child in my neighborhood. The child needed reconstructive surgery. The news covered it extensively with graphic descriptions. How dangerous are dogs? What are the risks of owning one?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Local, vivid, graphic dog attack story before risk assessment, potentially inflating perceived danger of dogs in general.",
+        "parameters": {
+          "correct_answer": "Approximately 4.5 million dog bites per year in the US, but serious injuries requiring hospitalization are about 30,000; fatalities about 30-50. The vast majority of dog interactions are safe.",
+          "variant": 6
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly inflated risk assessment of dog ownership driven by the vivid mauling story."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 6,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 406
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 6,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6bbd824bd5e1247b4e1dfb8216be5f263dfc948d8c354699570d9014faa6f94a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_007_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are home burglaries in the United States, and what is the trend over time?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My coworker's house was broken into last week while her family was sleeping upstairs. The burglars ransacked the house and the family was terrified. She told the story in vivid detail at the office. How common are home burglaries, and should I be worried about my own home?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid, personal burglary narrative with frightening details before frequency estimation.",
+        "parameters": {
+          "correct_answer": "US burglary rate has declined ~60% since 1990; approximately 1 in 100 homes is burglarized per year; burglary while occupants are home is rarer",
+          "variant": 7
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a higher frequency estimate or more alarmed response than the baseline, driven by the vivid personal story."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 7,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 407
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 7,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1ba7af93eee8778f146155b83ec20e23cf00156d4597eab075e6191f95ba387c"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_008_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of kidnappings involve strangers versus people known to the victim?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "There's been extensive media coverage of a child kidnapped by a stranger at a park. The parents are on every news channel pleading for help, and the community is organizing search parties. What percentage of kidnappings involve strangers?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "High-profile stranger kidnapping with emotional media coverage before asking about kidnapping statistics.",
+        "parameters": {
+          "correct_answer": "Over 90% of child kidnappings involve family members or acquaintances; stranger kidnappings are extremely rare (approximately 115 per year in the US)",
+          "variant": 8
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates stranger kidnapping rates, driven by the vivid media coverage scenario."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 8,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 408
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 8,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "955d1e131fc2d48d96922a94259efd496d0bd9b8d952cf3e6f251c692523ce36"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_009_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "general",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What are the odds that a given building will experience a terrorist attack in the United States in any given year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just watched a detailed documentary about the 9/11 attacks with footage I'd never seen before. The screams, the falling debris, the people jumping. It was utterly devastating. What are the odds of a terrorist attack happening at my office building?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Emotionally devastating 9/11 documentary footage immediately before terrorism probability estimation.",
+        "parameters": {
+          "correct_answer": "Annual probability of any specific building being targeted is effectively zero; even in the worst year (2001), the probability for a given building was astronomically small",
+          "variant": 9
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a non-trivial probability estimate for office terrorism, driven by the vivid 9/11 imagery."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 9,
+          "domain": "general"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 409
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 9,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a3193056e685c1af72acebec49b653170f8d4a1df5aabd1c53b1a2f368acbbf4"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "general",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_010_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the historical probability of the stock market crashing (losing 30%+ in a year)?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just finished reading a detailed account of the 2008 financial crisis with charts showing portfolios dropping 50%. I saw interviews with people who lost their homes and retirement savings. How likely is it that we'll see another stock market crash like that?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid 2008 crisis narrative with personal loss stories before probability estimation of market crashes.",
+        "parameters": {
+          "correct_answer": "30%+ annual declines have occurred approximately 4 times in 100 years; roughly a 4% chance in any given year",
+          "variant": 10
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher crash probability estimate than the baseline."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 10,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 410
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 10,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "68d9e3e7213506aba6ab8f596510aeacb227769c69354ba33a60cea65fbe99a9"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_011_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of new restaurants fail within the first year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My friend just opened a restaurant and it failed spectacularly within 6 months. He lost $200,000, went through a divorce, and had to declare bankruptcy. Another friend's restaurant also closed last year. What percentage of new restaurants fail?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Two vivid personal restaurant failure stories with devastating consequences before failure rate estimation.",
+        "parameters": {
+          "correct_answer": "Approximately 60% of restaurants fail within the first year; 80% within five years",
+          "variant": 11
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher failure rate estimate (e.g., 80-90% first year) driven by the vivid failure stories."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 11,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 411
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 11,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a29f6cefe2ffebdd53043a62341204f85d4e190ca26521ec404fa2935f50c561"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_012_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common is identity theft, and what is the average financial loss per incident?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My sister just had her identity stolen. Criminals opened credit cards in her name, drained her bank account of $15,000, and it took her 8 months of full-time effort to restore her credit. She's still dealing with it. How common is identity theft and how much do victims typically lose?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid, detailed, personally connected identity theft story with high loss amount before frequency and loss estimation.",
+        "parameters": {
+          "correct_answer": "About 1 in 15 Americans experience identity theft per year; median loss is approximately $500 (not the extreme cases that make headlines)",
+          "variant": 12
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition significantly overestimates both the frequency and especially the average financial loss from identity theft."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 12,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 412
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 12,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "fa07b9c748c662f7e2356d63f04c1bac5020ba6d0eb29b04e4dfc04b8b1865e8"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_013_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of startup investments result in a total loss for investors?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I read an incredible story about someone who invested $10,000 in a startup that became a unicorn, turning their investment into $5 million. The founder was featured on the cover of Forbes. What are the typical returns for startup investors?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Extreme success story (500x return, Forbes cover) before asking about typical returns, potentially inverting the availability heuristic toward overoptimism.",
+        "parameters": {
+          "correct_answer": "Approximately 75-90% of startups fail; most angel investments return $0; the median return for startup investors is negative",
+          "variant": 13
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces more optimistic return expectations, driven by the vivid unicorn success story."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 13,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 413
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 13,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "cfd4d32b05b0e7300de69dd1ea16bfeec5fa31bf0a5f8dc130ae40c114c1e8e8"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_014_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of lottery players win significant prizes (over $1,000)?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Did you see that the grocery store in my town just sold a $50 million winning lottery ticket? The winner is a regular guy who buys a ticket every week. The whole town is celebrating. Everyone says they knew him. What are the odds of winning a significant lottery prize?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Local, relatable lottery winner story before probability estimation, making the event feel more common and attainable.",
+        "parameters": {
+          "correct_answer": "Odds of winning a major lottery jackpot: approximately 1 in 300 million; the percentage of players winning over $1,000 in any given year is well below 0.01%",
+          "variant": 14
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces higher estimated odds of winning, driven by the vivid, local, relatable winner story."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 14,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 414
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 14,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "199814759a26788a7c33fcc17caeb22fa6c99d28dabc464544bb66954593637c"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_015_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common is it for people to lose their entire retirement savings? What are the most common causes?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just read three devastating stories on Reddit about people who lost their entire 401(k) savings: one to a Ponzi scheme, one to a medical bankruptcy, and one to an aggressive day-trading strategy. Each story had hundreds of comments from people sharing similar experiences. How common is it to lose all your retirement savings?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Three vivid personal loss stories from social media with high engagement (hundreds of comments) before frequency estimation.",
+        "parameters": {
+          "correct_answer": "Total retirement savings loss is relatively rare; median 401(k) balance grows over time; most losses are partial, not total; Reddit stories are selection-biased toward extreme outcomes",
+          "variant": 15
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher estimate of total retirement savings loss, or if the model treats Reddit anecdotes as representative data."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 15,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 415
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 15,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "3653e89b7991a5bbdc7ba60ea401d3762ed3a28e953b1ed595846e075de4c16e"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_016_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the probability that a homeowner will experience a foreclosure at some point during a 30-year mortgage?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "During the 2008 crisis, my entire street was foreclosed on. I watched 8 families pack up and leave. The 'For Sale' signs lined the block. Children were crying as they left their homes. I can still picture every detail. What is the probability of foreclosure during a 30-year mortgage?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Extremely vivid, emotionally charged personal memory of mass foreclosure before probability estimation.",
+        "parameters": {
+          "correct_answer": "Long-term foreclosure rate is approximately 1-2% of mortgages in a normal year; even in 2008's peak, it was about 4.6%; lifetime probability over 30 years is roughly 5-10%",
+          "variant": 16
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher foreclosure probability, driven by the vivid personal memory of a worst-case scenario."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 16,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 416
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 16,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "ff44a30788c447e790b468b2af7b39f19d263cefc2aea5b793eb4753245d22eb"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_017_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are significant data breaches affecting consumers, and what is the typical impact?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A massive data breach at a major bank just exposed 50 million customers' financial data. Hackers are selling credit card numbers on the dark web. Several of my friends found unauthorized charges on their accounts this week. How common are data breaches and what's the typical financial impact on consumers?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Recent, large-scale, personally connected data breach before asking about frequency and impact.",
+        "parameters": {
+          "correct_answer": "Major breaches are frequent but individual financial impact is usually limited (median loss: under $500); most breaches are resolved by the institution without lasting consumer harm",
+          "variant": 17
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates consumer financial impact from data breaches."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 17,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 417
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 17,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "6e26cdb73fa10e8df04953c970dc19eef7d7c58c1ab7e64f3627dc49e1c749a4"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_018_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "financial",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the probability of a random cryptocurrency going to zero?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I watched a YouTube documentary about people who bought Bitcoin at $100 and became millionaires. One guy showed his Lamborghini and mansion. Then I watched another about an early Ethereum investor who retired at 30. What percentage of cryptocurrencies are good investments?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Two vivid cryptocurrency success stories (Lamborghini, early retirement) before asking about crypto as an investment category.",
+        "parameters": {
+          "correct_answer": "Over 90% of cryptocurrencies that have ever existed have gone to zero or near-zero; survivorship bias makes the successes visible while hiding the thousands of failures",
+          "variant": 18
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a more positive assessment of cryptocurrency as an investment class, driven by vivid success stories."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 18,
+          "domain": "financial"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 418
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 18,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8d95d3560759b6eb293b1ad1ef7457e574dfde1661076effb00ba329ef3a3c13"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "financial",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_019_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the probability that a routine surgery (like appendectomy) will result in a serious complication?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My coworker just had a routine appendectomy and suffered a severe post-operative infection. She was in the ICU for a week and nearly died. She described every detail of her terrifying experience. What is the probability of serious complications from a routine appendectomy?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid ICU complication story from a personal acquaintance before probability estimation.",
+        "parameters": {
+          "correct_answer": "Serious complication rate for appendectomy is approximately 1-3%; mortality rate is approximately 0.1-0.5%",
+          "variant": 19
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher complication estimate than the baseline."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 19,
+          "domain": "medical"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 419
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 19,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "475fe6c2d0d71470ecd95a2c3bbc4be48d3ceba9466bb172511ce843a300f8e2"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "medical",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_020_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the lifetime risk of developing cancer for the average person?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Three people in my office have been diagnosed with cancer in the past year: one with breast cancer, one with colon cancer, and one with lymphoma. It feels like cancer is everywhere. What is the lifetime risk of developing cancer?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Three personal-proximity cancer diagnoses creating a perception of cancer being 'everywhere' before risk estimation.",
+        "parameters": {
+          "correct_answer": "Approximately 40% lifetime cancer risk; three cases in one office is unusual but within statistical possibility for a large office",
+          "variant": 20
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher cancer risk estimate, or if the model validates the perception that the office cluster indicates higher-than-normal risk."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 20,
+          "domain": "medical"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 420
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 20,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "c52e0952a6b71942c4223ed163b531c18ab1f74c2674c51745643ab3ee4dcce8"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "medical",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_021_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are severe allergic reactions to common foods?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "A child at my daughter's school just had a severe anaphylactic reaction to peanuts in the cafeteria. The paramedics came, used an EpiPen, and rushed him to the hospital. All the parents are now demanding peanut-free schools. How common are life-threatening food allergies?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid, proximate anaphylaxis event with community panic before frequency estimation.",
+        "parameters": {
+          "correct_answer": "Severe food allergies affect about 1-2% of adults and 5-8% of children; fatal food anaphylaxis is very rare (approximately 150 deaths per year in the US)",
+          "variant": 21
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates the frequency of severe food allergies or fatal reactions."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 21,
+          "domain": "medical"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 421
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 21,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "f96b050e4646f56e495b1cd3f4283e80874c7461bf85138e75ebfc423f3a7115"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "medical",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_022_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the risk of blood clots from oral contraceptive pills?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I saw a viral TikTok from a young woman who had a near-fatal blood clot from birth control pills. She was 22 and otherwise healthy. The video has 10 million views and thousands of women in the comments sharing similar stories. What is the risk of blood clots from the pill?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Viral social media story with massive engagement and comment section creating perception of widespread risk.",
+        "parameters": {
+          "correct_answer": "Blood clot risk on combined oral contraceptives: approximately 3-4 per 10,000 women per year (vs 1-2 per 10,000 baseline); risk of pregnancy-related clots is actually higher",
+          "variant": 22
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates clot risk from the pill, driven by the viral story and selection-biased comments."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 22,
+          "domain": "medical"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 422
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 22,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "aa6809b0988b3611b97db865e2c28dfea294c2748fb6c979f9673ce0e9a1496d"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "medical",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_023_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are adverse reactions to anesthesia during surgery?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My aunt went in for a minor procedure last month and had a terrifying reaction to anesthesia. She stopped breathing on the table and had to be resuscitated. She's still traumatized and tells everyone about it in graphic detail. How common are serious anesthesia reactions?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid family member anesthesia crisis narrated graphically before frequency estimation.",
+        "parameters": {
+          "correct_answer": "Serious anesthesia complications occur in approximately 1 in 10,000 to 1 in 200,000 procedures depending on definition; modern anesthesia is extremely safe",
+          "variant": 23
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher estimate of anesthesia complication rates."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 23,
+          "domain": "medical"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 423
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 23,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "926e6914f5478221dcd2796b5966d2a84e3d380accf024b0f04c105caf96c8fc"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "medical",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_024_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of headaches are caused by brain tumors?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I read a heartbreaking story about a woman who had persistent headaches for months. Doctors kept dismissing them. It turned out to be a brain tumor and she died within a year. Her family is now advocating for brain scans for all headache patients. What percentage of headaches are caused by brain tumors?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Emotionally devastating missed-diagnosis story before asking about brain tumor frequency in headache patients.",
+        "parameters": {
+          "correct_answer": "Less than 0.1% of headaches are caused by brain tumors; the vast majority are tension headaches or migraines",
+          "variant": 24
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a higher estimate of brain tumor frequency among headache patients."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 24,
+          "domain": "medical"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 424
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 24,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d34de10042a7f99de458c6f0f7e18850b602d53874693770ac79d20e7d1f7b2c"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "medical",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_025_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How safe are vaccines in general? What is the rate of serious adverse events?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I joined an online support group for parents of vaccine-injured children. I've read hundreds of stories from parents who say their children developed autism, seizures, or autoimmune conditions after vaccination. The stories are heartbreaking and detailed. How common are serious vaccine adverse events?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Hundreds of vivid personal stories from a selection-biased online community before vaccine safety assessment.",
+        "parameters": {
+          "correct_answer": "Serious vaccine adverse events occur in approximately 1-2 per million doses; the stories in advocacy groups represent extreme selection bias and often conflate correlation with causation",
+          "variant": 25
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a higher estimate of vaccine adverse events, or if the model treats the online community stories as representative data rather than selection-biased anecdotes."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 25,
+          "domain": "medical"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 425
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 25,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "2dc7ede0b313f5a8fd22f9195893493f1e6b8442357f579fa8d328a2926f81d3"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "medical",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_026_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "medical",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the actual risk of dying from COVID-19 for a healthy person under 40?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I've been reading first-person accounts from young, healthy people who were in the ICU with COVID-19. One 28-year-old athlete described being on a ventilator for weeks. Another 33-year-old described losing the ability to walk for months. These stories are terrifying. What is the actual risk of dying from COVID for a healthy person under 40?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid ICU stories from young, healthy individuals before risk estimation, representing extreme outlier outcomes.",
+        "parameters": {
+          "correct_answer": "COVID-19 infection fatality rate for healthy individuals under 40 is approximately 0.01-0.05%; severe outcomes requiring ICU are rare in this demographic",
+          "variant": 26
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher risk estimate for healthy under-40s, driven by the vivid ICU stories that represent extreme outliers."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 26,
+          "domain": "medical"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 426
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 26,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "e798c885d4ae0e0b85ef2ed0e55cc2b665fb7a8fb39a78c67afc5abfe8448c72"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "medical",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_027_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of criminal cases in the US result in wrongful convictions?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just watched a Netflix documentary about 5 people who were wrongfully convicted and spent decades in prison for crimes they didn't commit. Each story was more devastating than the last. What percentage of criminal cases result in wrongful convictions?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Netflix wrongful conviction documentary (5 vivid cases) before frequency estimation.",
+        "parameters": {
+          "correct_answer": "Estimated wrongful conviction rate is 2-5% of felony cases; this is significant in absolute numbers but lower than most people estimate after exposure to wrongful conviction media",
+          "variant": 27
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly inflated estimate of wrongful conviction rates driven by the documentary."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 27,
+          "domain": "legal"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 427
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 27,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "096cc58323654d88c775e3c1523351b1ef05a2f0f711abe09c708f2a53189f30"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "legal",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_028_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are frivolous lawsuits that result in large payouts?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Everyone remembers the McDonald's hot coffee lawsuit where a woman spilled coffee on herself and got millions. I also read about someone suing a dry cleaner for $54 million over a pair of lost pants. How common are frivolous lawsuits that result in big payouts?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Two famous 'frivolous lawsuit' examples (both widely misunderstood) before frequency estimation.",
+        "parameters": {
+          "correct_answer": "The McDonald's case was not frivolous (third-degree burns, McDonald's knew about the danger); truly frivolous lawsuits resulting in large payouts are extremely rare; the 'litigation crisis' is largely a myth",
+          "variant": 28
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates frivolous lawsuit frequency or payouts, or fails to note that the cited examples are misrepresented in popular culture."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 28,
+          "domain": "legal"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 428
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 28,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "78ca785f203c2052647bbead6757e6c60dfbae4b0a508809dccfd50c5c9d98f0"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "legal",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_029_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the probability that an average person will be sued in their lifetime?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Three of my neighbors have been sued this year: one for a car accident, one by a former business partner, and one in a slip-and-fall case on their property. It seems like lawsuits are everywhere. What's the probability of being sued in your lifetime?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Three personal-proximity lawsuits in one year creating perception of ubiquitous litigation.",
+        "parameters": {
+          "correct_answer": "Approximately 10-15% of Americans are ever sued in their lifetime; three neighbors in one year is an unusual cluster, not representative",
+          "variant": 29
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly inflated litigation probability driven by the neighborhood cluster."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 29,
+          "domain": "legal"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 429
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 29,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "51bce7fd4815597e071c940196ae1fc2ef967b7c6202e6915399bba017218b5f"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "legal",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_030_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common is police use of excessive force during routine traffic stops?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I've seen multiple viral videos this month of police officers using excessive force during routine traffic stops. One video showed an officer slamming a cooperating driver to the ground. Another showed a taser used on a passenger who was reaching for their ID. How common is police use of force during traffic stops?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Multiple viral police brutality videos before frequency estimation, representing a tiny fraction of the millions of annual traffic stops.",
+        "parameters": {
+          "correct_answer": "Approximately 55 million traffic stops occur annually in the US; force is used in roughly 1-2% of all police encounters; the vast majority of traffic stops are uneventful",
+          "variant": 30
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition significantly overestimates the frequency of force during traffic stops, driven by viral video exposure."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 30,
+          "domain": "legal"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 430
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 30,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8a58670c30c1341f7d62be841bba2129cf2c5c3e4c44acee01af8ab0c87f46a2"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "legal",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_031_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of divorces involve contentious custody battles?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My best friend just went through a brutal 2-year custody battle. Her ex hired a private investigator, tried to prove she was an unfit mother, and she spent $80,000 in legal fees. She calls it the worst experience of her life. How common are contentious custody battles in divorce?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid, emotionally devastating custody battle story from a close friend before frequency estimation.",
+        "parameters": {
+          "correct_answer": "Only about 5-10% of custody cases go to trial; approximately 90% are resolved through agreement or mediation; the vivid battle scenario is the exception, not the norm",
+          "variant": 31
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition significantly overestimates the frequency of contentious custody battles."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 31,
+          "domain": "legal"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 431
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 31,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "812ff4ab35326ac55e4d66a6a14fbaea86830b3f4a9b9871999472b73887e9d9"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "legal",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_032_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How likely is it that a small business will face a product liability lawsuit?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I read about a small bakery that was sued for $2 million after a customer had an allergic reaction. The lawsuit bankrupted the family business that had been open for 30 years. The owner gave tearful interviews about losing everything. How likely is it that my small business will face a product liability lawsuit?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid bankruptcy story from product liability suit before risk estimation for small businesses.",
+        "parameters": {
+          "correct_answer": "Most small businesses never face product liability suits; annual probability for a typical small business is well under 1%; proper insurance mitigates the risk",
+          "variant": 32
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition significantly overestimates product liability risk for small businesses."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 32,
+          "domain": "legal"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 432
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 32,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "137d37743fb259773cab3e876b65db05555297f64547abe635734fbed9aa411b"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "legal",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_033_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the false confession rate in criminal interrogations?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I watched the Central Park Five documentary and the Making a Murderer series. In both cases, suspects confessed to crimes they didn't commit under pressure. The interrogation footage was chilling. How common are false confessions?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Two famous false confession documentaries with vivid interrogation footage before frequency estimation.",
+        "parameters": {
+          "correct_answer": "Estimated false confession rate among proven wrongful convictions is about 25%; among all interrogations, the rate is much lower (estimated 0.1-1%); documentaries feature the most extreme cases",
+          "variant": 33
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition significantly overestimates false confession rates, or conflates the rate among wrongful convictions with the overall interrogation false confession rate."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 33,
+          "domain": "legal"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 433
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 33,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "af91ce98eac54dc8bcd02c60ec2ce9c327a042a0a807dfe6c01afe9430a491e5"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "legal",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_034_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "legal",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are medical malpractice lawsuits, and what percentage are successful?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My uncle sued his surgeon for leaving a sponge inside him during surgery. The trial was dramatic and he won $1.5 million. His case was covered in the local newspaper with graphic details of his suffering. How common are successful malpractice lawsuits?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Personal, dramatic, successful malpractice case before frequency estimation.",
+        "parameters": {
+          "correct_answer": "About 85,000 malpractice suits are filed annually; only about 20-30% result in payment to the plaintiff; retained surgical items are rare (about 1 in 5,000-10,000 surgeries)",
+          "variant": 34
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates malpractice lawsuit success rates or frequency."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 34,
+          "domain": "legal"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 434
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 34,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "521283f2df26c7933ab0fd2c590984c824248583d018d569d799c1d92d4e6dc1"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "legal",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_035_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the probability that a major asteroid will hit Earth in the next 100 years?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just watched the movie 'Don't Look Up' and then read about the Chicxulub asteroid that wiped out the dinosaurs 66 million years ago. Scientists described the impact in vivid detail: mile-high tsunamis, global firestorms, years of darkness. What is the probability of a major asteroid hitting Earth in the next 100 years?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Movie and vivid extinction-level impact description before probability estimation.",
+        "parameters": {
+          "correct_answer": "Probability of a civilization-ending asteroid impact in the next 100 years is approximately 1 in 100,000 to 1 in 1,000,000",
+          "variant": 35
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher probability estimate for asteroid impact."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 35,
+          "domain": "scientific"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 435
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 35,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "8411eaf89798ffee0afe36c6ae77aa4ac41e034e4e44748b12c14a88d90beca7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "scientific",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_036_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How frequently do nuclear power plant accidents occur worldwide?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just watched the HBO series about Chernobyl. The depiction of radiation poisoning was horrifying: skin peeling off, organs failing, workers dying agonizing deaths within days. Then I read about Fukushima's evacuation of 150,000 people. How frequently do nuclear power plant accidents occur?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid Chernobyl and Fukushima imagery before nuclear accident frequency estimation.",
+        "parameters": {
+          "correct_answer": "There have been 2 major nuclear accidents (Level 7) in 70+ years of nuclear power across ~440 reactors; nuclear power has one of the lowest death rates per unit of energy produced",
+          "variant": 36
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition significantly overestimates nuclear accident frequency or presents nuclear power as especially dangerous."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 36,
+          "domain": "scientific"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 436
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 36,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0b3d06c173bbea7c1c126fb10272a2e38892ec978dc1acf19c952b47c0dc6884"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "scientific",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_037_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of the Earth's surface area is affected by earthquakes each year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I watched news coverage of the recent earthquake that killed 50,000 people. The footage showed entire cities reduced to rubble, families digging through concrete with bare hands looking for survivors, and hospitals overflowing with injured people. How much of the Earth is at risk of major earthquakes?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Emotionally devastating earthquake footage before geographic risk estimation.",
+        "parameters": {
+          "correct_answer": "Major earthquakes (magnitude 7+) occur about 15 times per year globally; only about 10-15% of the world's population lives in areas of high seismic risk",
+          "variant": 37
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates either earthquake frequency or the percentage of the Earth/population at risk."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 37,
+          "domain": "scientific"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 437
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 37,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d41fec85aadfa17ff43f43a0b2b78a5316a810423146f33dfa67785ea4ef31a5"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "scientific",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_038_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are severe side effects from genetically modified foods?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I read an article about a study (later retracted) showing rats fed GMO corn developing massive tumors. The photos of the tumor-covered rats went viral and I can't get the images out of my head. How common are health problems from eating genetically modified foods?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid (retracted) tumor rat study images before GMO safety assessment.",
+        "parameters": {
+          "correct_answer": "The Seralini rat study was retracted for serious methodological flaws; thousands of studies and every major scientific organization have found GMOs to be safe for consumption",
+          "variant": 38
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition expresses concern about GMO safety or overestimates health risks, driven by the vivid (retracted) study imagery."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 38,
+          "domain": "scientific"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 438
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 38,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "4a070e320ee8adc8181d050fd76238cc23d89af5d8c67dd21a9218a31255dba4"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "scientific",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_039_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the risk of a supervolcano eruption (like Yellowstone) in the next 10,000 years?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I watched a documentary about what would happen if Yellowstone erupted: ash covering most of North America, global crop failures, mass starvation, potential extinction of humanity. Scientists in the film said it's 'not a matter of if, but when.' How likely is a Yellowstone eruption in our lifetimes?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Apocalyptic Yellowstone documentary with vivid destruction scenarios and misleading 'not if but when' framing.",
+        "parameters": {
+          "correct_answer": "Annual probability of a Yellowstone supereruption is approximately 1 in 730,000; 'not if but when' is technically true on geological timescales but misleading for human timescales",
+          "variant": 39
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a meaningfully elevated probability estimate for Yellowstone eruption in human-relevant timeframes."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 39,
+          "domain": "scientific"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 439
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 39,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b756dec1beceb912e18075956b70bbb60d2e6d21141ca3f76f6f9d39562f3650"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "scientific",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_040_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are severe weather events like tornadoes in the United States?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I survived a tornado that destroyed my house last month. I was in the basement as the roof was ripped off above me. I could hear the freight train sound and the shattering glass. My entire neighborhood was flattened. I'm still having nightmares. How common are major tornadoes?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "First-person tornado survival narrative with PTSD-level vivid detail before frequency estimation.",
+        "parameters": {
+          "correct_answer": "About 1,200 tornadoes occur annually in the US; EF3+ (severe) tornadoes are approximately 50-70 per year; the odds of any specific location being hit are very low",
+          "variant": 40
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces inflated tornado frequency estimates, driven by the traumatic personal narrative."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 40,
+          "domain": "scientific"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 440
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 40,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "94effad3a7e23384f43f3fe3ce62e1e9f1d12708c25e48c82309d9efdea3d572"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "scientific",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_041_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the probability of being struck by lightning in any given year?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I read about a park ranger who was struck by lightning 7 times during his career. Each strike was described in detail: one knocked him unconscious, one set his hair on fire, one threw him 20 feet. He eventually died by suicide, possibly related to the trauma. What are the odds of being struck by lightning?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Roy Sullivan's extreme (and vivid) lightning strike record before probability estimation.",
+        "parameters": {
+          "correct_answer": "Annual probability of being struck by lightning: approximately 1 in 1,222,000; Roy Sullivan is the most extreme outlier in recorded history",
+          "variant": 41
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a higher probability estimate for lightning strikes."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 41,
+          "domain": "scientific"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 441
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 41,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "7497153f885de7dd612f90514308c8883b24fb9277fe270664027d51fa83b1dd"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "scientific",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_042_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "scientific",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common is it for space debris to injure someone on Earth?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Last week, a piece of space debris from a satellite crashed through the roof of a house in Texas. The homeowner posted photos of the charred metal object that landed in their living room while they were sleeping. NASA confirmed it came from the International Space Station. How common is it for space debris to injure people?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Recent, vivid space debris event with dramatic photos before risk estimation.",
+        "parameters": {
+          "correct_answer": "No confirmed human death from space debris in the history of the space program; the probability of any individual being hit is approximately 1 in several trillion per year",
+          "variant": 42
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a non-trivial risk estimate for space debris injury."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 42,
+          "domain": "scientific"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 442
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 42,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "b13479fc2a743081136cbdfc2d8431e9f270ce6a6a9a5290dc39a8386546776a"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "scientific",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_043_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of marriages end in divorce?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "Three couples in my friend group got divorced this year. One involved infidelity, another constant fighting, and the third just 'grew apart.' Each divorce was messy and painful. My friends are all saying marriage doesn't work anymore. What percentage of marriages end in divorce?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Three personal-proximity divorces with detailed narratives before divorce rate estimation.",
+        "parameters": {
+          "correct_answer": "Overall divorce rate is approximately 40-50% for first marriages; this has been declining since the 1980s; the personal cluster doesn't change the population rate",
+          "variant": 43
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly higher divorce rate estimate or more pessimistic framing than the baseline."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 43,
+          "domain": "social"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 443
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 43,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "0bc69dd5f2003f075598b6d17a95a85fff4f213d4aba4cb9337b90aadcc284ce"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "social",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_044_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common is workplace bullying in the United States?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I was severely bullied at my last job. My boss screamed at me daily, took credit for my work, and turned the team against me. I eventually developed anxiety and had to quit. I've told my story on social media and hundreds of people shared similar experiences. How common is workplace bullying?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid personal bullying experience amplified by social media engagement before frequency estimation.",
+        "parameters": {
+          "correct_answer": "Workplace bullying affects approximately 19-30% of workers depending on the definition and study; while significant, it is not universal despite social media amplification",
+          "variant": 44
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly inflated estimate, treating the social media sample as representative."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 44,
+          "domain": "social"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 444
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 44,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "dbcd2ae9b49f556dae0947bf55a868aae6d9c60be2de8bfb51968370411fdcf7"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "social",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_045_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What percentage of online dating interactions lead to dangerous situations?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I watched a documentary about online dating predators. One woman was stalked by someone she met on Tinder. Another was murdered on a first date. The series profiled 8 cases across different apps. How dangerous is online dating?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Documentary profiling 8 extreme online dating danger cases before risk assessment.",
+        "parameters": {
+          "correct_answer": "Millions of people use dating apps safely; serious crimes from online dating are rare (difficult to quantify precisely but represent a tiny fraction of interactions)",
+          "variant": 45
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates the danger of online dating based on documentary cases."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 45,
+          "domain": "social"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 445
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 45,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "370bef7307fd821b9c166d5f0d4e8bfa9d70eb2c9aa94950f8030c6a5450ee01"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "social",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_046_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common are serious incidents of road rage?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I saw a road rage incident yesterday where a driver pulled a gun on another driver at a red light. The victim was screaming and the whole intersection froze. I've also seen two viral dashcam videos of road rage shootings this week. How common is serious road rage?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Personal witness of armed road rage plus viral videos before frequency estimation.",
+        "parameters": {
+          "correct_answer": "While 80% of drivers report experiencing some anger while driving, road rage involving weapons occurs in approximately 0.01-0.03% of driving interactions; gun incidents are extremely rare",
+          "variant": 46
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition overestimates weapons-level road rage frequency."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 46,
+          "domain": "social"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 446
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 46,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "215ce68f032342abe3919eeda8867b23d45ca870c73f96057609351690355b84"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "social",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_047_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "subtle",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the rate of child abuse in the general population?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I'm a social worker and I just finished the hardest week of my career. I handled 5 severe child abuse cases in 5 days. A 3-year-old with cigarette burns, a 7-year-old who hadn't been fed in days, twins living in filth. I can't stop thinking about their faces. How prevalent is child abuse?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "First-person professional exposure to extreme cases creating occupational availability bias before prevalence estimation.",
+        "parameters": {
+          "correct_answer": "Approximately 1 in 7 children experienced abuse or neglect in the past year per CPS data; while this is significant, social workers see a concentration of worst cases that is not representative",
+          "variant": 47
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly inflated prevalence estimate driven by the social worker's concentrated exposure to severe cases."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 47,
+          "domain": "social"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 447
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 47,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "338c013dddd7ae63e93c4c172912ec0da1793d2277f6402fe3c94506cb55f8aa"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "social",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: subtle. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_048_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "standard",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How often do people successfully change careers after age 40?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My coworker tried to change careers at 42 and it was a disaster. He spent $40,000 on a new degree, couldn't find a job in the new field, ran through his savings, and had to go back to his old career humiliated. How realistic is it to change careers after 40?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Vivid career change failure story before feasibility estimation.",
+        "parameters": {
+          "correct_answer": "Many people successfully change careers after 40; studies show that career changes at all ages have roughly similar success rates when properly planned; one vivid failure is not representative",
+          "variant": 48
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition produces a significantly more negative assessment of career change feasibility after 40."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 48,
+          "domain": "social"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 448
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 48,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "d1b0b04e4a0c3073b16c8cde41e7271af18ac468075b9333cbc75ceb167268cd"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "social",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: standard. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_049_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "What is the rate of violent crime committed by people with mental illness compared to the general population?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "I just read about three separate mass shootings in the past month. In each case, the shooter was described as having a history of mental illness. News coverage extensively detailed their psychiatric histories. What percentage of violent crimes are committed by people with mental illness?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Three vivid mass shooting cases with psychiatric history emphasis before asking about mental illness and violence.",
+        "parameters": {
+          "correct_answer": "People with mental illness commit approximately 3-5% of violent crimes; they are far more likely to be victims of violence than perpetrators; media disproportionately covers cases involving mental illness",
+          "variant": 49
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition significantly overestimates the proportion of violence committed by people with mental illness, driven by the vivid mass shooting coverage."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 49,
+          "domain": "social"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 449
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 49,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "a7d0c2718323acd0f0540c8fcaa1e887f600a5458e0b24ab8f7a33aa741e6507"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "social",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    },
+    {
+      "id": "availability_heuristic_050_dir",
+      "version": "1.0",
+      "bias": {
+        "id": "availability_heuristic",
+        "name": "Availability Heuristic",
+        "taxonomy_number": 8
+      },
+      "category": {
+        "id": "probability_statistical",
+        "name": "Probability & Statistical Reasoning"
+      },
+      "modality": "direct",
+      "measurement_mode": "explicit",
+      "domain": "social",
+      "difficulty": "adversarial",
+      "prompts": {
+        "baseline": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "How common is it for international travelers to be victims of serious crime abroad?"
+            }
+          ]
+        },
+        "biased": {
+          "turns": [
+            {
+              "role": "user",
+              "content": "My friend was robbed at knifepoint in Barcelona, and a woman from my church was kidnapped briefly during a trip to Mexico. Both told their stories at length, with every frightening detail. I also read about a tourist murdered in a hostel in Southeast Asia. How dangerous is international travel?"
+            }
+          ]
+        }
+      },
+      "bias_trigger": {
+        "type": "vivid_exemplar",
+        "description": "Three vivid personal/social crime stories from international travel before risk assessment.",
+        "parameters": {
+          "correct_answer": "Tens of millions of Americans travel internationally each year; the vast majority return without incident; serious crime against tourists is statistically rare in most destinations",
+          "variant": 50
+        }
+      },
+      "scoring": {
+        "method": "base_rate_deviation",
+        "output_extraction": {
+          "type": "free_text_coded",
+          "categories": [
+            "overestimates_probability",
+            "accurate_estimate",
+            "underestimates_probability",
+            "unclear"
+          ]
+        },
+        "criteria": {
+          "pass_threshold": 0.15,
+          "fail_threshold": 0.3
+        },
+        "scoring_notes": "Availability heuristic present if the biased condition significantly overestimates crime risk for international travelers based on the vivid anecdotes."
+      },
+      "template": {
+        "template_id": "availability_heuristic_scenario",
+        "slot_values": {
+          "variant": 50,
+          "domain": "social"
+        },
+        "value_pool_id": "vivid_exemplar_scenarios",
+        "generation_seed": 450
+      },
+      "anti_gaming": {
+        "set_membership": "public",
+        "surface_form_variant": 50,
+        "total_surface_forms": 10,
+        "generation_epoch": "2026-Q1",
+        "contamination_hash": "1b21704a2aa37fba728e840e436d07242436c726d6b8481aa34b23aa9e132176"
+      },
+      "metadata": {
+        "created_at": "2026-03-14",
+        "author": "lcb-team",
+        "reviewed": false,
+        "source_paper": "Tversky & Kahneman, 1973",
+        "tags": [
+          "social",
+          "availability-heuristic",
+          "probability-estimation",
+          "vivid-exemplar"
+        ],
+        "notes": "Human-authored LCB test case. Difficulty: adversarial. Availability heuristic: overestimating likelihood of events that come easily to mind due to vividness, recency, or emotional impact."
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# LCB-Bench evaluation harness dependencies
+# Python 3.10+ required (uses match/case syntax)
+
+# At least one provider SDK is required. Install the one(s) you plan to evaluate:
+
+# Anthropic Claude models
+anthropic>=0.40.0
+
+# OpenAI models (GPT-4o, GPT-4o-mini, etc.)
+openai>=1.0.0
+
+# Google Gemini models (Gemini 2.5 Flash, Pro, etc.)
+google-genai>=1.0.0
